@@ -13,6 +13,7 @@
     { "name": "갈릭파우더", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "어니언파우더", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "XO소스", "category": "양념", "qty": "", "expiry": "", "note": "" },
+    { "name": "참소스", "category": "양념", "qty": "", "expiry": "", "note": "고소한 참깨 드레싱/찍먹 소스" },
     { "name": "고춧가루", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "진간장", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "국간장", "category": "양념", "qty": "", "expiry": "", "note": "" },
