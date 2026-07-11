@@ -1,4 +1,22 @@
 {
   "updated": "2026-07-11",
-  "items": []
+  "items": [
+    { "name": "고등어", "category": "냉동", "qty": "", "expiry": "", "note": "직접 잡은 것, 토막" },
+    { "name": "삼겹살", "category": "냉동", "qty": "", "expiry": "", "note": "얇게 썰림" },
+    { "name": "파", "category": "냉장", "qty": "", "expiry": "", "note": "" },
+    { "name": "양파", "category": "실온", "qty": "1개", "expiry": "", "note": "" },
+    { "name": "다진마늘", "category": "냉동", "qty": "", "expiry": "", "note": "갈아서 냉동" },
+    { "name": "배러댄부용(비프)", "category": "양념", "qty": "", "expiry": "", "note": "Better Than Bouillon 소고기 육수 베이스" },
+    { "name": "토마토페이스트", "category": "양념", "qty": "", "expiry": "", "note": "" },
+    { "name": "갈릭파우더", "category": "양념", "qty": "", "expiry": "", "note": "" },
+    { "name": "어니언파우더", "category": "양념", "qty": "", "expiry": "", "note": "" },
+    { "name": "XO소스", "category": "양념", "qty": "", "expiry": "", "note": "" },
+    { "name": "설탕", "category": "양념", "qty": "", "expiry": "", "note": "" },
+    { "name": "식초", "category": "양념", "qty": "", "expiry": "", "note": "" },
+    { "name": "미림", "category": "양념", "qty": "", "expiry": "", "note": "" },
+    { "name": "참치액", "category": "양념", "qty": "", "expiry": "", "note": "" },
+    { "name": "시푸드 럽", "category": "양념", "qty": "", "expiry": "", "note": "해산물용 시즈닝 럽" },
+    { "name": "루이지애나 케이준 가루", "category": "양념", "qty": "", "expiry": "", "note": "" },
+    { "name": "스테이크 시즈닝", "category": "양념", "qty": "", "expiry": "", "note": "" }
+  ]
 }
