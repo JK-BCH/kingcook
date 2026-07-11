@@ -15,6 +15,8 @@
     { "name": "어니언파우더", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "XO소스", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "참소스", "category": "양념", "qty": "", "expiry": "", "note": "고소한 참깨 드레싱/찍먹 소스" },
+    { "name": "올리브유", "category": "양념", "qty": "", "expiry": "", "note": "오일파스타·볶음·마무리용" },
+    { "name": "식용유", "category": "양념", "qty": "", "expiry": "", "note": "튀김·부침·볶음용" },
     { "name": "고춧가루", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "진간장", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "국간장", "category": "양념", "qty": "", "expiry": "", "note": "" },
