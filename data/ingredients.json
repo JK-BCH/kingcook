@@ -3,6 +3,7 @@
   "items": [
     { "name": "고등어", "category": "냉동", "qty": "", "expiry": "", "note": "직접 잡은 것, 토막" },
     { "name": "연어", "category": "냉동", "qty": "", "expiry": "", "note": "코스트코 대용량(박스), 필렛" },
+    { "name": "새우", "category": "냉동", "qty": "", "expiry": "", "note": "냉동" },
     { "name": "삼겹살", "category": "냉동", "qty": "", "expiry": "", "note": "얇게 썰림" },
     { "name": "파", "category": "냉장", "qty": "", "expiry": "", "note": "" },
     { "name": "김치", "category": "냉장", "qty": "", "expiry": "", "note": "" },
