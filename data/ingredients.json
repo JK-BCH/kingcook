@@ -16,6 +16,7 @@
     { "name": "고춧가루", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "진간장", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "국간장", "category": "양념", "qty": "", "expiry": "", "note": "" },
+    { "name": "된장", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "깨", "category": "양념", "qty": "", "expiry": "", "note": "통깨/고명" },
     { "name": "설탕", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "식초", "category": "양념", "qty": "", "expiry": "", "note": "" },
@@ -23,6 +24,8 @@
     { "name": "참치액", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "시푸드 럽", "category": "양념", "qty": "", "expiry": "", "note": "해산물용 시즈닝 럽" },
     { "name": "루이지애나 케이준 가루", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "스테이크 시즈닝", "category": "양념", "qty": "", "expiry": "", "note": "" }
+    { "name": "스테이크 시즈닝", "category": "양념", "qty": "", "expiry": "", "note": "" },
+    { "name": "와인", "category": "실온", "qty": "무제한", "expiry": "", "note": "요리용 가능(레드/화이트) — 상시 보유" },
+    { "name": "위스키", "category": "실온", "qty": "무제한", "expiry": "", "note": "요리용 가능(글레이즈/소스) — 상시 보유" }
   ]
 }
