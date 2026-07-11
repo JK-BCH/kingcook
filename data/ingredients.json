@@ -4,6 +4,7 @@
     { "name": "고등어", "category": "냉동", "qty": "", "expiry": "", "note": "직접 잡은 것, 토막" },
     { "name": "삼겹살", "category": "냉동", "qty": "", "expiry": "", "note": "얇게 썰림" },
     { "name": "파", "category": "냉장", "qty": "", "expiry": "", "note": "" },
+    { "name": "김치", "category": "냉장", "qty": "", "expiry": "", "note": "" },
     { "name": "양파", "category": "실온", "qty": "1개", "expiry": "", "note": "" },
     { "name": "다진마늘", "category": "냉동", "qty": "", "expiry": "", "note": "갈아서 냉동" },
     { "name": "배러댄부용(비프)", "category": "양념", "qty": "", "expiry": "", "note": "Better Than Bouillon 소고기 육수 베이스" },
