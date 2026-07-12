@@ -9,6 +9,7 @@
     { "name": "김치", "category": "냉장", "qty": "", "expiry": "", "note": "" },
     { "name": "양파", "category": "실온", "qty": "1개", "expiry": "", "note": "" },
     { "name": "파스타", "category": "실온", "qty": "", "expiry": "", "note": "스파게티·링귀네·엔젤헤어" },
+    { "name": "스팸", "category": "실온", "qty": "", "expiry": "", "note": "통조림" },
     { "name": "다진마늘", "category": "냉동", "qty": "", "expiry": "", "note": "갈아서 냉동" },
     { "name": "배러댄부용(비프)", "category": "양념", "qty": "", "expiry": "", "note": "Better Than Bouillon 소고기 육수 베이스" },
     { "name": "토마토페이스트", "category": "양념", "qty": "", "expiry": "", "note": "" },
