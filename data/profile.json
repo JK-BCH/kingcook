@@ -3,9 +3,10 @@
   "skill_level": "초보",
   "spicy_tolerance": "보통",
   "servings": 1,
+  "temp_unit": "화씨(°F)",
   "allergies": [],
   "dislikes": [],
   "likes": [],
   "goals": [],
-  "notes": ""
+  "notes": "온도는 화씨(°F)로 표기 — 미국 기기 사용 (에어프라이어 등)"
 }
