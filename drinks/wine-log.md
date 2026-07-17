@@ -29,7 +29,7 @@
 | R. López de Heredia Viña Tondonia Reserva 2013 | 레드 | 템프라니요 · 리오하 | |
 | R. López de Heredia Viña Bosconia 2013 | 레드 | 템프라니요 · 리오하 | |
 | Beau Vigne Signature Series Cabernet Sauvignon 2021 | 레드 | 카베르네 소비뇽 · 나파 | |
-| Tempus Fugit Napa Valley | 레드(추정) | 나파 | 품종 미상 — 확인 필요 |
+| Tempus Fugit Cabernet Sauvignon 2024 | 레드 | 카베르네 소비뇽 · 나파 | |
 | First Drop Wines 'Mother's Milk' Shiraz | 레드 | 시라즈 · 호주 바로사 | |
 
 ## 2026-07-02
@@ -57,12 +57,12 @@
 ## 2026-06-03
 | 와인 | 종류 | 품종·지역 | 메모 |
 |---|---|---|---|
-| Santa Margherita Pinot Grigio 2024 | 화이트 | 피노 그리지오 · 이탈리아 | 라벨엔 "GRIFIO"로 적혀있었음 |
+| Santa Margherita Pinot Grigio 2024 | 화이트 | 피노 그리지오 · 이탈리아 | |
 | Cakebread Cellars Cabernet Sauvignon 2022 | 레드 | 카베르네 소비뇽 · 나파 | |
 | Dominus Napanook 2023 | 레드 | 보르도 블렌드 · 나파 욘트빌 | Dominus 세컨드 와인 |
 | Skinner Syrah El Dorado 2020 | 레드 | 시라 · 캘리 시에라풋힐스 | |
 | Bedrock Vineyard Heritage 2024 | 레드 | 진판델 중심 필드블렌드 · 소노마 | WS2025 #12 |
-| Oomrang Estate Kerner 2022 | 화이트 | 케르너 · (지역 미상) | 확인 필요 |
+| Oomrang Estate Kerner 2022 | 화이트 | 케르너 · 푸젓 사운드(워싱턴) | |
 | Château Moulin Boyer Bordeaux 2021 | 레드 | 보르도 블렌드 · 보르도 | |
 
 ## 2026-05-28
@@ -82,7 +82,7 @@
 ## 2025-12-18
 | 와인 | 종류 | 품종·지역 | 메모 |
 |---|---|---|---|
-| Spring Mountain Vineyard Elivette 2017 | 레드 | 보르도 블렌드 · 나파 스프링마운틴 | 목록에 2번 등장 |
+| Spring Mountain Vineyard Elivette 2017 | 레드 | 보르도 블렌드 · 나파 스프링마운틴 | |
 | Grand Napa Vineyards Stone Crib Cabernet Sauvignon 2019 | 레드 | 카베르네 소비뇽 · 나파 | |
 | McManis Family Vineyards Chardonnay 2023 | 화이트 | 샤르도네 · 캘리포니아 | |
 | Vincent Girardin Bourgogne Cuvée Saint-Vincent Chardonnay 2022 | 화이트 | 샤르도네 · 부르고뉴 | |
