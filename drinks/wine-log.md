@@ -3,8 +3,8 @@
 다 마신 와인을 남겨두는 **개인 기록**. 요리용 와인·인벤토리와는 **별개**.
 (요리에 쓰는 와인은 `data/ingredients.json` → "와인" 항목.)
 
-> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **60종** · **2025-05-28 ~ 2026-07-15**.
-> 정리 시 가정: ① 인스타 태그 `#YYMMDD` → 날짜 변환 ② "GRIFIO" → Pinot **Grigio** 오타 교정 ③ 2025-12-18 'Elivette 2017' 중복 1개로 합침 ④ 종류·품종·지역은 라벨명 기준 추정 — 틀리면 고쳐줄게.
+> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **60종** · **2025-12-18 ~ 2026-07-15**.
+> 정리 시 가정: ① 인스타 태그 `#YYMMDD` → 날짜 (단 `#250528`은 년도 오기 → **2026**-05-28) ② "GRIFIO" → Pinot **Grigio** 오타 교정 ③ 2025-12-18 'Elivette 2017' 중복 1개로 합침 ④ 종류·품종·지역은 라벨명 기준 추정 — 틀리면 고쳐줄게.
 
 ---
 
@@ -65,6 +65,20 @@
 | Oomrang Estate Kerner 2022 | 화이트 | 케르너 · (지역 미상) | 확인 필요 |
 | Château Moulin Boyer Bordeaux 2021 | 레드 | 보르도 블렌드 · 보르도 | |
 
+## 2026-05-28
+| 와인 | 종류 | 품종·지역 | 메모 |
+|---|---|---|---|
+| Alberto Voerzio Barolo Castagni 2021 | 레드 | 네비올로 · 바롤로(피에몬테) | |
+| Giovanni Rosso Langhe Nebbiolo 2023 | 레드 | 네비올로 · 랑게(피에몬테) | |
+| Produttori del Barbaresco 2021 | 레드 | 네비올로 · 바르바레스코(피에몬테) | WS2025 #7 |
+| Montagu Pinot Noir Charles Heintz Vineyard 2024 | 레드 | 피노 누아 · 소노마 코스트 | |
+| Three Sticks Pinot Noir Price Family Estates 2022 | 레드 | 피노 누아 · 소노마 | |
+| Three Sticks Chardonnay Durell Vineyard 2022 | 화이트 | 샤르도네 · 소노마 | |
+| La Rioja Alta Viña Ardanza Reserva 2019 | 레드 | 템프라니요/가르나차 · 리오하 | |
+| Kirkland Chablis 2023 | 화이트 | 샤르도네 · 샤블리(부르고뉴) | 코스트코 커클랜드 |
+| Hofgut Falkenstein Krettnacher Euchariusberg Riesling 2024 | 화이트 | 리슬링 · 독일 자르 | |
+| So Far Out 'All The Rage' Red 2022 | 레드 | 레드 블렌드 · 캘리포니아 | |
+
 ## 2025-12-18
 | 와인 | 종류 | 품종·지역 | 메모 |
 |---|---|---|---|
@@ -81,17 +95,3 @@
 | Champagne Bollinger Special Cuvée | 스파클링(샴페인) | 피노 누아 중심 · 샴페인 | NV |
 | Gosset Champagne Grande Réserve Brut | 스파클링(샴페인) | 샴페인 | NV |
 | Peter Michael 'Belle Côte' Chardonnay 2022 | 화이트 | 샤르도네 · 소노마 나이츠밸리 | |
-
-## 2025-05-28
-| 와인 | 종류 | 품종·지역 | 메모 |
-|---|---|---|---|
-| Alberto Voerzio Barolo Castagni 2021 | 레드 | 네비올로 · 바롤로(피에몬테) | |
-| Giovanni Rosso Langhe Nebbiolo 2023 | 레드 | 네비올로 · 랑게(피에몬테) | |
-| Produttori del Barbaresco 2021 | 레드 | 네비올로 · 바르바레스코(피에몬테) | WS2025 #7 |
-| Montagu Pinot Noir Charles Heintz Vineyard 2024 | 레드 | 피노 누아 · 소노마 코스트 | |
-| Three Sticks Pinot Noir Price Family Estates 2022 | 레드 | 피노 누아 · 소노마 | |
-| Three Sticks Chardonnay Durell Vineyard 2022 | 화이트 | 샤르도네 · 소노마 | |
-| La Rioja Alta Viña Ardanza Reserva 2019 | 레드 | 템프라니요/가르나차 · 리오하 | |
-| Kirkland Chablis 2023 | 화이트 | 샤르도네 · 샤블리(부르고뉴) | 코스트코 커클랜드 |
-| Hofgut Falkenstein Krettnacher Euchariusberg Riesling 2024 | 화이트 | 리슬링 · 독일 자르 | |
-| So Far Out 'All The Rage' Red 2022 | 레드 | 레드 블렌드 · 캘리포니아 | |
