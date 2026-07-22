@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-17",
+  "updated": "2026-07-18",
   "items": [
     { "name": "고등어", "category": "냉동", "qty": "", "expiry": "", "note": "직접 잡은 것, 토막" },
     { "name": "연어", "category": "냉동", "qty": "", "expiry": "", "note": "코스트코 대용량(박스), 필렛" },
@@ -30,7 +30,6 @@
     { "name": "페퍼론치노", "category": "양념", "qty": "", "expiry": "", "note": "말린 홍고추 — 오일파스타용" },
     { "name": "진간장", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "국간장", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "된장", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "깨", "category": "양념", "qty": "", "expiry": "", "note": "통깨/고명" },
     { "name": "설탕", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "식초", "category": "양념", "qty": "", "expiry": "", "note": "" },
