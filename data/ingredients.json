@@ -45,6 +45,7 @@
     { "name": "시나몬가루", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "시나몬시럽", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "굴소스", "category": "양념", "qty": "", "expiry": "", "note": "이금기(Lee Kum Kee) — 감칠맛·볶음·조림용" },
-    { "name": "베지믹스", "category": "냉동", "qty": "대용량", "expiry": "", "note": "냉동 야채믹스(옥수수·완두·당근 등) — 볶음밥·볶음용" }
+    { "name": "베지믹스", "category": "냉동", "qty": "대용량", "expiry": "", "note": "냉동 야채믹스(옥수수·완두·당근 등) — 볶음밥·볶음용" },
+    { "name": "쯔유", "category": "양념", "qty": "", "expiry": "", "note": "일본식 만능장(간장+미림+다시+설탕 농축) — 우동·조림·가쿠니·계란말이용, 물에 희석" }
   ]
 }
