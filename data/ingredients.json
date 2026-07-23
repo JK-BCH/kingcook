@@ -44,6 +44,7 @@
     { "name": "시나몬바닐라꿀", "category": "양념", "qty": "", "expiry": "", "note": "버몬트산 — 시나몬·바닐라 인퓨즈드 꿀" },
     { "name": "시나몬가루", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "시나몬시럽", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "굴소스", "category": "양념", "qty": "", "expiry": "", "note": "이금기(Lee Kum Kee) — 감칠맛·볶음·조림용" }
+    { "name": "굴소스", "category": "양념", "qty": "", "expiry": "", "note": "이금기(Lee Kum Kee) — 감칠맛·볶음·조림용" },
+    { "name": "베지믹스", "category": "냉동", "qty": "대용량", "expiry": "", "note": "냉동 야채믹스(옥수수·완두·당근 등) — 볶음밥·볶음용" }
   ]
 }
