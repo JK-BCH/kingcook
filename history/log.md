@@ -14,7 +14,7 @@
 ## 📌 2026-07-31 7인 와인파티 — 상세 기록
 
 **메뉴**: 비프 부르기뇽 · 새우 아라비아타 펜네 · 갈릭 필라프 (한상 차림)
-**와인**: Faiveley Ladoix "Les Marnes Blanches" · Cloudy Bay · 피노 누아 · 카베르네 소비뇽 · Masi Costasera Amarone 2020
+**와인**: 화이트 4 + 레드 2 — Dr. Heidemanns-Bergweiler Riesling Dry 2024 · Faiveley Ladoix "Les Marnes Blanches" 2020 · Célestin Blondeau Pouilly-Fumé 2022 · Cormòns Collio Friulano · Freakshow Petite Petit 2022 · Finca Flichman Malbec 2021 (상세: `drinks/wine-log.md`)
 **결과**: 셋 다 성공 ★★★★★
 
 ### 🥩 비프 부르기뇽
@@ -36,8 +36,9 @@
 - 새우는 따로 볶아 건지고 마지막에 합치기 = 성공
 
 ### 🍷 와인
-- 순서: 화이트 2종 → 피노 → 카쇼 → 아마로네 (가벼운 것 → 무거운 것)
-- 부르기뇽엔 피노 누아가 정답 (같은 부르고뉴)
+- 실제로는 **화이트 4 + 레드 2** 구성으로 갔음 (계획했던 아마로네·카쇼·클라우디베이는 안 씀)
+- **Faiveley Ladoix(부르고뉴 샤르도네)** — 부르기뇽과 같은 부르고뉴라 궁합 좋음
+- 서빙 원칙: **가벼운 것 → 무거운 것**, 화이트 → 레드
 
 ### ⏱️ 진행
 - 15:30 부르기뇽 시작 → 16:20 압력 → **압력 도는 45분에 나머지 전부** (손질·아라비아타 소스·필라프)

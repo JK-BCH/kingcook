@@ -3,12 +3,25 @@
 다 마신 와인을 남겨두는 **개인 기록**. 요리용 와인·인벤토리와는 **별개**.
 (요리에 쓰는 와인은 `data/ingredients.json` → "와인" 항목.)
 
-> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **60종** · **2025-12-18 ~ 2026-07-15**.
+> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **66종** · **2025-12-18 ~ 2026-07-31**.
 > 정리 가정: ① 인스타 태그 `#YYMMDD` → 날짜 (단 `#250528`은 년도 오기 → **2026**-05-28) ② "GRIFIO"→Pinot **Grigio** ③ 2025-12-18 'Elivette 2017' 중복 1개로 합침 ④ 종류·품종·지역은 라벨 기준 추정.
 
 > **평점(2026-07-17 웹 조사)**: 사이트 직접열람이 막혀(403) **웹검색 스니펫 기반**이라 오차 가능. **Vivino**=커뮤니티 별점/5 (대개 빈티지 통합). **평론가**=해당 빈티지 100점 — JS=James Suckling, WS=Wine Spectator, WA=Wine Advocate(Parker), DEC=Decanter, VIN=Vinous, JD=Jeb Dunnuck, WE=Wine Enthusiast, WineIndep=The Wine Independent, 종합=wine-searcher 평균. **`†`=단일출처·재확인 권장**, **`—`=못 찾음/미조사**.
 
 ---
+
+## 2026-07-31 — 7인 홈파티 🍽️
+> 부르기뇽 · 새우 아라비아타 펜네 · 갈릭 필라프와 함께 (기록: `history/log.md`)
+> 화이트 4 + 레드 2 구성
+
+| 와인 | 종류 | 품종·지역 | Vivino | 평론가 점수(출처) | 메모 |
+|---|---|---|---|---|---|
+| Dr. Heidemanns-Bergweiler Riesling Dry 2024 | 화이트 | 리슬링(드라이) · 독일 모젤 | — | — | 2025-12-18엔 같은 생산자 Spätlese를 마셨음 |
+| Domaine Faiveley Ladoix "Les Marnes Blanches" 2020 | 화이트 | 샤르도네 · 라두아(부르고뉴) | — | — | 부르기뇽과 같은 부르고뉴 |
+| Célestin Blondeau Pouilly-Fumé "Les Rabichottes" 2022 | 화이트 | 소비뇽 블랑 · 푸이퓌메(루아르) | — | — | |
+| Cormòns Collio Friulano | 화이트 | 프리울라노 · 콜리오(프리울리, 이탈리아) | — | — | 빈티지 미기재 |
+| Freakshow Petite Petit 2022 | 레드 | 프티 시라/프티 베르도 · 로디(캘리포니아) | — | — | |
+| Finca Flichman Microterroir "Gravel & Stone" Malbec 2021 | 레드 | 말벡 · 투풍가토, 멘도자(아르헨티나) | — | — | |
 
 ## 2026-07-15
 | 와인 | 종류 | 품종·지역 | Vivino | 평론가 점수(출처) | 메모 |
