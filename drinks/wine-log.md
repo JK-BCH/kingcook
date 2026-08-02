@@ -19,7 +19,7 @@
 | Dr. Heidemanns-Bergweiler Riesling Dry 2024 | 화이트 | 리슬링(드라이) · 독일 모젤 | — | — (2024 미확인) | 타빈티지 종합: 2022=87 · 2021=90 · 2020=89. 2025-12-18엔 같은 생산자 Spätlese |
 | Domaine Faiveley Ladoix "Les Marnes Blanches" 2020 | 화이트 | 샤르도네 · 라두아(부르고뉴) | — | — (2020 미확인) | 타빈티지: 2019=Falstaff 91 · 2022=WA 90. 부르기뇽과 같은 부르고뉴 |
 | Célestin Blondeau Pouilly-Fumé "Les Rabichottes" 2022 | 화이트 | 소비뇽 블랑 · 푸이퓌메(루아르) | — | — | 점수 못 찾음 |
-| Cormòns Collio Friulano | 화이트 | 프리울라노 · 콜리오(프리울리, 이탈리아) | 3.7 † | — | †'Friuli Friulano' 페이지 기준 — Collio 큐베와 다를 수 있음. 빈티지 미기재 |
+| Cormòns Collio Friulano 2023 | 화이트 | 프리울라노 · 콜리오(프리울리, 이탈리아) | 3.7 † | — | †'Friuli Friulano' 페이지 기준 — Collio 큐베와 다를 수 있음 |
 | Freakshow Petite Petit 2022 | 레드 | 프티 시라/프티 베르도 · 로디(캘리포니아) | **4.0** (3.7k) | **WE 92** (2022) ✅ | Michael David Winery |
 | Finca Flichman Microterroir "Gravel & Stone" Malbec 2021 | 레드 | 말벡 · 투풍가토, 멘도자(아르헨티나) | — | — (2021 미확인) | ⭐ **직전 빈티지 2020이 DWWA 2024 "Best in Show" 97점 — 18,000종 중 세계 최고 말벡**. 2019=WE 92 |
 
