@@ -19,7 +19,6 @@
     { "name": "다진마늘", "category": "냉동", "qty": "", "expiry": "", "note": "갈아서 냉동" },
     { "name": "깐마늘", "category": "냉장", "qty": "", "expiry": "", "note": "통마늘(껍질 깐 것) — 편썰기·통째 구이·마늘콩피·알리오올리오용. 다진마늘보다 덜 타고 향 좋음" },
     { "name": "당근", "category": "냉장", "qty": "", "expiry": "", "note": "야채칸 3~4주. 물에 담가 밀폐용기에 넣으면 1~2개월+아삭 (물 2~3일마다 교체)" },
-    { "name": "양송이", "category": "냉장", "qty": "", "expiry": "", "note": "종이봉투에 넣어 냉장 4~7일. ⚠️씻지 말고 보관(물기=상함). 오래 두려면 볶아서 냉동(3개월)" },
     { "name": "파마산", "category": "냉장", "qty": "", "expiry": "", "note": "채썬 것(shredded) — 개봉 후 냉장 1~2주. 냉동하면 6개월(품질 유지, 알알이 떨어져 바로 사용 가능)" },
     { "name": "배러댄부용(비프)", "category": "양념", "qty": "", "expiry": "", "note": "Better Than Bouillon 소고기 육수 베이스" },
     { "name": "토마토페이스트", "category": "양념", "qty": "", "expiry": "", "note": "" },
