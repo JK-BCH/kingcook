@@ -15,14 +15,14 @@
 
 | 와인 | 종류 | 품종·지역 | Vivino | 평론가 점수(출처) | 메모 |
 |---|---|---|---|---|---|
-| Champagne Charles Heidsieck Brut Réserve Special Edition | 스파클링(샴페인) | 샴페인 · 프랑스 상파뉴 | — | — | NV |
-| Aubert Eastside Chardonnay 2021 | 화이트 | 샤르도네 · 러시안 리버 밸리(캘리포니아) | — | — | |
-| Aubaine Anahata Vineyard Chardonnay 2021 | 화이트 | 샤르도네 · 에올라-아미티 힐즈(오리건) | — | — | Cristom과 같은 에올라-아미티 |
-| Littorai Sonoma Coast Pinot Noir 2023 | 레드 | 피노 누아 · 소노마 코스트(캘리포니아) | — | — | 2026-07-02에도 Littorai 마심 |
-| Gary Farrell McDonald Mountain Vineyard Pinot Noir 2021 | 레드 | 피노 누아 · 러시안 리버 밸리(캘리포니아) | — | — | 2026-07-02에도 Gary Farrell 마심 |
-| Chateau Montelena "The Montelena Estate" Cabernet Sauvignon 2008 | 레드 | 카베르네 소비뇽 · 나파 칼리스토가 | — | — | 17년 숙성 — 이 로그에서 가장 오래된 빈티지 |
-| Frog's Leap Rutherford Estate Grown Cabernet Sauvignon 2022 | 레드 | 카베르네 소비뇽 · 나파 러더퍼드 | — | — | |
-| Bibi Graetz Testamatta 2020 | 레드 | 산지오베제 · 토스카나(이탈리아) | — | — | |
+| Champagne Charles Heidsieck Brut Réserve Special Edition | 스파클링(샴페인) | 피노 뮈니에/피노 누아/샤르도네 · 상파뉴 | — | **JS 95** | NV. JS 95는 표준 Brut Réserve 기준 — Special Edition 별도 점수는 미확인 |
+| Aubert Eastside Chardonnay 2021 | 화이트 | 샤르도네 · 러시안 리버 밸리(캘리포니아) | — | **WA 97** · VIN 95–97 | ⭐ 이날 최고 득점 화이트 |
+| Aubaine Anahata Vineyard Chardonnay 2021 | 화이트 | 샤르도네 · 에올라-아미티 힐즈(오리건) | — | **WE 92** | Cristom과 같은 에올라-아미티 |
+| Littorai Sonoma Coast Pinot Noir 2023 | 레드 | 피노 누아 · 소노마 코스트(캘리포니아) | — | 종합 94 | Jancis Robinson 리뷰 존재. 2026-07-02에도 Littorai 마심 |
+| Gary Farrell McDonald Mountain Vineyard Pinot Noir 2021 | 레드 | 피노 누아 · 러시안 리버 밸리(캘리포니아) | — | 92 † | †출처 불명확(WE·WS 리뷰 페이지는 존재). 2026-07-02에도 Gary Farrell 마심 |
+| Chateau Montelena "The Montelena Estate" Cabernet Sauvignon 2008 | 레드 | 카베르네 소비뇽 · 나파 칼리스토가 | — | **WA 92 · WS 92** (CT 92.4/202) | 17년 숙성 — 이 로그에서 가장 오래된 빈티지 |
+| Frog's Leap Rutherford Estate Grown Cabernet Sauvignon 2022 | 레드 | 카베르네 소비뇽 · 나파 러더퍼드 | **4.2** (500+) | 종합 91 (4인) | |
+| Bibi Graetz Testamatta 2020 | 레드 | 산지오베제 · 토스카나(이탈리아) | — | **DEC 97** · WA 94~95 · JS 94 · VIN 94 | ⭐ 이날 최고 득점 |
 
 ## 2026-07-31 — 7인 홈파티 🍽️
 > 부르기뇽 · 새우 아라비아타 펜네 · 갈릭 필라프와 함께 (기록: `history/log.md`)
