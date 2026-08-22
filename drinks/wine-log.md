@@ -3,12 +3,26 @@
 다 마신 와인을 남겨두는 **개인 기록**. 요리용 와인·인벤토리와는 **별개**.
 (요리에 쓰는 와인은 `data/ingredients.json` → "와인" 항목.)
 
-> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **66종** · **2025-12-18 ~ 2026-07-31**.
+> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **74종** · **2025-12-18 ~ 2026-08-19**.
 > 정리 가정: ① 인스타 태그 `#YYMMDD` → 날짜 (단 `#250528`은 년도 오기 → **2026**-05-28) ② "GRIFIO"→Pinot **Grigio** ③ 2025-12-18 'Elivette 2017' 중복 1개로 합침 ④ 종류·품종·지역은 라벨 기준 추정.
 
 > **평점(2026-07-17 웹 조사)**: 사이트 직접열람이 막혀(403) **웹검색 스니펫 기반**이라 오차 가능. **Vivino**=커뮤니티 별점/5 (대개 빈티지 통합). **평론가**=해당 빈티지 100점 — JS=James Suckling, WS=Wine Spectator, WA=Wine Advocate(Parker), DEC=Decanter, VIN=Vinous, JD=Jeb Dunnuck, WE=Wine Enthusiast, WineIndep=The Wine Independent, 종합=wine-searcher 평균. **`†`=단일출처·재확인 권장**, **`—`=못 찾음/미조사**.
 
 ---
+
+## 2026-08-19
+> 스파클링 1 + 화이트 2 + 레드 5 — 미국(캘리포니아·오리건) 중심 구성
+
+| 와인 | 종류 | 품종·지역 | Vivino | 평론가 점수(출처) | 메모 |
+|---|---|---|---|---|---|
+| Champagne Charles Heidsieck Brut Réserve Special Edition | 스파클링(샴페인) | 샴페인 · 프랑스 상파뉴 | — | — | NV |
+| Aubert Eastside Chardonnay 2021 | 화이트 | 샤르도네 · 러시안 리버 밸리(캘리포니아) | — | — | |
+| Aubaine Anahata Vineyard Chardonnay 2021 | 화이트 | 샤르도네 · 에올라-아미티 힐즈(오리건) | — | — | Cristom과 같은 에올라-아미티 |
+| Littorai Sonoma Coast Pinot Noir 2023 | 레드 | 피노 누아 · 소노마 코스트(캘리포니아) | — | — | 2026-07-02에도 Littorai 마심 |
+| Gary Farrell McDonald Mountain Vineyard Pinot Noir 2021 | 레드 | 피노 누아 · 러시안 리버 밸리(캘리포니아) | — | — | 2026-07-02에도 Gary Farrell 마심 |
+| Chateau Montelena "The Montelena Estate" Cabernet Sauvignon 2008 | 레드 | 카베르네 소비뇽 · 나파 칼리스토가 | — | — | 17년 숙성 — 이 로그에서 가장 오래된 빈티지 |
+| Frog's Leap Rutherford Estate Grown Cabernet Sauvignon 2022 | 레드 | 카베르네 소비뇽 · 나파 러더퍼드 | — | — | |
+| Bibi Graetz Testamatta 2020 | 레드 | 산지오베제 · 토스카나(이탈리아) | — | — | |
 
 ## 2026-07-31 — 7인 홈파티 🍽️
 > 부르기뇽 · 새우 아라비아타 펜네 · 갈릭 필라프와 함께 (기록: `history/log.md`)
