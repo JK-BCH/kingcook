@@ -3,12 +3,21 @@
 다 마신 와인을 남겨두는 **개인 기록**. 요리용 와인·인벤토리와는 **별개**.
 (요리에 쓰는 와인은 `data/ingredients.json` → "와인" 항목.)
 
-> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **74종** · **2025-12-18 ~ 2026-08-19**.
+> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **77종** · **2025-12-18 ~ 2026-08-28**.
 > 정리 가정: ① 인스타 태그 `#YYMMDD` → 날짜 (단 `#250528`은 년도 오기 → **2026**-05-28) ② "GRIFIO"→Pinot **Grigio** ③ 2025-12-18 'Elivette 2017' 중복 1개로 합침 ④ 종류·품종·지역은 라벨 기준 추정.
 
 > **평점(2026-07-17 웹 조사)**: 사이트 직접열람이 막혀(403) **웹검색 스니펫 기반**이라 오차 가능. **Vivino**=커뮤니티 별점/5 (대개 빈티지 통합). **평론가**=해당 빈티지 100점 — JS=James Suckling, WS=Wine Spectator, WA=Wine Advocate(Parker), DEC=Decanter, VIN=Vinous, JD=Jeb Dunnuck, WE=Wine Enthusiast, WineIndep=The Wine Independent, 종합=wine-searcher 평균. **`†`=단일출처·재확인 권장**, **`—`=못 찾음/미조사**.
 
 ---
+
+## 2026-08-28
+> 화이트 1 + 레드 2
+
+| 와인 | 종류 | 품종·지역 | Vivino | 평론가 점수(출처) | 메모 |
+|---|---|---|---|---|---|
+| Domaine Faiveley Mercurey Clos Rond Monopole 2018 | 레드 | 피노 누아 · 메르퀴레(부르고뉴 코트 샬로네즈) | — | **JS 93** | 단일 포도밭 모노폴. 건딸기·꽃·장미덤불 노트 |
+| Sea Sun Chardonnay 2020 (1.5L) | 화이트 | 샤르도네 · 캘리포니아(산타바바라·몬터레이·솔라노) | 3.8 † | Gismondi(Anthony Gismondi) 87 | Charlie Wagner(케이머스) 브랜드. 매그넘(1.5L) 병 |
+| Delectus Cuvée Julia Mountain Blend Cabernet Sauvignon Napa Valley 2023 | 레드 | 카베르네 소비뇽 96%·프티 베르도 2%·시라 2% · 나파밸리 마운틴 블렌드 | — | CellarTracker 92.3(평균) | 나파 3개 산악 AVA 블렌드. Decanter 리뷰 존재하나 점수는 구독 전용 — 미확인 |
 
 ## 2026-08-19
 > 스파클링 1 + 화이트 2 + 레드 5 — 미국(캘리포니아·오리건) 중심 구성
