@@ -7,6 +7,7 @@
     { "name": "관자", "category": "냉동", "qty": "", "expiry": "", "note": "냉동 — 시어링 전 키친타월로 물기 완전 제거 필요" },
     { "name": "우동면", "category": "냉동", "qty": "", "expiry": "", "note": "냉동 — 데쳐서 사용" },
     { "name": "삼겹살", "category": "냉동", "qty": "", "expiry": "", "note": "두께 약 1.5cm (구이용). 가쿠니·김치찜엔 그대로 큼직하게 썰어 사용, 판체타 대용으로도 좋음" },
+    { "name": "베이컨", "category": "냉장", "qty": "", "expiry": "", "note": "주문함 — 파티(8/30) 전 도착 예정, 케이준 관자 파스타용" },
     { "name": "파", "category": "냉장", "qty": "", "expiry": "", "note": "" },
     { "name": "김치", "category": "냉장", "qty": "", "expiry": "", "note": "" },
     { "name": "계란", "category": "냉장", "qty": "상시", "expiry": "", "note": "상시 보유" },
