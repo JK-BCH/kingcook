@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-30",
+  "updated": "2026-09-01",
   "items": [
     { "name": "고등어", "category": "냉동", "qty": "", "expiry": "", "note": "직접 잡은 것, 토막" },
     { "name": "연어", "category": "냉동", "qty": "", "expiry": "", "note": "코스트코 대용량(박스), 필렛" },
@@ -17,7 +17,7 @@
     { "name": "감자", "category": "실온", "qty": "1개", "expiry": "", "note": "" },
     { "name": "파스타", "category": "실온", "qty": "", "expiry": "", "note": "스파게티·링귀네·엔젤헤어" },
     { "name": "스팸", "category": "실온", "qty": "", "expiry": "", "note": "통조림" },
-    { "name": "밥", "category": "실온", "qty": "상시", "expiry": "", "note": "쌀/즉석밥 상시 — 찬밥 볶음밥용 좋음" },
+    { "name": "밥", "category": "실온", "qty": "없음", "expiry": "", "note": "소진됨 — 재구매/취사 필요" },
     { "name": "김", "category": "실온", "qty": "상시", "expiry": "", "note": "구운김/조미김 — 상시" },
     { "name": "다진마늘", "category": "냉동", "qty": "", "expiry": "", "note": "갈아서 냉동" },
     { "name": "깐마늘", "category": "냉장", "qty": "", "expiry": "", "note": "통마늘(껍질 깐 것) — 편썰기·통째 구이·마늘콩피·알리오올리오용. 다진마늘보다 덜 타고 향 좋음" },
@@ -34,6 +34,7 @@
     { "name": "식용유", "category": "양념", "qty": "", "expiry": "", "note": "튀김·부침·볶음용" },
     { "name": "참기름", "category": "양념", "qty": "상시", "expiry": "", "note": "상시 보유 — 마무리 풍미" },
     { "name": "고춧가루", "category": "양념", "qty": "", "expiry": "", "note": "" },
+    { "name": "고추장", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "페퍼론치노", "category": "양념", "qty": "", "expiry": "", "note": "말린 홍고추 — 오일파스타용" },
     { "name": "진간장", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "국간장", "category": "양념", "qty": "", "expiry": "", "note": "" },
