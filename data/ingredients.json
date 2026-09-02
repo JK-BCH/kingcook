@@ -37,6 +37,7 @@
     { "name": "고춧가루", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "고추장", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "페퍼론치노", "category": "양념", "qty": "", "expiry": "", "note": "말린 홍고추 — 오일파스타용" },
+    { "name": "후추", "category": "양념", "qty": "상시", "expiry": "", "note": "상시 보유" },
     { "name": "진간장", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "국간장", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "깨", "category": "양념", "qty": "", "expiry": "", "note": "통깨/고명" },
