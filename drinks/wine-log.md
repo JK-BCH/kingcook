@@ -3,7 +3,7 @@
 다 마신 와인을 남겨두는 **개인 기록**. 요리용 와인·인벤토리와는 **별개**.
 (요리에 쓰는 와인은 `data/ingredients.json` → "와인" 항목.)
 
-> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **82종** · **2025-12-18 ~ 2026-09-05**.
+> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **89종** · **2025-12-18 ~ 2026-09-05**.
 > 정리 가정: ① 인스타 태그 `#YYMMDD` → 날짜 (단 `#250528`은 년도 오기 → **2026**-05-28) ② "GRIFIO"→Pinot **Grigio** ③ 2025-12-18 'Elivette 2017' 중복 1개로 합침 ④ 종류·품종·지역은 라벨 기준 추정.
 
 > **평점(2026-07-17 웹 조사)**: 사이트 직접열람이 막혀(403) **웹검색 스니펫 기반**이라 오차 가능. **Vivino**=커뮤니티 별점/5 (대개 빈티지 통합). **평론가**=해당 빈티지 100점 — JS=James Suckling, WS=Wine Spectator, WA=Wine Advocate(Parker), DEC=Decanter, VIN=Vinous, JD=Jeb Dunnuck, WE=Wine Enthusiast, WineIndep=The Wine Independent, 종합=wine-searcher 평균. **`†`=단일출처·재확인 권장**, **`—`=못 찾음/미조사**.
@@ -20,6 +20,19 @@
 | Sordo Barolo Gabutti 2020 | 레드 | 네비올로 · 바롤로 세랄룽가 다스티 가부티 MGA(피에몬테, 이탈리아) | — | 종합 93 † | 단일 포도밭(가부티), 출처 불명확 |
 | G.D. Vajra Barolo Albe 2020 | 레드 | 네비올로 · 바롤로(피에몬테, 이탈리아) | — | **WS 94**(2024 Top100 #9) · JS 93 | ⭐ 이날 최고 득점 |
 | Edge Hill St. Helena Estate Mixed Blacks Field Blend 2018 | 레드 | 필드블렌드(다품종 혼식) · 세인트헬레나, 나파밸리(캘리포니아) | — | 종합 92 | 품종·비율 라벨 미상 — 검색 기반 추정 |
+
+## 2026-09-02
+> 스파클링 1 + 화이트 1 + 레드 5
+
+| 와인 | 종류 | 품종·지역 | Vivino | 평론가 점수(출처) | 메모 |
+|---|---|---|---|---|---|
+| Castillo Perelada Cava Centenaria Guarda Superior 2023 | 스파클링(까바) | 마카베오·샤렐로·파레야다 · 페네데스(스페인) | 3.9 | — | |
+| Delectus Sauvignon Blanc 2025 | 화이트 | 소비뇽 블랑 · 오크빌, 나파밸리(캘리포니아) | 4.0 | — | 스테인리스 숙성, 미네랄·레몬그라스 노트 |
+| Duluc de Branaire-Ducru 2017 | 레드 | 보르도 블렌드 · 생줄리앙(보르도, 프랑스) | — | CT 90 † | Château Branaire-Ducru 세컨드 와인 |
+| Château Talbot 2019 | 레드 | 보르도 블렌드 · 생줄리앙 4등급(보르도, 프랑스) | — | **WS 95**(2022 Top100 #4) · **JS 95** | ⭐ 이날 최고 득점 |
+| Hochar Père et Fils (Château Musar) 2020 | 레드 | 카리냥·생소 등 레바논 블렌드 · 베카밸리(레바논) | — | CT 89.9(19명 평균) † | Château Musar 세컨드/엔트리 와인 |
+| Hamilton Russell Vineyards Pinot Noir 2023 | 레드 | 피노 누아 · 헤멜엔아르데 밸리, 워커베이(남아공) | — | **WS 90** · Platter 94 · Tim Atkin 94 · JS 93 | |
+| La Spinetta Ca' di Pian Barbera d'Asti Superiore 2022 | 레드 | 바르베라 · 아스티(피에몬테, 이탈리아) | 4.1 | 종합 89~90 | |
 
 ## 2026-08-28
 > 화이트 1 + 레드 2
