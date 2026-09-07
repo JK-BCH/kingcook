@@ -1,0 +1,414 @@
+<title>Cellar Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,800;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4eee2; --paper:#fdfbf6; --paper-2:#f9f3e7;
+    --ink:#2a2119; --ink-soft:#544a3f; --muted:#8b7f70;
+    --hair:rgba(42,33,25,.14); --hair-strong:rgba(42,33,25,.24);
+    --accent:#7a1328; --accent-tint:#f3dfe0; --gold:#a3782c;
+    --shadow:rgba(42,33,25,.18);
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+    --s5:#e87ba4; --s6:#008300; --s7:#4a3aa7; --s8:#e34948;
+    --font-display:'Fraunces', Georgia, 'Noto Serif KR', serif;
+    --font-body:'Inter', -apple-system, 'Pretendard', 'Noto Sans KR', sans-serif;
+    --font-mono:'JetBrains Mono', ui-monospace, 'D2Coding', monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1b1611; --paper:#241d17; --paper-2:#2b231c;
+      --ink:#f1e9dd; --ink-soft:#cbbfae; --muted:#9a8d7c;
+      --hair:rgba(241,233,221,.14); --hair-strong:rgba(241,233,221,.24);
+      --accent:#e0637a; --accent-tint:#3a1c22; --gold:#d3a656;
+      --shadow:rgba(0,0,0,.5);
+      --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+      --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1b1611; --paper:#241d17; --paper-2:#2b231c;
+    --ink:#f1e9dd; --ink-soft:#cbbfae; --muted:#9a8d7c;
+    --hair:rgba(241,233,221,.14); --hair-strong:rgba(241,233,221,.24);
+    --accent:#e0637a; --accent-tint:#3a1c22; --gold:#d3a656;
+    --shadow:rgba(0,0,0,.5);
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+  }
+
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1180px; margin:0 auto; padding:40px 28px 80px;}
+  button{font:inherit; color:inherit; background:none; border:none; padding:0; cursor:pointer; text-align:left;}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:4px;}
+
+  header{display:flex; flex-direction:column; gap:6px;}
+  .eyebrow{font-family:var(--font-mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:600;}
+  h1{font-family:var(--font-display); font-weight:800; font-style:italic; font-size:clamp(30px,4vw,44px); margin:2px 0 4px; letter-spacing:-.01em; text-wrap:balance;}
+  .sub{color:var(--ink-soft); font-size:15px; max-width:64ch;}
+  .sub b{color:var(--ink); font-weight:600;}
+  .hint{margin-top:10px; font-size:12.5px; color:var(--muted); display:flex; align-items:center; gap:7px;}
+  .hint::before{content:"▸"; color:var(--accent);}
+
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--hair); border:1px solid var(--hair); border-radius:14px; overflow:hidden; margin:26px 0 34px;}
+  .stat{background:var(--paper); padding:20px 22px; display:flex; flex-direction:column; gap:4px; transition:background .12s;}
+  button.stat:hover{background:var(--paper-2);}
+  .stat .n{font-family:var(--font-mono); font-variant-numeric:tabular-nums; font-size:28px; font-weight:600; color:var(--accent); line-height:1;}
+  .stat .l{font-size:12.5px; color:var(--muted);}
+
+  .section-head{display:flex; align-items:baseline; gap:10px; margin:38px 0 6px;}
+  .section-head .idx{font-family:var(--font-mono); font-size:12px; color:var(--muted); border:1px solid var(--hair-strong); border-radius:999px; padding:2px 9px;}
+  .section-head h2{font-family:var(--font-display); font-weight:600; font-size:20px; margin:0;}
+  .section-note{font-size:12.5px; color:var(--muted); margin:0 0 14px;}
+
+  .grid2{display:grid; grid-template-columns:1.15fr 1fr; gap:18px;}
+  .card{background:var(--paper); border:1px solid var(--hair); border-radius:14px; padding:20px 22px 18px;}
+  .card h3{font-size:13px; font-weight:600; margin:0 0 14px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.05em;}
+  .card h3 span{font-weight:400; color:var(--muted); text-transform:none; letter-spacing:0;}
+
+  .hbar-row{display:grid; grid-template-columns:112px 1fr 44px; align-items:center; gap:10px; width:100%; padding:5px 6px; margin:1px -6px; border-radius:7px; transition:background .12s;}
+  .hbar-row:hover{background:var(--paper-2);}
+  .hbar-label{font-size:13px; color:var(--ink-soft); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .hbar-track{position:relative; height:14px; background:var(--paper-2); border-radius:4px;}
+  .hbar-row:hover .hbar-track{background:var(--hair);}
+  .hbar-fill{position:absolute; left:0; top:0; height:100%; border-radius:4px;}
+  .hbar-val{font-family:var(--font-mono); font-variant-numeric:tabular-nums; font-size:12.5px; color:var(--muted); text-align:right;}
+
+  .rs-scale{display:grid; grid-template-columns:96px 1fr; gap:10px; align-items:center; margin-bottom:2px;}
+  .rs-scale .axis{position:relative; height:18px;}
+  .rs-scale .axis .tick{position:absolute; top:0; font-family:var(--font-mono); font-size:10.5px; color:var(--muted); transform:translateX(-50%);}
+  .rs-row{display:grid; grid-template-columns:96px 1fr; gap:10px; align-items:center; width:100%; padding:9px 6px; margin:0 -6px; border-top:1px solid var(--hair); border-radius:7px; transition:background .12s;}
+  .rs-row:hover{background:var(--paper-2);}
+  .rs-date{font-family:var(--font-mono); font-size:12px; color:var(--ink-soft);}
+  .rs-track{position:relative; height:22px;}
+  .rs-line{position:absolute; top:50%; height:1px; background:var(--hair-strong); left:0; right:0;}
+  .rs-dot{position:absolute; top:50%; width:8px; height:8px; border-radius:50%; background:var(--accent); transform:translate(-50%,-50%); box-shadow:0 0 0 3px var(--paper);}
+  .rs-row:hover .rs-dot{box-shadow:0 0 0 3px var(--paper-2);}
+  .rs-dot.avg{background:var(--gold); width:6px; height:6px;}
+  .rs-n{font-family:var(--font-mono); font-size:11px; color:var(--muted); position:absolute; top:-13px; white-space:nowrap; transform:translateX(-50%);}
+
+  .type-list{display:flex; flex-direction:column; gap:4px;}
+  .type-row{display:flex; align-items:center; gap:10px; width:100%; padding:6px; margin:0 -6px; border-radius:7px; transition:background .12s;}
+  .type-row:hover{background:var(--paper-2);}
+  .swatch{width:11px; height:11px; border-radius:3px; flex:none;}
+  .type-name{font-size:13.5px; flex:none; width:74px;}
+  .type-bar{flex:1; height:10px; background:var(--paper-2); border-radius:3px; overflow:hidden;}
+  .type-row:hover .type-bar{background:var(--hair);}
+  .type-bar > i{display:block; height:100%; border-radius:3px;}
+  .type-pct{font-family:var(--font-mono); font-size:12px; color:var(--muted); width:64px; text-align:right;}
+
+  .ratio-bar{display:flex; height:38px; border-radius:8px; overflow:hidden; border:1px solid var(--hair); width:100%;}
+  .ratio-bar button{display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:13px; font-weight:600; transition:filter .12s;}
+  .ratio-bar button:hover{filter:brightness(1.07);}
+  .ratio-red{background:var(--s8); color:#fff;}
+  .ratio-white{background:var(--s4); color:#2a2119;}
+  .ratio-caption{display:flex; justify-content:space-between; font-size:12px; color:var(--muted); margin-top:8px;}
+
+  .top-list{list-style:none; margin:0; padding:0;}
+  .top-item{width:100%; display:grid; grid-template-columns:22px 1fr auto; gap:12px; align-items:center; padding:11px 6px; margin:0 -6px; border-top:1px solid var(--hair); border-radius:7px; transition:background .12s;}
+  .top-list li:first-child .top-item{border-top:none;}
+  .top-item:hover{background:var(--paper-2);}
+  .top-rank{font-family:var(--font-display); font-style:italic; font-weight:600; color:var(--muted); font-size:15px;}
+  .top-name{font-size:13.5px; font-weight:500;}
+  .top-meta{font-size:11.5px; color:var(--muted); margin-top:1px;}
+  .top-score{font-family:var(--font-mono); font-size:13px; font-weight:600; color:var(--accent); background:var(--accent-tint); padding:3px 9px; border-radius:999px; white-space:nowrap;}
+
+  .facts{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px;}
+  .facts li{display:flex; gap:10px; font-size:13.5px; color:var(--ink-soft); align-items:flex-start;}
+  .facts li::before{content:"—"; color:var(--accent); flex:none;}
+  .facts li > span{flex:1; min-width:0;}
+  .facts b{color:var(--ink); font-weight:600;}
+
+  footer{margin-top:44px; font-size:12px; color:var(--muted); border-top:1px solid var(--hair); padding-top:16px;}
+
+  /* ---------- drawer ---------- */
+  .backdrop{position:fixed; inset:0; background:rgba(20,14,10,.42); opacity:0; pointer-events:none; transition:opacity .18s; z-index:40;}
+  .backdrop.open{opacity:1; pointer-events:auto;}
+  .drawer{
+    position:fixed; top:0; right:0; height:100%; width:min(460px,100vw);
+    background:var(--paper); border-left:1px solid var(--hair); z-index:41;
+    transform:translateX(102%); transition:transform .22s cubic-bezier(.4,0,.2,1);
+    display:flex; flex-direction:column; box-shadow:-14px 0 40px var(--shadow);
+  }
+  .drawer.open{transform:translateX(0);}
+  @media (prefers-reduced-motion:reduce){ .drawer{transition:none;} .backdrop{transition:none;} }
+  .drawer-head{padding:20px 22px 14px; border-bottom:1px solid var(--hair); display:flex; align-items:flex-start; gap:12px;}
+  .drawer-head .t{flex:1; min-width:0;}
+  .drawer-head .kicker{font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); font-weight:600;}
+  .drawer-head h4{font-family:var(--font-display); font-weight:600; font-size:21px; margin:3px 0 2px; text-wrap:balance;}
+  .drawer-head .count{font-size:12.5px; color:var(--muted);}
+  .close{width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:19px; flex:none; transition:background .12s;}
+  .close:hover{background:var(--paper-2); color:var(--ink);}
+  .drawer-body{flex:1; overflow-y:auto; padding:6px 22px 28px;}
+  .wine{padding:13px 0; border-bottom:1px solid var(--hair);}
+  .wine:last-child{border-bottom:none;}
+  .wine-top{display:flex; align-items:baseline; gap:8px; justify-content:space-between;}
+  .wine-n{font-size:13.5px; font-weight:500; line-height:1.35;}
+  .wine-s{font-family:var(--font-mono); font-size:12px; font-weight:600; color:var(--accent); background:var(--accent-tint); padding:2px 7px; border-radius:999px; flex:none;}
+  .wine-s.none{color:var(--muted); background:var(--paper-2); font-weight:400;}
+  .wine-meta{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:6px;}
+  .chip{font-size:11px; padding:2px 7px; border-radius:5px; background:var(--paper-2); color:var(--ink-soft); border:1px solid var(--hair);}
+  .chip.k{border-color:transparent; color:#fff;}
+  .chip.date{font-family:var(--font-mono); background:none; border-color:var(--hair-strong); color:var(--muted);}
+  .wine-detail{font-size:12px; color:var(--muted); margin-top:5px; line-height:1.45;}
+  .wine-detail em{font-style:normal; color:var(--ink-soft);}
+  .empty{padding:30px 0; color:var(--muted); font-size:13px;}
+
+  @media (max-width:820px){
+    .grid2{grid-template-columns:1fr;}
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .wrap{padding:28px 18px 60px;}
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">kingcook · drinks/wine-log.md</div>
+    <h1>Cellar Ledger</h1>
+    <div class="sub">2025-12-18부터 <b>2026-09-05</b>까지 12번의 시음 자리, <b>89종</b>의 기록을 집계했어요.</div>
+    <div class="hint">어느 항목이든 누르면 해당 와인 목록이 옆에 펼쳐져요</div>
+  </header>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="section-head"><span class="idx">01</span><h2>지역 &amp; 품종</h2></div>
+  <p class="section-note">국가는 품종·지역 표기에서 추정 · 블렌드는 구성 품종마다 중복 집계</p>
+  <div class="grid2">
+    <div class="card"><h3>국가별 병 수</h3><div id="chart-country"></div></div>
+    <div class="card"><h3>품종별 <span>(블렌드 중복 집계)</span></h3><div id="chart-variety"></div></div>
+  </div>
+
+  <div class="section-head"><span class="idx">02</span><h2>시음 자리별 평론가 점수</h2></div>
+  <p class="section-note">진한 점=그날 최고점 · 금색 점=그날 평균 (85~100 구간, 0부터 시작하지 않는 산점 방식)</p>
+  <div class="card">
+    <div class="rs-scale"><div></div><div class="axis" id="rs-axis"></div></div>
+    <div id="rs-rows"></div>
+  </div>
+
+  <div class="section-head"><span class="idx">03</span><h2>종류 &amp; 화이트/레드</h2></div>
+  <p class="section-note">&nbsp;</p>
+  <div class="grid2">
+    <div class="card"><h3>종류별 분포</h3><div class="type-list" id="type-list"></div></div>
+    <div class="card">
+      <h3>화이트 vs 레드 <span>(스틸와인 81종)</span></h3>
+      <div class="ratio-bar" id="ratio-bar"></div>
+      <div class="ratio-caption"><span>63%</span><span>37%</span></div>
+    </div>
+  </div>
+
+  <div class="section-head"><span class="idx">04</span><h2>최고 득점 &amp; 기타 기록</h2></div>
+  <p class="section-note">&nbsp;</p>
+  <div class="grid2">
+    <div class="card"><h3>평론가 점수 TOP 5</h3><ul class="top-list" id="top-list"></ul></div>
+    <div class="card">
+      <h3>그 외 재밌는 것들</h3>
+      <ul class="facts">
+        <li><span><b>가장 오래된 빈티지</b> — Château Suduiraut Sauternes <b>2007</b>. 로그엔 한때 Montelena 2008이 최고령으로 적혀 있었는데 이번 집계로 정정.</span></li>
+        <li><span><b>가장 최신 빈티지</b> — Cloudy Bay·Delectus Sauvignon Blanc, 둘 다 <b>2025</b></span></li>
+        <li><span><b>NV(빈티지 없음)</b> 3종 — Cain Cuvée NV · Bollinger · Gosset</span></li>
+        <li><span><b>Vivino 평점 보유율</b> — 29/89종 (33%), 나머지는 평론가 점수로만 조사</span></li>
+        <li><span><b>가장 많이 등장한 생산자</b> — Littorai, 2개 자리에 걸쳐 3병</span></li>
+        <li><span><b>가장 화려했던 자리</b> — 2026-07-15 (9종 중 8종 평균 95.5점)</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>가격 데이터는 로그에 없어 "가장 비싸게 먹은 날"은 집계 불가 — 필요하면 항목별 가격 조사를 별도로 추가할 수 있어요.</footer>
+</div>
+
+<div class="backdrop" id="backdrop"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
+  <div class="drawer-head">
+    <div class="t">
+      <div class="kicker" id="drawer-kicker">필터</div>
+      <h4 id="drawer-title">—</h4>
+      <div class="count" id="drawer-count"></div>
+    </div>
+    <button class="close" id="drawer-close" aria-label="닫기">✕</button>
+  </div>
+  <div class="drawer-body" id="drawer-body"></div>
+</aside>
+
+<script>
+const WINES = [{"d":"2026-09-05","n":"Cloudy Bay Sauvignon Blanc 2025","k":"화이트","kd":"화이트","g":"소비뇽 블랑","r":"말보로(뉴질랜드)","c":"뉴질랜드","v":4.1,"s":"WS 93 · JS 92","ms":93,"m":"뉴질랜드 소비뇽 블랑의 대표 브랜드","vt":["소비뇽 블랑"]},{"d":"2026-09-05","n":"Château Pesquié Cuvée Juliette 2022","k":"화이트","kd":"화이트","g":"클레레트·그르나슈 블랑·루산느 등 블렌드","r":"방투(론밸리, 프랑스)","c":"프랑스","v":null,"s":"JD 91","ms":91,"m":"흰꽃·으깬 배·미네랄 노트","vt":["기타"]},{"d":"2026-09-05","n":"Sordo Barolo Gabutti 2020","k":"레드","kd":"레드","g":"네비올로","r":"바롤로 세랄룽가 다스티 가부티 MGA(피에몬테, 이탈리아)","c":"이탈리아","v":null,"s":"종합 93 †","ms":93,"m":"단일 포도밭(가부티), 출처 불명확","vt":["네비올로"]},{"d":"2026-09-05","n":"G.D. Vajra Barolo Albe 2020","k":"레드","kd":"레드","g":"네비올로","r":"바롤로(피에몬테, 이탈리아)","c":"이탈리아","v":null,"s":"WS 94(2024 Top100 #9) · JS 93","ms":94,"m":"이날 최고 득점","vt":["네비올로"]},{"d":"2026-09-05","n":"Edge Hill St. Helena Estate Mixed Blacks Field Blend 2018","k":"레드","kd":"레드","g":"필드블렌드(다품종 혼식)","r":"세인트헬레나, 나파밸리(캘리포니아)","c":"미국","v":null,"s":"종합 92","ms":92,"m":"품종·비율 라벨 미상 — 검색 기반 추정","vt":["기타"]},{"d":"2026-09-02","n":"Castillo Perelada Cava Centenaria Guarda Superior 2023","k":"스파클링","kd":"스파클링(까바)","g":"마카베오·샤렐로·파레야다","r":"페네데스(스페인)","c":"스페인","v":3.9,"s":"","ms":null,"m":"","vt":["기타"]},{"d":"2026-09-02","n":"Delectus Sauvignon Blanc 2025","k":"화이트","kd":"화이트","g":"소비뇽 블랑","r":"오크빌, 나파밸리(캘리포니아)","c":"미국","v":4.0,"s":"","ms":null,"m":"스테인리스 숙성, 미네랄·레몬그라스 노트","vt":["소비뇽 블랑"]},{"d":"2026-09-02","n":"Duluc de Branaire-Ducru 2017","k":"레드","kd":"레드","g":"보르도 블렌드","r":"생줄리앙(보르도, 프랑스)","c":"프랑스","v":null,"s":"CT 90 †","ms":90,"m":"Château Branaire-Ducru 세컨드 와인","vt":["보르도 블렌드"]},{"d":"2026-09-02","n":"Château Talbot 2019","k":"레드","kd":"레드","g":"보르도 블렌드","r":"생줄리앙 4등급(보르도, 프랑스)","c":"프랑스","v":null,"s":"WS 95(2022 Top100 #4) · JS 95","ms":95,"m":"이날 최고 득점","vt":["보르도 블렌드"]},{"d":"2026-09-02","n":"Hochar Père et Fils (Château Musar) 2020","k":"레드","kd":"레드","g":"카리냥·생소 등 레바논 블렌드","r":"베카밸리(레바논)","c":"레바논","v":null,"s":"CT 89.9(19명 평균) †","ms":89,"m":"Château Musar 세컨드/엔트리 와인","vt":["기타"]},{"d":"2026-09-02","n":"Hamilton Russell Vineyards Pinot Noir 2023","k":"레드","kd":"레드","g":"피노 누아","r":"헤멜엔아르데 밸리, 워커베이(남아공)","c":"남아공","v":null,"s":"WS 90 · Platter 94 · Tim Atkin 94 · JS 93","ms":94,"m":"","vt":["피노 누아"]},{"d":"2026-09-02","n":"La Spinetta Ca' di Pian Barbera d'Asti Superiore 2022","k":"레드","kd":"레드","g":"바르베라","r":"아스티(피에몬테, 이탈리아)","c":"이탈리아","v":4.1,"s":"종합 89~90","ms":90,"m":"","vt":["기타"]},{"d":"2026-08-28","n":"Domaine Faiveley Mercurey Clos Rond Monopole 2018","k":"레드","kd":"레드","g":"피노 누아","r":"메르퀴레(부르고뉴 코트 샬로네즈)","c":"프랑스","v":null,"s":"JS 93","ms":93,"m":"단일 포도밭 모노폴. 건딸기·꽃·장미덤불 노트","vt":["피노 누아"]},{"d":"2026-08-28","n":"Sea Sun Chardonnay 2020 (1.5L)","k":"화이트","kd":"화이트","g":"샤르도네 · 캘리포니아(산타바바라·몬터레이","r":"솔라노)","c":"미국","v":3.8,"s":"Gismondi(Anthony Gismondi) 87","ms":87,"m":"Charlie Wagner(케이머스) 브랜드. 매그넘(1.5L) 병","vt":["샤르도네"]},{"d":"2026-08-28","n":"Delectus Cuvée Julia Mountain Blend Cabernet Sauvignon Napa Valley 2023","k":"레드","kd":"레드","g":"카베르네 소비뇽 96%·프티 베르도 2%·시라 2%","r":"나파밸리 마운틴 블렌드","c":"미국","v":null,"s":"CellarTracker 92.3(평균)","ms":92,"m":"나파 3개 산악 AVA 블렌드. Decanter 리뷰 존재하나 점수는 구독 전용 — 미확인","vt":["카베르네 소비뇽","시라/시라즈"]},{"d":"2026-08-19","n":"Champagne Charles Heidsieck Brut Réserve Special Edition","k":"스파클링","kd":"스파클링(샴페인)","g":"피노 뮈니에/피노 누아/샤르도네","r":"상파뉴","c":"프랑스","v":null,"s":"JS 95","ms":95,"m":"NV. JS 95는 표준 Brut Réserve 기준 — Special Edition 별도 점수는 미확인","vt":["샤르도네","피노 누아"]},{"d":"2026-08-19","n":"Aubert Eastside Chardonnay 2021","k":"화이트","kd":"화이트","g":"샤르도네","r":"러시안 리버 밸리(캘리포니아)","c":"미국","v":null,"s":"WA 97 · VIN 95–97","ms":97,"m":"이날 최고 득점 화이트","vt":["샤르도네"]},{"d":"2026-08-19","n":"Aubaine Anahata Vineyard Chardonnay 2021","k":"화이트","kd":"화이트","g":"샤르도네","r":"에올라-아미티 힐즈(오리건)","c":"미국","v":null,"s":"WE 92","ms":92,"m":"Cristom과 같은 에올라-아미티","vt":["샤르도네"]},{"d":"2026-08-19","n":"Littorai Sonoma Coast Pinot Noir 2023","k":"레드","kd":"레드","g":"피노 누아","r":"소노마 코스트(캘리포니아)","c":"미국","v":null,"s":"종합 94","ms":94,"m":"Jancis Robinson 리뷰 존재. 2026-07-02에도 Littorai 마심","vt":["피노 누아"]},{"d":"2026-08-19","n":"Gary Farrell McDonald Mountain Vineyard Pinot Noir 2021","k":"레드","kd":"레드","g":"피노 누아","r":"러시안 리버 밸리(캘리포니아)","c":"미국","v":null,"s":"92 †","ms":92,"m":"†출처 불명확(WE·WS 리뷰 페이지는 존재). 2026-07-02에도 Gary Farrell 마심","vt":["피노 누아"]},{"d":"2026-08-19","n":"Chateau Montelena \"The Montelena Estate\" Cabernet Sauvignon 2008","k":"레드","kd":"레드","g":"카베르네 소비뇽","r":"나파 칼리스토가","c":"미국","v":null,"s":"WA 92 · WS 92 (CT 92.4/202)","ms":92,"m":"17년 숙성 — 이 로그에서 가장 오래된 빈티지","vt":["카베르네 소비뇽"]},{"d":"2026-08-19","n":"Frog's Leap Rutherford Estate Grown Cabernet Sauvignon 2022","k":"레드","kd":"레드","g":"카베르네 소비뇽","r":"나파 러더퍼드","c":"미국","v":4.2,"s":"종합 91 (4인)","ms":91,"m":"","vt":["카베르네 소비뇽"]},{"d":"2026-08-19","n":"Bibi Graetz Testamatta 2020","k":"레드","kd":"레드","g":"산지오베제","r":"토스카나(이탈리아)","c":"이탈리아","v":null,"s":"DEC 97 · WA 94~95 · JS 94 · VIN 94","ms":97,"m":"이날 최고 득점","vt":["기타"]},{"d":"2026-07-31","n":"Dr. Heidemanns-Bergweiler Riesling Dry 2024","k":"화이트","kd":"화이트","g":"리슬링(드라이)","r":"독일 모젤","c":"독일","v":null,"s":"— (2024 미확인)","ms":null,"m":"타빈티지 종합: 2022=87 · 2021=90 · 2020=89. 2025-12-18엔 같은 생산자 Spätlese","vt":["기타"]},{"d":"2026-07-31","n":"Domaine Faiveley Ladoix \"Les Marnes Blanches\" 2020","k":"화이트","kd":"화이트","g":"샤르도네","r":"라두아(부르고뉴)","c":"프랑스","v":null,"s":"— (2020 미확인)","ms":null,"m":"타빈티지: 2019=Falstaff 91 · 2022=WA 90. 부르기뇽과 같은 부르고뉴","vt":["샤르도네"]},{"d":"2026-07-31","n":"Célestin Blondeau Pouilly-Fumé \"Les Rabichottes\" 2022","k":"화이트","kd":"화이트","g":"소비뇽 블랑","r":"푸이퓌메(루아르)","c":"프랑스","v":null,"s":"","ms":null,"m":"점수 못 찾음","vt":["소비뇽 블랑"]},{"d":"2026-07-31","n":"Cormòns Collio Friulano 2023","k":"화이트","kd":"화이트","g":"프리울라노","r":"콜리오(프리울리, 이탈리아)","c":"이탈리아","v":3.7,"s":"","ms":null,"m":"†'Friuli Friulano' 페이지 기준 — Collio 큐베와 다를 수 있음","vt":["기타"]},{"d":"2026-07-31","n":"Freakshow Petite Petit 2022","k":"레드","kd":"레드","g":"프티 시라/프티 베르도","r":"로디(캘리포니아)","c":"미국","v":4.0,"s":"WE 92 (2022)","ms":92,"m":"Michael David Winery","vt":["시라/시라즈"]},{"d":"2026-07-31","n":"Finca Flichman Microterroir \"Gravel & Stone\" Malbec 2021","k":"레드","kd":"레드","g":"말벡","r":"투풍가토, 멘도자(아르헨티나)","c":"아르헨티나","v":null,"s":"— (2021 미확인)","ms":null,"m":"직전 빈티지 2020이 DWWA 2024 \"Best in Show\" 97점 — 18,000종 중 세계 최고 말벡. 2019=WE 92","vt":["기타"]},{"d":"2026-07-15","n":"Ca' del Bosco Franciacorta Cuvée Prestige (46 Edizione)","k":"스파클링","kd":"스파클링","g":"샤르도네/피노","r":"프란차코르타(이탈리아)","c":"이탈리아","v":4.1,"s":"JS 92 · Falstaff 93","ms":93,"m":"","vt":["샤르도네"]},{"d":"2026-07-15","n":"Shafer Red Shoulder Ranch Chardonnay 2022","k":"화이트","kd":"화이트","g":"샤르도네","r":"나파 카네로스","c":"미국","v":4.3,"s":"JS 96 · WA 94 · WS 93 · WE 97","ms":97,"m":"","vt":["샤르도네"]},{"d":"2026-07-15","n":"Morlet 'Ma Douce' Chardonnay 2021","k":"화이트","kd":"화이트","g":"샤르도네","r":"캘리포니아","c":"미국","v":4.5,"s":"WineIndep 98 · JD 97 · WA 97+ · VIN 96","ms":98,"m":"","vt":["샤르도네"]},{"d":"2026-07-15","n":"Cristom Marjorie Vineyard Pinot Noir 2021","k":"레드","kd":"레드","g":"피노 누아","r":"오리건 윌라멧(에올라-아미티)","c":"미국","v":4.4,"s":"VIN 95 · JD 95 · WE 94","ms":95,"m":"","vt":["피노 누아"]},{"d":"2026-07-15","n":"Brannan Cabernet Sauvignon 2020","k":"레드","kd":"레드","g":"카베르네 소비뇽","r":"나파 칼리스토가","c":"미국","v":4.0,"s":"","ms":null,"m":"2020 평론 미평가","vt":["카베르네 소비뇽"]},{"d":"2026-07-15","n":"Grgich Hills Estate Cabernet Sauvignon 2021","k":"레드","kd":"레드","g":"카베르네 소비뇽","r":"나파","c":"미국","v":4.2,"s":"DEC 95 · WE 94 · JS 92","ms":95,"m":"","vt":["카베르네 소비뇽"]},{"d":"2026-07-15","n":"Morlet 'Mon Chevalier' Cabernet Sauvignon 2016","k":"레드","kd":"레드","g":"카베르네 소비뇽","r":"캘리포니아","c":"미국","v":4.5,"s":"JD 96 · WA 96+","ms":96,"m":"","vt":["카베르네 소비뇽"]},{"d":"2026-07-15","n":"Cristom Chardonnay 2021","k":"화이트","kd":"화이트","g":"샤르도네","r":"오리건 윌라멧","c":"미국","v":4.0,"s":"JS 93 · DEC 93 · WE 91 · VIN 91","ms":93,"m":"","vt":["샤르도네"]},{"d":"2026-07-15","n":"Château Suduiraut Sauternes 2007","k":"디저트","kd":"디저트(스위트)","g":"세미용/소비뇽","r":"소테른(보르도)","c":"프랑스","v":4.3,"s":"WE 97 · WS 95 · JS 95 · WA 94","ms":97,"m":"귀부 스위트","vt":["기타"]},{"d":"2026-07-08","n":"Champagne Camille Jacquet Grand Cru Chardonnay (Le Mesnil-sur-Oger)","k":"스파클링","kd":"스파클링(샴페인)","g":"샤르도네(블랑드블랑)","r":"그랑크뤼","c":"프랑스","v":4.0,"s":"","ms":null,"m":"","vt":["샤르도네"]},{"d":"2026-07-08","n":"Beringer Private Reserve Chardonnay 2021","k":"화이트","kd":"화이트","g":"샤르도네","r":"나파","c":"미국","v":4.1,"s":"JS 96 · JD 95 · WS 92 · WE 90","ms":96,"m":"†단일검색","vt":["샤르도네"]},{"d":"2026-07-08","n":"R. López de Heredia Viña Tondonia Reserva 2013","k":"레드","kd":"레드","g":"템프라니요","r":"리오하","c":"스페인","v":null,"s":"VIN 97 · T.Atkin 96 · WA 95 · Peñín 95","ms":97,"m":"","vt":["기타"]},{"d":"2026-07-08","n":"R. López de Heredia Viña Bosconia 2013","k":"레드","kd":"레드","g":"템프라니요","r":"리오하","c":"스페인","v":null,"s":"JS 95 · WA 93","ms":95,"m":"","vt":["기타"]},{"d":"2026-07-08","n":"Beau Vigne Signature Series Cabernet Sauvignon 2021","k":"레드","kd":"레드","g":"카베르네 소비뇽","r":"나파","c":"미국","v":null,"s":"JD 96","ms":96,"m":"†'Reserve' 큐베 기준","vt":["카베르네 소비뇽"]},{"d":"2026-07-08","n":"Tempus Fugit Cabernet Sauvignon 2024","k":"레드","kd":"레드","g":"카베르네 소비뇽","r":"나파","c":"미국","v":null,"s":"종합 89","ms":89,"m":"†","vt":["카베르네 소비뇽"]},{"d":"2026-07-08","n":"First Drop 'Mother's Milk' Shiraz","k":"레드","kd":"레드","g":"시라즈","r":"호주 바로사","c":"호주","v":null,"s":"WS 92","ms":92,"m":"최신 빈티지=2023","vt":["시라/시라즈"]},{"d":"2026-07-02","n":"Domaine Carneros by Taittinger Brut Cuvée 2020","k":"스파클링","kd":"스파클링","g":"샤르도네/피노","r":"나파 카네로스","c":"미국","v":null,"s":"","ms":null,"m":"WS93 빈티지 출처충돌→보류","vt":["샤르도네"]},{"d":"2026-07-02","n":"Ramey Chardonnay Fort Ross-Seaview 2023","k":"화이트","kd":"화이트","g":"샤르도네","r":"소노마 코스트","c":"미국","v":null,"s":"JS 96 · DEC 95 · WA 94 · WS 94","ms":96,"m":"","vt":["샤르도네"]},{"d":"2026-07-02","n":"Littorai Chardonnay Mays Canyon 2024","k":"화이트","kd":"화이트","g":"샤르도네","r":"소노마","c":"미국","v":null,"s":"","ms":null,"m":"미출시/미평가","vt":["샤르도네"]},{"d":"2026-07-02","n":"Littorai Pinot Noir Richardson Ranch 2023","k":"레드","kd":"레드","g":"피노 누아","r":"소노마","c":"미국","v":null,"s":"","ms":null,"m":"미확인","vt":["피노 누아"]},{"d":"2026-07-02","n":"Palazzo Rivolo BDM 2020","k":"레드","kd":"레드","g":"산지오베제","r":"브루넬로 디 몬탈치노(이탈리아)","c":"이탈리아","v":null,"s":"","ms":null,"m":"BDM=Brunello; 점수 미확보","vt":["기타"]},{"d":"2026-07-02","n":"Château Gracia Saint-Émilion Grand Cru 2018","k":"레드","kd":"레드","g":"메를로/카베르네 프랑","r":"생테밀리옹(보르도)","c":"프랑스","v":null,"s":"JD 97 · WA 94+ · VIN 94 · JS 94","ms":97,"m":"","vt":["기타"]},{"d":"2026-07-02","n":"Teeter Totter Cabernet Sauvignon 'Panache' 2022","k":"레드","kd":"레드","g":"카베르네 소비뇽","r":"나파","c":"미국","v":3.8,"s":"","ms":null,"m":"리뷰 2개","vt":["카베르네 소비뇽"]},{"d":"2026-07-02","n":"Cain Five 2013","k":"레드","kd":"레드","g":"보르도 블렌드","r":"나파 스프링마운틴","c":"프랑스","v":null,"s":"JS 95 · W.Wong 92 · 종합 93","ms":95,"m":"","vt":["보르도 블렌드"]},{"d":"2026-07-02","n":"Cain Cuvée NV (NV14)","k":"레드","kd":"레드","g":"보르도 블렌드(NV)","r":"나파","c":"프랑스","v":null,"s":"JS 93 · 종합 93","ms":93,"m":"","vt":["보르도 블렌드"]},{"d":"2026-07-02","n":"Gary Farrell Pinot Noir Russian River Valley 2022","k":"레드","kd":"레드","g":"피노 누아","r":"러시안 리버","c":"미국","v":null,"s":"","ms":null,"m":"미조사(검색예산 소진)","vt":["피노 누아"]},{"d":"2026-07-02","n":"Trione Red Blend Geyserville Ranch 2019","k":"레드","kd":"레드","g":"레드 블렌드","r":"소노마 알렉산더밸리","c":"미국","v":null,"s":"","ms":null,"m":"미조사(검색예산 소진)","vt":["기타"]},{"d":"2026-06-20","n":"Cirq Pinot Noir Russian River Valley 2021","k":"레드","kd":"레드","g":"피노 누아","r":"러시안 리버","c":"미국","v":4.6,"s":"JD 99+ · VIN 95","ms":99,"m":"","vt":["피노 누아"]},{"d":"2026-06-20","n":"Wayfarer Pinot Noir 'The Estate' Fort Ross-Seaview 2023","k":"레드","kd":"레드","g":"피노 누아","r":"소노마 코스트","c":"미국","v":null,"s":"JS 97 · VIN 97","ms":97,"m":"WS Top100 '25 #8","vt":["피노 누아"]},{"d":"2026-06-20","n":"Cornerstone Cellars Cabernet Sauvignon Oakville 2021","k":"레드","kd":"레드","g":"카베르네 소비뇽","r":"나파 오크빌","c":"미국","v":null,"s":"","ms":null,"m":"큐베 모호","vt":["카베르네 소비뇽"]},{"d":"2026-06-03","n":"Santa Margherita Pinot Grigio 2024","k":"화이트","kd":"화이트","g":"피노 그리지오","r":"이탈리아","c":"이탈리아","v":4.2,"s":"","ms":null,"m":"","vt":["기타"]},{"d":"2026-06-03","n":"Cakebread Cellars Cabernet Sauvignon 2022","k":"레드","kd":"레드","g":"카베르네 소비뇽","r":"나파","c":"미국","v":null,"s":"JS 92","ms":92,"m":"","vt":["카베르네 소비뇽"]},{"d":"2026-06-03","n":"Dominus Estate Napanook 2023","k":"레드","kd":"레드","g":"보르도 블렌드","r":"나파 욘트빌","c":"프랑스","v":null,"s":"JS 97 · VIN 93 · JD 92","ms":97,"m":"Dominus 세컨드","vt":["보르도 블렌드"]},{"d":"2026-06-03","n":"Skinner Syrah El Dorado 2020","k":"레드","kd":"레드","g":"시라","r":"캘리 시에라풋힐스","c":"미국","v":null,"s":"","ms":null,"m":"2020 미평가","vt":["시라/시라즈"]},{"d":"2026-06-03","n":"Bedrock Vineyard Heritage 2024","k":"레드","kd":"레드","g":"진판델 중심 필드블렌드","r":"소노마","c":"미국","v":null,"s":"","ms":null,"m":"WS Top100 '25 #12(사용자); 확인점수는 2023빈티지","vt":["기타"]},{"d":"2026-06-03","n":"Oomrang Estate Kerner 2022","k":"화이트","kd":"화이트","g":"케르너","r":"푸젓 사운드(워싱턴)","c":"미국","v":null,"s":"Tastings/BTI 92","ms":92,"m":"","vt":["기타"]},{"d":"2026-06-03","n":"Château Moulin Boyer Bordeaux 2021","k":"레드","kd":"레드","g":"보르도 블렌드","r":"보르도","c":"프랑스","v":3.3,"s":"","ms":null,"m":"","vt":["보르도 블렌드"]},{"d":"2026-05-28","n":"Alberto Voerzio Barolo Castagni 2021","k":"레드","kd":"레드","g":"네비올로","r":"바롤로(피에몬테)","c":"이탈리아","v":null,"s":"종합 ~92","ms":92,"m":"†JS 94는 2020빈티지","vt":["네비올로"]},{"d":"2026-05-28","n":"Giovanni Rosso Langhe Nebbiolo 2023","k":"레드","kd":"레드","g":"네비올로","r":"랑게(피에몬테)","c":"이탈리아","v":4.0,"s":"종합 ~90","ms":90,"m":"†","vt":["네비올로"]},{"d":"2026-05-28","n":"Produttori del Barbaresco Barbaresco 2021","k":"레드","kd":"레드","g":"네비올로","r":"바르바레스코(피에몬테)","c":"이탈리아","v":null,"s":"WS 94 · JS 94","ms":94,"m":"WS Top100 '25 #7","vt":["네비올로"]},{"d":"2026-05-28","n":"Montagu Pinot Noir Charles Heintz Vineyard 2024","k":"레드","kd":"레드","g":"피노 누아","r":"소노마 코스트","c":"미국","v":null,"s":"","ms":null,"m":"신출시","vt":["피노 누아"]},{"d":"2026-05-28","n":"Three Sticks Pinot Noir Price Family Estates 2022","k":"레드","kd":"레드","g":"피노 누아","r":"소노마","c":"미국","v":null,"s":"JD 93","ms":93,"m":"†","vt":["피노 누아"]},{"d":"2026-05-28","n":"Three Sticks Chardonnay Durell Vineyard 2022","k":"화이트","kd":"화이트","g":"샤르도네","r":"소노마","c":"미국","v":null,"s":"","ms":null,"m":"","vt":["샤르도네"]},{"d":"2026-05-28","n":"La Rioja Alta Viña Ardanza Reserva 2019","k":"레드","kd":"레드","g":"템프라니요/가르나차","r":"리오하","c":"스페인","v":null,"s":"JD 96 · WA 94","ms":96,"m":"†","vt":["기타"]},{"d":"2026-05-28","n":"Kirkland Chablis 2023","k":"화이트","kd":"화이트","g":"샤르도네","r":"샤블리(부르고뉴)","c":"프랑스","v":null,"s":"","ms":null,"m":"코스트코 커클랜드 PB","vt":["샤르도네"]},{"d":"2026-05-28","n":"Hofgut Falkenstein Krettnacher Euchariusberg Riesling 2024","k":"화이트","kd":"화이트","g":"리슬링","r":"독일 자르","c":"독일","v":null,"s":"종합 ~93","ms":93,"m":"†큐베(캐스크) 모호","vt":["기타"]},{"d":"2026-05-28","n":"So Far Out 'All The Rage' Red 2022","k":"레드","kd":"레드","g":"레드 블렌드","r":"캘리포니아","c":"미국","v":3.9,"s":"","ms":null,"m":"","vt":["기타"]},{"d":"2025-12-18","n":"Spring Mountain Vineyard Elivette 2017","k":"레드","kd":"레드","g":"보르도 블렌드","r":"나파 스프링마운틴","c":"프랑스","v":null,"s":"종합 91","ms":91,"m":"†","vt":["보르도 블렌드"]},{"d":"2025-12-18","n":"Grand Napa Vineyards Stone Crib Cabernet Sauvignon 2019","k":"레드","kd":"레드","g":"카베르네 소비뇽","r":"나파","c":"미국","v":4.4,"s":"JS 92 · WA 91","ms":92,"m":"†","vt":["카베르네 소비뇽"]},{"d":"2025-12-18","n":"McManis Family Vineyards Chardonnay 2023","k":"화이트","kd":"화이트","g":"샤르도네","r":"캘리포니아","c":"미국","v":3.7,"s":"","ms":null,"m":"","vt":["샤르도네"]},{"d":"2025-12-18","n":"Vincent Girardin Bourgogne Cuvée Saint-Vincent Chardonnay 2022","k":"화이트","kd":"화이트","g":"샤르도네","r":"부르고뉴","c":"프랑스","v":null,"s":"종합 88","ms":88,"m":"","vt":["샤르도네"]},{"d":"2025-12-18","n":"Domaine Michaut Frères Chablis 2021","k":"화이트","kd":"화이트","g":"샤르도네","r":"샤블리(부르고뉴)","c":"프랑스","v":4.0,"s":"","ms":null,"m":"","vt":["샤르도네"]},{"d":"2025-12-18","n":"Dr. Heidemanns-Bergweiler Bernkasteler Badstube Riesling Spätlese 2023","k":"화이트","kd":"화이트","g":"리슬링(슈페트레제)","r":"독일 모젤","c":"독일","v":null,"s":"","ms":null,"m":"약간 스위트","vt":["기타"]},{"d":"2025-12-18","n":"Domaine des Comtes Lafon Meursault 'Clos de la Barre' 2022","k":"화이트","kd":"화이트","g":"샤르도네","r":"뫼르소(부르고뉴)","c":"프랑스","v":null,"s":"WA 92+ · J.Morris 92-94 · Burghound 90-92","ms":94,"m":"†배럴/범위","vt":["샤르도네"]},{"d":"2025-12-18","n":"Fournier Père et Fils Sancerre 'Les Belles Vignes' 2024","k":"화이트","kd":"화이트","g":"소비뇽 블랑","r":"상세르(루아르)","c":"프랑스","v":null,"s":"DEC 95","ms":95,"m":"†이례적 고득점-재확인","vt":["소비뇽 블랑"]},{"d":"2025-12-18","n":"Cloudy Bay Sauvignon Blanc 2024","k":"화이트","kd":"화이트","g":"소비뇽 블랑","r":"뉴질랜드 말버러","c":"뉴질랜드","v":null,"s":"JS 92","ms":92,"m":"","vt":["소비뇽 블랑"]},{"d":"2025-12-18","n":"Cakebread Cellars Sauvignon Blanc 2023","k":"화이트","kd":"화이트","g":"소비뇽 블랑","r":"나파","c":"미국","v":null,"s":"","ms":null,"m":"","vt":["소비뇽 블랑"]},{"d":"2025-12-18","n":"Champagne Bollinger Special Cuvée","k":"스파클링","kd":"스파클링(샴페인)","g":"피노 누아 중심","r":"샴페인","c":"프랑스","v":4.3,"s":"JS 93 · WA 93","ms":93,"m":"NV","vt":["피노 누아"]},{"d":"2025-12-18","n":"Gosset Champagne Grande Réserve Brut","k":"스파클링","kd":"스파클링(샴페인)","g":"샴페인","r":"","c":"프랑스","v":null,"s":"WS 93 · JS 92 · Burghound 91","ms":93,"m":"NV","vt":["기타"]},{"d":"2025-12-18","n":"Peter Michael 'Belle Côte' Chardonnay 2022","k":"화이트","kd":"화이트","g":"샤르도네","r":"소노마 나이츠밸리","c":"미국","v":null,"s":"WineIndep 98 · WA 96-98","ms":98,"m":"†","vt":["샤르도네"]}];
+
+const S = ['var(--s1)','var(--s2)','var(--s3)','var(--s4)','var(--s5)','var(--s6)','var(--s7)','var(--s8)'];
+const KIND_COLOR = {'레드':'var(--s8)','화이트':'var(--s4)','스파클링':'var(--s3)','디저트':'var(--s7)'};
+const el = (t,c,h)=>{const e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;};
+const esc = s => String(s).replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+/* ---------------- drawer ---------------- */
+const drawer = document.getElementById('drawer');
+const backdrop = document.getElementById('backdrop');
+let lastFocus = null;
+
+function openDrawer(kicker, title, wines, keepOrder){
+  lastFocus = document.activeElement;
+  document.getElementById('drawer-kicker').textContent = kicker;
+  document.getElementById('drawer-title').textContent = title;
+
+  const list = keepOrder ? wines.slice() :
+    wines.slice().sort((a,b)=> (b.ms??0)-(a.ms??0) || a.n.localeCompare(b.n));
+
+  const scored = list.filter(w=>w.ms!=null);
+  const avg = scored.length ? (scored.reduce((s,w)=>s+w.ms,0)/scored.length).toFixed(1) : null;
+  document.getElementById('drawer-count').textContent =
+    `${list.length}종` + (avg ? ` · 평점 확인된 ${scored.length}종 평균 ${avg}점` : ' · 평점 데이터 없음');
+
+  const body = document.getElementById('drawer-body');
+  body.innerHTML = '';
+  if(!list.length){ body.appendChild(el('div','empty','해당하는 와인이 없어요.')); }
+  list.forEach(w=>{
+    const row = el('div','wine');
+    row.innerHTML = `
+      <div class="wine-top">
+        <span class="wine-n">${esc(w.n)}</span>
+        <span class="wine-s${w.ms==null?' none':''}">${w.ms==null?'—':w.ms}</span>
+      </div>
+      <div class="wine-meta">
+        <span class="chip date">${w.d}</span>
+        <span class="chip k" style="background:${KIND_COLOR[w.k]||'var(--muted)'};${w.k==='화이트'?'color:#2a2119;':''}">${esc(w.kd)}</span>
+        ${w.v!=null?`<span class="chip">Vivino ${w.v}</span>`:''}
+      </div>
+      <div class="wine-detail"><em>${esc(w.g)}</em> · ${esc(w.r||'—')}${w.s?`<br>${esc(w.s)}`:''}${w.m?`<br>${esc(w.m)}`:''}</div>`;
+    body.appendChild(row);
+  });
+  body.scrollTop = 0;
+
+  drawer.classList.add('open'); backdrop.classList.add('open');
+  drawer.setAttribute('aria-hidden','false');
+  document.getElementById('drawer-close').focus();
+}
+function closeDrawer(){
+  drawer.classList.remove('open'); backdrop.classList.remove('open');
+  drawer.setAttribute('aria-hidden','true');
+  if(lastFocus) lastFocus.focus();
+}
+document.getElementById('drawer-close').addEventListener('click', closeDrawer);
+backdrop.addEventListener('click', closeDrawer);
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && drawer.classList.contains('open')) closeDrawer(); });
+
+/* ---------------- aggregates (computed from WINES) ---------------- */
+const countOf = (fn)=> WINES.filter(fn);
+const uniq = arr => [...new Set(arr)];
+
+const COUNTRY_MAIN = ['미국','프랑스','이탈리아','스페인','독일','뉴질랜드'];
+const countryGroup = w => COUNTRY_MAIN.includes(w.c) ? w.c : '기타';
+const VARIETY_MAIN = ['샤르도네','피노 누아','카베르네 소비뇽','보르도 블렌드','소비뇽 블랑','네비올로','시라/시라즈'];
+
+function tally(keyFn){
+  const m = new Map();
+  WINES.forEach(w=>{ [].concat(keyFn(w)).forEach(k=> m.set(k,(m.get(k)||0)+1) ); });
+  return [...m.entries()].sort((a,b)=>b[1]-a[1]);
+}
+
+/* ---------------- stat tiles ---------------- */
+const dates = uniq(WINES.map(w=>w.d)).sort();
+const reds = countOf(w=>w.k==='레드'), whites = countOf(w=>w.k==='화이트');
+const statDefs = [
+  {n:WINES.length, l:'기록된 와인', act:()=>openDrawer('전체','기록된 와인 89종', WINES)},
+  {n:dates.length, l:'시음 자리', act:null},
+  {n:(WINES.length/dates.length).toFixed(1), l:'자리당 평균 병 수', act:null},
+  {n:`${Math.round(reds.length/(reds.length+whites.length)*100)}:${Math.round(whites.length/(reds.length+whites.length)*100)}`,
+   l:'레드 : 화이트', act:()=>openDrawer('종류','레드 + 화이트 (스틸와인)', reds.concat(whites))},
+];
+const statsEl = document.getElementById('stats');
+statDefs.forEach(s=>{
+  const node = el(s.act?'button':'div','stat',`<span class="n">${s.n}</span><span class="l">${s.l}</span>`);
+  if(s.act) node.addEventListener('click', s.act);
+  statsEl.appendChild(node);
+});
+
+/* ---------------- horizontal bar charts ---------------- */
+function hbar(container, rows, onClick){
+  const max = Math.max(...rows.map(r=>r.v));
+  rows.forEach((r,i)=>{
+    const btn = el('button','hbar-row', `
+      <span class="hbar-label">${esc(r.k)}</span>
+      <span class="hbar-track"><span class="hbar-fill" style="width:${(r.v/max*100).toFixed(1)}%;background:${S[i%8]}"></span></span>
+      <span class="hbar-val">${r.v}</span>`);
+    btn.setAttribute('aria-label', `${r.k} ${r.v}종 목록 보기`);
+    btn.addEventListener('click', ()=>onClick(r));
+    container.appendChild(btn);
+  });
+}
+
+const countryRows = tally(countryGroup).map(([k,v])=>({k,v}));
+countryRows.sort((a,b)=> (a.k==='기타') - (b.k==='기타') || b.v-a.v);
+hbar(document.getElementById('chart-country'), countryRows, r=>{
+  const sel = WINES.filter(w=> countryGroup(w)===r.k);
+  openDrawer('지역', r.k==='기타' ? '기타 국가' : r.k, sel);
+});
+
+const varietyRows = tally(w=> w.vt.map(v=> VARIETY_MAIN.includes(v)?v:'기타')).map(([k,v])=>({k,v}));
+varietyRows.sort((a,b)=> (a.k==='기타') - (b.k==='기타') || b.v-a.v);
+hbar(document.getElementById('chart-variety'), varietyRows, r=>{
+  const sel = WINES.filter(w=> w.vt.some(v=> (VARIETY_MAIN.includes(v)?v:'기타')===r.k));
+  openDrawer('품종', r.k==='기타' ? '기타 품종' : r.k, sel);
+});
+
+/* ---------------- ratings by session ---------------- */
+const SC_MIN=85, SC_MAX=100;
+const pos = v => ((v-SC_MIN)/(SC_MAX-SC_MIN)*100).toFixed(1)+'%';
+const axis = document.getElementById('rs-axis');
+[85,90,95,100].forEach(v=>{ const t=el('div','tick',String(v)); t.style.left=pos(v); axis.appendChild(t); });
+
+const rowsEl = document.getElementById('rs-rows');
+dates.forEach(d=>{
+  const ws = WINES.filter(w=>w.d===d);
+  const sc = ws.filter(w=>w.ms!=null).map(w=>w.ms);
+  const mx = sc.length ? Math.max(...sc) : null;
+  const av = sc.length ? sc.reduce((a,b)=>a+b,0)/sc.length : null;
+  const btn = el('button','rs-row', `
+    <span class="rs-date">${d}</span>
+    <span class="rs-track">
+      <span class="rs-line"></span>
+      ${av!=null?`<span class="rs-dot avg" style="left:${pos(av)}"></span>`:''}
+      ${mx!=null?`<span class="rs-dot" style="left:${pos(mx)}"></span>`:''}
+      ${mx!=null?`<span class="rs-n" style="left:${pos(mx)}">${ws.length}종</span>`:`<span class="rs-n" style="left:6%">${ws.length}종 · 평점없음</span>`}
+    </span>`);
+  btn.setAttribute('aria-label', `${d} 시음 ${ws.length}종 목록 보기`);
+  btn.addEventListener('click', ()=> openDrawer('시음 자리', d, ws, true));
+  rowsEl.appendChild(btn);
+});
+
+/* ---------------- type breakdown ---------------- */
+const typeRows = tally(w=>w.k);
+const typeMax = Math.max(...typeRows.map(r=>r[1]));
+const typeList = document.getElementById('type-list');
+typeRows.forEach(([k,v])=>{
+  const detail = uniq(WINES.filter(w=>w.k===k).map(w=>w.kd)).join(' · ');
+  const btn = el('button','type-row', `
+    <span class="swatch" style="background:${KIND_COLOR[k]}"></span>
+    <span class="type-name">${k}</span>
+    <span class="type-bar"><i style="width:${(v/typeMax*100).toFixed(1)}%;background:${KIND_COLOR[k]}"></i></span>
+    <span class="type-pct">${v} · ${Math.round(v/WINES.length*100)}%</span>`);
+  btn.setAttribute('aria-label', `${k} ${v}종 목록 보기 (${detail})`);
+  btn.addEventListener('click', ()=> openDrawer('종류', k, WINES.filter(w=>w.k===k)));
+  typeList.appendChild(btn);
+});
+
+/* ---------------- red / white ratio ---------------- */
+const ratio = document.getElementById('ratio-bar');
+[['레드',reds,'ratio-red'],['화이트',whites,'ratio-white']].forEach(([label,set,cls])=>{
+  const b = el('button',cls,`${label} ${set.length}`);
+  b.style.flex = set.length;
+  b.setAttribute('aria-label', `${label} ${set.length}종 목록 보기`);
+  b.addEventListener('click', ()=> openDrawer('종류', label, set));
+  ratio.appendChild(b);
+});
+
+/* ---------------- top 5 ---------------- */
+const topWines = WINES.filter(w=>w.ms!=null).sort((a,b)=> b.ms-a.ms || a.n.localeCompare(b.n)).slice(0,5);
+const topList = document.getElementById('top-list');
+topWines.forEach((w,i)=>{
+  const li = el('li');
+  const btn = el('button','top-item', `
+    <span class="top-rank">${i+1}</span>
+    <span><span class="top-name">${esc(w.n)}</span><div class="top-meta">${w.d} · ${esc(w.s)}</div></span>
+    <span class="top-score">${w.ms}</span>`);
+  btn.setAttribute('aria-label', `${w.n} 이 포함된 ${w.d} 시음 자리 보기`);
+  btn.addEventListener('click', ()=> openDrawer('시음 자리', w.d, WINES.filter(x=>x.d===w.d), true));
+  li.appendChild(btn); topList.appendChild(li);
+});
+</script>
