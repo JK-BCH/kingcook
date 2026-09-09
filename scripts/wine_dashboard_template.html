@@ -165,7 +165,7 @@
   <header>
     <div class="eyebrow">kingcook · drinks/wine-log.md</div>
     <h1>Cellar Ledger</h1>
-    <div class="sub">2025-12-18부터 <b>2026-09-05</b>까지 12번의 시음 자리, <b>89종</b>의 기록을 집계했어요.</div>
+    <div class="sub" id="sub-line"></div>
     <div class="hint">어느 항목이든 누르면 해당 와인 목록이 옆에 펼쳐져요</div>
   </header>
 
@@ -190,9 +190,9 @@
   <div class="grid2">
     <div class="card"><h3>종류별 분포</h3><div class="type-list" id="type-list"></div></div>
     <div class="card">
-      <h3>화이트 vs 레드 <span>(스틸와인 81종)</span></h3>
+      <h3>화이트 vs 레드 <span id="ratio-sub"></span></h3>
       <div class="ratio-bar" id="ratio-bar"></div>
-      <div class="ratio-caption"><span>63%</span><span>37%</span></div>
+      <div class="ratio-caption" id="ratio-caption"></div>
     </div>
   </div>
 
@@ -206,7 +206,7 @@
         <li><span><b>가장 오래된 빈티지</b> — Château Suduiraut Sauternes <b>2007</b>. 로그엔 한때 Montelena 2008이 최고령으로 적혀 있었는데 이번 집계로 정정.</span></li>
         <li><span><b>가장 최신 빈티지</b> — Cloudy Bay·Delectus Sauvignon Blanc, 둘 다 <b>2025</b></span></li>
         <li><span><b>NV(빈티지 없음)</b> 3종 — Cain Cuvée NV · Bollinger · Gosset</span></li>
-        <li><span><b>Vivino 평점 보유율</b> — 29/89종 (33%), 나머지는 평론가 점수로만 조사</span></li>
+        <li><span><b>Vivino 평점 보유율</b> — <span id="fact-vivino"></span>, 나머지는 평론가 점수로만 조사</span></li>
         <li><span><b>가장 많이 등장한 생산자</b> — Littorai, 2개 자리에 걸쳐 3병</span></li>
         <li><span><b>가장 화려했던 자리</b> — 2026-07-15 (9종 중 8종 평균 95.5점)</span></li>
       </ul>
@@ -233,7 +233,7 @@
 const WINES = /*__DATA__*/[];
 
 const S = ['var(--s1)','var(--s2)','var(--s3)','var(--s4)','var(--s5)','var(--s6)','var(--s7)','var(--s8)'];
-const KIND_COLOR = {'레드':'var(--s8)','화이트':'var(--s4)','스파클링':'var(--s3)','디저트':'var(--s7)'};
+const KIND_COLOR = {'레드':'var(--s8)','화이트':'var(--s4)','스파클링':'var(--s3)','로제':'var(--s5)','디저트':'var(--s7)'};
 const el = (t,c,h)=>{const e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;};
 const esc = s => String(s).replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 
@@ -302,11 +302,19 @@ function tally(keyFn){
   return [...m.entries()].sort((a,b)=>b[1]-a[1]);
 }
 
-/* ---------------- stat tiles ---------------- */
+/* ---------------- header line & facts ---------------- */
 const dates = uniq(WINES.map(w=>w.d)).sort();
+document.getElementById('sub-line').innerHTML =
+  `${dates[0]}부터 <b>${dates[dates.length-1]}</b>까지 ${dates.length}번의 시음 자리, ` +
+  `<b>${WINES.length}종</b>의 기록을 집계했어요.`;
+const vivinoCount = WINES.filter(w=>w.v!=null).length;
+document.getElementById('fact-vivino').textContent =
+  `${vivinoCount}/${WINES.length}종 (${Math.round(vivinoCount/WINES.length*100)}%)`;
+
+/* ---------------- stat tiles ---------------- */
 const reds = countOf(w=>w.k==='레드'), whites = countOf(w=>w.k==='화이트');
 const statDefs = [
-  {n:WINES.length, l:'기록된 와인', act:()=>openDrawer('전체','기록된 와인 89종', WINES)},
+  {n:WINES.length, l:'기록된 와인', act:()=>openDrawer('전체',`기록된 와인 ${WINES.length}종`, WINES)},
   {n:dates.length, l:'시음 자리', act:null},
   {n:(WINES.length/dates.length).toFixed(1), l:'자리당 평균 병 수', act:null},
   {n:`${Math.round(reds.length/(reds.length+whites.length)*100)}:${Math.round(whites.length/(reds.length+whites.length)*100)}`,
@@ -389,6 +397,9 @@ typeRows.forEach(([k,v])=>{
 });
 
 /* ---------------- red / white ratio ---------------- */
+const stillTotal = reds.length + whites.length;
+const pctOf = set => Math.round(set.length / stillTotal * 100);
+document.getElementById('ratio-sub').textContent = `(스틸와인 ${stillTotal}종)`;
 const ratio = document.getElementById('ratio-bar');
 [['레드',reds,'ratio-red'],['화이트',whites,'ratio-white']].forEach(([label,set,cls])=>{
   const b = el('button',cls,`${label} ${set.length}`);
@@ -397,6 +408,8 @@ const ratio = document.getElementById('ratio-bar');
   b.addEventListener('click', ()=> openDrawer('종류', label, set));
   ratio.appendChild(b);
 });
+document.getElementById('ratio-caption').innerHTML =
+  `<span>${pctOf(reds)}%</span><span>${pctOf(whites)}%</span>`;
 
 /* ---------------- top 5 ---------------- */
 const topWines = WINES.filter(w=>w.ms!=null).sort((a,b)=> b.ms-a.ms || a.n.localeCompare(b.n)).slice(0,5);
