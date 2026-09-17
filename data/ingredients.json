@@ -14,7 +14,7 @@
     { "name": "김치", "category": "냉장", "qty": "", "expiry": "", "note": "" },
     { "name": "계란", "category": "냉장", "qty": "상시", "expiry": "", "note": "상시 보유" },
     { "name": "두부", "category": "냉장", "qty": "1모", "expiry": "", "note": "소진 필요 — 슬슬 써야 함" },
-    { "name": "양파", "category": "실온", "qty": "반개", "expiry": "", "note": "소진 필요 — 항정살과 같이 우선 소비 예정" },
+    { "name": "양파", "category": "실온", "qty": "많음", "expiry": "", "note": "추가 구매함(2026-09-17)" },
     { "name": "감자", "category": "실온", "qty": "1개", "expiry": "", "note": "" },
     { "name": "파스타", "category": "실온", "qty": "", "expiry": "", "note": "스파게티·링귀네·엔젤헤어·펜네" },
     { "name": "스팸", "category": "실온", "qty": "", "expiry": "", "note": "통조림" },
