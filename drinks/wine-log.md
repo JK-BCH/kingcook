@@ -3,12 +3,22 @@
 다 마신 와인을 남겨두는 **개인 기록**. 요리용 와인·인벤토리와는 **별개**.
 (요리에 쓰는 와인은 `data/ingredients.json` → "와인" 항목.)
 
-> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **96종** · **2025-12-18 ~ 2026-09-13**.
+> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **100종** · **2025-12-18 ~ 2026-09-17**.
 > 정리 가정: ① 인스타 태그 `#YYMMDD` → 날짜 (단 `#250528`은 년도 오기 → **2026**-05-28) ② "GRIFIO"→Pinot **Grigio** ③ 2025-12-18 'Elivette 2017' 중복 1개로 합침 ④ 종류·품종·지역은 라벨 기준 추정.
 
 > **평점(2026-07-17 웹 조사)**: 사이트 직접열람이 막혀(403) **웹검색 스니펫 기반**이라 오차 가능. **Vivino**=커뮤니티 별점/5 (대개 빈티지 통합). **평론가**=해당 빈티지 100점 — JS=James Suckling, WS=Wine Spectator, WA=Wine Advocate(Parker), DEC=Decanter, VIN=Vinous, JD=Jeb Dunnuck, WE=Wine Enthusiast, WineIndep=The Wine Independent, 종합=wine-searcher 평균. **`†`=단일출처·재확인 권장**, **`—`=못 찾음/미조사**.
 
 ---
+
+## 2026-09-17
+> 스파클링 1 + 화이트 1 + 레드 2
+
+| 와인 | 종류 | 품종·지역 | Vivino | 평론가 점수(출처) | 메모 |
+|---|---|---|---|---|---|
+| Gratien & Meyer Crémant de Loire Brut NV | 스파클링 | 크레망 드 루아르 블렌드 · 루아르(프랑스) | — | WE 89 · Falstaff 88~89 · Tastings 85 | NV |
+| Campo alle Noci Brunello di Montalcino 2020 | 레드 | 산지오베제 · 브루넬로 디 몬탈치노(토스카나, 이탈리아) | — | **JS 94** · 종합 90 | |
+| Palisades Canyon Chenin Blanc 2022 | 화이트 | 슈냉 블랑 · 칼리스토가, 나파밸리(캘리포니아) | — | 종합 94 † | †단일출처(wine-searcher). 2026-09-13에 마신 Cornerstone Calistoga Cab과 같은 칼리스토가 |
+| Kapcsándy Family Winery Estate Cuvée Cabernet Sauvignon 2022 | 레드 | 카베르네 소비뇽 · 스테이트레인 빈야드, 욘트빌(나파밸리) | — | **WA 93** · VIN 93 | |
 
 ## 2026-09-13
 > 레드 2 — 나파 카베르네 + 스프링마운틴 블렌드
