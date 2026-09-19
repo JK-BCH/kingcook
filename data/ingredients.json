@@ -1,10 +1,9 @@
 {
-  "updated": "2026-09-17",
+  "updated": "2026-09-19",
   "items": [
     { "name": "고등어", "category": "냉동", "qty": "", "expiry": "", "note": "직접 잡은 것, 토막" },
     { "name": "연어", "category": "냉동", "qty": "", "expiry": "", "note": "코스트코 대용량(박스), 필렛" },
     { "name": "새우", "category": "냉동", "qty": "", "expiry": "", "note": "냉동" },
-    { "name": "관자", "category": "냉동", "qty": "", "expiry": "", "note": "냉동 — 시어링 전 키친타월로 물기 완전 제거 필요" },
     { "name": "우동면", "category": "냉동", "qty": "", "expiry": "", "note": "냉동 — 데쳐서 사용" },
     { "name": "삼겹살", "category": "냉동", "qty": "3줄", "expiry": "", "note": "소진 필요 — 애매하게 남음. 두께 약 1.5cm (구이용). 가쿠니·김치찜엔 그대로 큼직하게 썰어 사용, 판체타 대용으로도 좋음" },
     { "name": "차돌박이", "category": "냉동", "qty": "", "expiry": "", "note": "얇게 썰림 — 와인파티용 토마토 라구파스타에 사용 예정" },
@@ -12,6 +11,7 @@
     { "name": "베이컨", "category": "냉장", "qty": "", "expiry": "", "note": "주문함 — 파티(8/30) 전 도착 예정, 케이준 관자 파스타용" },
     { "name": "파", "category": "냉장", "qty": "", "expiry": "", "note": "" },
     { "name": "김치", "category": "냉장", "qty": "", "expiry": "", "note": "" },
+    { "name": "숙주", "category": "냉장", "qty": "", "expiry": "", "note": "2026-09-19 구매 — 빨리 소진 필요(숙주는 금방 무름)" },
     { "name": "계란", "category": "냉장", "qty": "상시", "expiry": "", "note": "상시 보유" },
     { "name": "두부", "category": "냉장", "qty": "1모", "expiry": "", "note": "소진 필요 — 슬슬 써야 함" },
     { "name": "양파", "category": "실온", "qty": "많음", "expiry": "", "note": "추가 구매함(2026-09-17)" },
