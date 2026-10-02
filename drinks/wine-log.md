@@ -126,7 +126,7 @@
 | Cristom Marjorie Vineyard Pinot Noir 2021 | 레드 | 피노 누아 · 오리건 윌라멧(에올라-아미티) | 4.4 | VIN 95 · JD 95 · WE 94 | |
 | Brannan Cabernet Sauvignon 2020 | 레드 | 카베르네 소비뇽 · 나파 칼리스토가 | 4.0† | — | 2020 평론 미평가 |
 | Grgich Hills Estate Cabernet Sauvignon 2021 | 레드 | 카베르네 소비뇽 · 나파 | 4.2 | DEC 95 · WE 94 · JS 92 | |
-| Morlet 'Mon Chevalier' Cabernet Sauvignon 2016 | 레드 | 카베르네 소비뇽 · 캘리포니아 | 4.5 | JD 96 · WA 96+ | |
+| Morlet 'Mon Chevalier' Cabernet Sauvignon 2014 | 레드 | 카베르네 소비뇽 · 나이츠밸리, 소노마(캘리포니아) | 4.5 | **JD 97** · JS 95 · VIN 95 · WA 91 | 2026-10-02 빈티지 정정(2016→2014) |
 | Cristom Chardonnay 2021 | 화이트 | 샤르도네 · 오리건 윌라멧 | 4.0 | JS 93 · DEC 93 · WE 91 · VIN 91 | |
 | Château Suduiraut Sauternes 2007 | 디저트(스위트) | 세미용/소비뇽 · 소테른(보르도) | 4.3 | WE 97 · WS 95 · JS 95 · WA 94 | 귀부 스위트 |
 
