@@ -3,12 +3,24 @@
 다 마신 와인을 남겨두는 **개인 기록**. 요리용 와인·인벤토리와는 **별개**.
 (요리에 쓰는 와인은 `data/ingredients.json` → "와인" 항목.)
 
-> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **100종** · **2025-12-18 ~ 2026-09-17**.
+> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **106종** · **2025-12-18 ~ 2026-10-01**.
 > 정리 가정: ① 인스타 태그 `#YYMMDD` → 날짜 (단 `#250528`은 년도 오기 → **2026**-05-28) ② "GRIFIO"→Pinot **Grigio** ③ 2025-12-18 'Elivette 2017' 중복 1개로 합침 ④ 종류·품종·지역은 라벨 기준 추정.
 
 > **평점(2026-07-17 웹 조사)**: 사이트 직접열람이 막혀(403) **웹검색 스니펫 기반**이라 오차 가능. **Vivino**=커뮤니티 별점/5 (대개 빈티지 통합). **평론가**=해당 빈티지 100점 — JS=James Suckling, WS=Wine Spectator, WA=Wine Advocate(Parker), DEC=Decanter, VIN=Vinous, JD=Jeb Dunnuck, WE=Wine Enthusiast, WineIndep=The Wine Independent, 종합=wine-searcher 평균. **`†`=단일출처·재확인 권장**, **`—`=못 찾음/미조사**.
 
 ---
+
+## 2026-10-01 — 6종 테이스팅
+> 화이트 2 + 레드 4
+
+| 와인 | 종류 | 품종·지역 | Vivino | 평론가 점수(출처) | 메모 |
+|---|---|---|---|---|---|
+| Aubaine Chardonnay 2021 (Anahata Vineyard) | 화이트 | 샤르도네 · 에올라-아미티 힐즈(오리건) | — | **WE 92** | 2026-08-19에도 마셨던 같은 와인(재시음) |
+| Stag's Leap Wine Cellars Aveta Sauvignon Blanc 2024 | 화이트 | 소비뇽 블랑 · 나파밸리 | — | **DEC 93** · WE 92 · JS 92 · VIN 92 · WS 92 | ⭐ 이날 최고 득점권. 여러 평론가 92점대로 수렴 |
+| Skinner Grenache 2020 | 레드 | 그르나슈 · 엘도라도(캘리포니아) | — | — † | †2020 레드 그르나슈 단일 점수는 못 찾음 — 참고: 같은 와이너리 2019 레드 그르나슈 WE 92 |
+| Modus Operandi Cellars Pinot Noir 2022 (Silver Eagle Vineyard) | 레드 | 피노 누아 · 실버이글 빈야드, 페탈루마 갭(캘리포니아) | — | **WineIndep 95** | 소규모 생산자, 빈야드 지정 와인 |
+| TLD Petit Verdot 2022 | 레드 | 쁘띠 베르도 · 나파밸리 | — | — | 점수 못 찾음(소규모 와이너리) |
+| TLD Cabernet Sauvignon 2022 | 레드 | 카베르네 소비뇽 · 나파밸리 | — | Sommelier Company 94 † | †출처 불명확, 애틀라스 피크·오크 노크 포도 블렌드 |
 
 ## 2026-09-17
 > 스파클링 1 + 화이트 1 + 레드 2
