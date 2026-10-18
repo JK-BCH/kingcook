@@ -12,21 +12,22 @@
 
 ## 2026-10-17
 > 시음회 — 레드 9 + 화이트 2 + 디저트 1. 부르고뉴 중심 + 미국 피노 누아 비교
+> 평점(2026-10-18 웹 조사): 대부분 최신 빈티지라 아직 평가 전 — 확인된 건 Michel Gros 샹볼·Goldeneye 2병뿐
 
 | 와인 | 종류 | 품종·지역 | Vivino | 평론가 점수(출처) | 메모 |
 |---|---|---|---|---|---|
-| Louis Latour Bourgogne Pinot Noir 2023 | 레드 | 피노 누아 · 부르고뉴(프랑스) | — | — | |
-| Domaine Mongeard-Mugneret Bourgogne Pinot Noir 2023 | 레드 | 피노 누아 · 부르고뉴(프랑스) | — | — | |
+| Louis Latour Bourgogne Pinot Noir 2023 | 레드 | 피노 누아 · 부르고뉴(프랑스) | — | — | 2023 평론가 점수 못 찾음(Halliday 90은 2013빈티지) |
+| Domaine Mongeard-Mugneret Bourgogne Pinot Noir 2023 | 레드 | 피노 누아 · 부르고뉴(프랑스) | — | — | 점수 못 찾음. 같은 생산자 2022 Vosne-Romanée는 JS 93·WS 92 |
 | Domaine Mongeard-Mugneret Bourgogne Hautes-Côtes de Nuits "Les Dames Huguettes" 2023 | 레드 | 피노 누아 · 오트 코트 드 뉘(부르고뉴, 프랑스) | — | — | 바로 위 같은 생산자 기본 부르고뉴와 비교 |
-| Domaine Michel Gros Chambolle-Musigny 2022 | 레드 | 피노 누아 · 샹볼 뮈지니(부르고뉴, 프랑스) | — | — | |
+| Domaine Michel Gros Chambolle-Musigny 2022 | 레드 | 피노 누아 · 샹볼 뮈지니(부르고뉴, 프랑스) | — | **VIN 93** · Burghound 91 | † 소매점(Flatiron) 표기 기준. ⭐ 이날 최고 득점 |
 | Domaine Michel Gros Gevrey-Chambertin 2022 | 레드 | 피노 누아 · 주브레 샹베르탱(부르고뉴, 프랑스) | — | — | 바로 위 같은 생산자 샹볼과 마을 비교 |
-| Domaine Francine et Denis Clair Santenay 1er Cru "Clos de Tavannes" 2023 | 레드 | 피노 누아 · 상트네 1er Cru(부르고뉴, 프랑스) | — | — | 사진 라벨로 추가. 이 밭은 레드·화이트 둘 다 있어서 레드로 추정 — 확인 필요 |
-| Domaine Gaston & Pierre Ravaut Bourgogne Aligoté 2023 | 화이트 | 알리고테 · 부르고뉴(프랑스) | — | — | 사진 라벨로 추가 |
-| Louis Jadot Pouilly-Fuissé 2024 | 화이트 | 샤르도네 · 푸이 퓌세(마코네, 부르고뉴, 프랑스) | — | — | 사진 라벨로 추가 |
-| Goldeneye Pinot Noir Anderson Valley 2022 | 레드 | 피노 누아 · 앤더슨 밸리, 멘도시노(캘리포니아) | — | — | 빈티지: 설명문엔 2023이지만 사진 라벨은 2022로 보여 2022로 기록 |
-| Rose & Arrow Estate Willamette Valley Pinot Noir 2024 | 레드 | 피노 누아 · 윌라멧 밸리(오리건) | — | — | 사진 라벨로 추가(빨간 라벨) |
-| Château Voigny Sauternes 2022 | 디저트(스위트 화이트) | 세미용 중심 블렌드 · 소테른(보르도, 프랑스) | — | — | 사진 라벨로 추가. 2026-07 Suduiraut 2007에 이어 두 번째 소테른. 처음엔 2021로 봤으나 라벨 확대 사진으로 2022 확인 |
-| Louis Jadot Beaujolais 2025 | 레드 | 가메 · 보졸레(부르고뉴, 프랑스) | — | — | 설명문엔 Villages였지만 사진 라벨은 기본 Beaujolais |
+| Domaine Françoise et Denis Clair Santenay 1er Cru "Clos de Tavannes" 2023 | 레드 | 피노 누아 · 상트네 1er Cru(부르고뉴, 프랑스) | — | — | 사진 라벨로 추가. 레드 확인(사용자). 생산자명 정식 표기는 Françoise. 2023 점수 못 찾음 |
+| Domaine Gaston & Pierre Ravaut Bourgogne Aligoté 2023 | 화이트 | 알리고테 · 부르고뉴(프랑스) | — | — | 사진 라벨로 추가. 라두아 세리니 밭, 1년 앙금 숙성. 점수 못 찾음 |
+| Louis Jadot Pouilly-Fuissé 2024 | 화이트 | 샤르도네 · 푸이 퓌세(마코네, 부르고뉴, 프랑스) | — | — | 사진 라벨로 추가. 2024 점수 못 찾음(Jadot 소유 J.A. Ferret 2023 Pouilly-Fuissé는 Burghound 90·VIN 90) |
+| Goldeneye Pinot Noir Anderson Valley 2022 | 레드 | 피노 누아 · 앤더슨 밸리, 멘도시노(캘리포니아) | — | **WS 92** · JS 92 † · WE 94 † · DEC 91 † | Duckhorn 계열 생산자. JS·WE·DEC는 소매점 1곳 표기. 빈티지: 설명문엔 2023이지만 사진 라벨은 2022로 보여 2022로 기록 |
+| Rose & Arrow Estate Willamette Valley Pinot Noir 2024 | 레드 | 피노 누아 · 윌라멧 밸리(오리건) | — | — | 사진 라벨로 추가(빨간 라벨). 2024 미평가. 같은 생산자 2023 Touchstone이 JS 100점(오리건 피노 첫 만점, 2026-05) |
+| Château Voigny Sauternes 2022 | 디저트(스위트 화이트) | 세미용 중심 블렌드 · 소테른(보르도, 프랑스) | — | — | 사진 라벨로 추가. 2026-07 Suduiraut 2007에 이어 두 번째 소테른. 처음엔 2021로 봤으나 라벨 확대 사진으로 2022 확인. 점수 못 찾음(소규모 샤토) |
+| Louis Jadot Beaujolais 2025 | 레드 | 가메 · 보졸레(부르고뉴, 프랑스) | — | — | 설명문엔 Villages였지만 사진 라벨은 기본 Beaujolais. 2025 미평가(2022빈티지 WE 90) |
 
 ## 2026-09-17
 > 스파클링 1 + 화이트 1 + 레드 2
