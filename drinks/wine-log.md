@@ -3,12 +3,30 @@
 다 마신 와인을 남겨두는 **개인 기록**. 요리용 와인·인벤토리와는 **별개**.
 (요리에 쓰는 와인은 `data/ingredients.json` → "와인" 항목.)
 
-> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **100종** · **2025-12-18 ~ 2026-09-17**.
+> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **112종** · **2025-12-18 ~ 2026-10-17**.
 > 정리 가정: ① 인스타 태그 `#YYMMDD` → 날짜 (단 `#250528`은 년도 오기 → **2026**-05-28) ② "GRIFIO"→Pinot **Grigio** ③ 2025-12-18 'Elivette 2017' 중복 1개로 합침 ④ 종류·품종·지역은 라벨 기준 추정.
 
 > **평점(2026-07-17 웹 조사)**: 사이트 직접열람이 막혀(403) **웹검색 스니펫 기반**이라 오차 가능. **Vivino**=커뮤니티 별점/5 (대개 빈티지 통합). **평론가**=해당 빈티지 100점 — JS=James Suckling, WS=Wine Spectator, WA=Wine Advocate(Parker), DEC=Decanter, VIN=Vinous, JD=Jeb Dunnuck, WE=Wine Enthusiast, WineIndep=The Wine Independent, 종합=wine-searcher 평균. **`†`=단일출처·재확인 권장**, **`—`=못 찾음/미조사**.
 
 ---
+
+## 2026-10-17
+> 시음회 — 레드 9 + 화이트 2 + 디저트 1. 부르고뉴 중심 + 미국 피노 누아 비교
+
+| 와인 | 종류 | 품종·지역 | Vivino | 평론가 점수(출처) | 메모 |
+|---|---|---|---|---|---|
+| Louis Latour Bourgogne Pinot Noir 2023 | 레드 | 피노 누아 · 부르고뉴(프랑스) | — | — | |
+| Domaine Mongeard-Mugneret Bourgogne Pinot Noir 2023 | 레드 | 피노 누아 · 부르고뉴(프랑스) | — | — | |
+| Domaine Mongeard-Mugneret Bourgogne Hautes-Côtes de Nuits "Les Dames Huguettes" 2023 | 레드 | 피노 누아 · 오트 코트 드 뉘(부르고뉴, 프랑스) | — | — | 바로 위 같은 생산자 기본 부르고뉴와 비교 |
+| Domaine Michel Gros Chambolle-Musigny 2022 | 레드 | 피노 누아 · 샹볼 뮈지니(부르고뉴, 프랑스) | — | — | |
+| Domaine Michel Gros Gevrey-Chambertin 2022 | 레드 | 피노 누아 · 주브레 샹베르탱(부르고뉴, 프랑스) | — | — | 바로 위 같은 생산자 샹볼과 마을 비교 |
+| Domaine Francine et Denis Clair Santenay 1er Cru "Clos de Tavannes" 2023 | 레드 | 피노 누아 · 상트네 1er Cru(부르고뉴, 프랑스) | — | — | 사진 라벨로 추가. 이 밭은 레드·화이트 둘 다 있어서 레드로 추정 — 확인 필요 |
+| Domaine Gaston & Pierre Ravaut Bourgogne Aligoté 2023 | 화이트 | 알리고테 · 부르고뉴(프랑스) | — | — | 사진 라벨로 추가 |
+| Louis Jadot Pouilly-Fuissé 2024 | 화이트 | 샤르도네 · 푸이 퓌세(마코네, 부르고뉴, 프랑스) | — | — | 사진 라벨로 추가 |
+| Goldeneye Pinot Noir Anderson Valley 2022 | 레드 | 피노 누아 · 앤더슨 밸리, 멘도시노(캘리포니아) | — | — | 빈티지: 설명문엔 2023이지만 사진 라벨은 2022로 보여 2022로 기록 |
+| Rose & Arrow Estate Willamette Valley Pinot Noir 2024 | 레드 | 피노 누아 · 윌라멧 밸리(오리건) | — | — | 사진 라벨로 추가(빨간 라벨) |
+| Château Voigny Sauternes 2022 | 디저트(스위트 화이트) | 세미용 중심 블렌드 · 소테른(보르도, 프랑스) | — | — | 사진 라벨로 추가. 2026-07 Suduiraut 2007에 이어 두 번째 소테른. 처음엔 2021로 봤으나 라벨 확대 사진으로 2022 확인 |
+| Louis Jadot Beaujolais 2025 | 레드 | 가메 · 보졸레(부르고뉴, 프랑스) | — | — | 설명문엔 Villages였지만 사진 라벨은 기본 Beaujolais |
 
 ## 2026-09-17
 > 스파클링 1 + 화이트 1 + 레드 2
