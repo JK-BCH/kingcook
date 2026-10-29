@@ -6,21 +6,22 @@
 > 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **117종** · **2025-12-18 ~ 2026-10-28**.
 > 정리 가정: ① 인스타 태그 `#YYMMDD` → 날짜 (단 `#250528`은 년도 오기 → **2026**-05-28) ② "GRIFIO"→Pinot **Grigio** ③ 2025-12-18 'Elivette 2017' 중복 1개로 합침 ④ 종류·품종·지역은 라벨 기준 추정.
 
-> **평점(2026-07-17 웹 조사)**: 사이트 직접열람이 막혀(403) **웹검색 스니펫 기반**이라 오차 가능. **Vivino**=커뮤니티 별점/5 (대개 빈티지 통합). **평론가**=해당 빈티지 100점 — JS=James Suckling, WS=Wine Spectator, WA=Wine Advocate(Parker), DEC=Decanter, VIN=Vinous, JD=Jeb Dunnuck, WE=Wine Enthusiast, WineIndep=The Wine Independent, 종합=wine-searcher 평균. **`†`=단일출처·재확인 권장**, **`—`=못 찾음/미조사**.
+> **평점(2026-07-17 웹 조사)**: 사이트 직접열람이 막혀(403) **웹검색 스니펫 기반**이라 오차 가능. **Vivino**=커뮤니티 별점/5 (대개 빈티지 통합). **평론가**=해당 빈티지 100점 — JS=James Suckling, WS=Wine Spectator, WA=Wine Advocate(Parker), DEC=Decanter, VIN=Vinous, JD=Jeb Dunnuck, WE=Wine Enthusiast, WineIndep=The Wine Independent, N.MacLean=Natalie MacLean, IWC=International Wine Challenge, 종합=wine-searcher 평균. **`†`=단일출처·재확인 권장**, **`—`=못 찾음/미조사**.
 
 ---
 
 ## 2026-10-28
 > 레드 4 + 화이트 1 — 아르헨티나·뉴질랜드·러시안 리버·생테밀리옹·호주
-> 메모는 사용자가 적어준 테이스팅 노트 요약. 평점은 아직 조사 안 함(`—`)
+> 메모는 사용자가 적어준 테이스팅 노트 요약.
+> 평점(2026-10-29 웹 조사): 확인된 건 Oyster Bay·Jim Jim 2병뿐 — 나머지는 아직 평가 전이거나 점수가 유료 페이지 안이라 못 찾음
 
 | 와인 | 종류 | 품종·지역 | Vivino | 평론가 점수(출처) | 메모 |
 |---|---|---|---|---|---|
-| Mascota Vineyards Unánime Gran Vino 2022 | 레드 | 보르도 블렌드(카베르네 소비뇽 60·말벡 25·카베르네 프랑 15) · 우코 밸리, 멘도사(아르헨티나) | — | — | 프렌치 오크 숙성. 자두·블랙베리, 삼나무·바닐라, 묵직한 바디·탄닌 |
-| Oyster Bay Sauvignon Blanc 2025 | 화이트 | 소비뇽 블랑 · 말보로(뉴질랜드) | — | — | 쨍한 산미, 패션프루트·자몽, 풀내음 피니시 |
-| typicité Dutton Ranch Pinot Noir 2022 | 레드 | 피노 누아 · 러시안 리버 밸리(캘리포니아) | — | — | 서늘한 기후 단일 밭. 체리·라즈베리, 정향 등 베이킹 스파이스, 산뜻한 산미 |
-| Château Orisse du Casse Saint-Émilion Grand Cru 2023 | 레드 | 메를로/카베르네 프랑 · 생테밀리옹(보르도, 프랑스) | — | — | 2026-07-02 Château Gracia 2018에 이어 두 번째 생테밀리옹. 블랙체리·자두, 흙내음, 가죽·오크 |
-| Jim Jim The Down-Underdog Shiraz 2019 | 레드 | 시라즈 · 호주(지역 미확인) | — | — | 이름·빈티지만 받음 — 지역은 이름으로 추정 |
+| Mascota Vineyards Unánime Gran Vino 2022 | 레드 | 보르도 블렌드(카베르네 소비뇽 60·말벡 25·카베르네 프랑 15) · 우코 밸리, 멘도사(아르헨티나) | — | — | 프렌치 오크 숙성. 자두·블랙베리, 삼나무·바닐라, 묵직한 바디·탄닌. 2022 JS 리뷰는 있지만 점수는 유료라 못 봄. Gilbert & Gaillard 더블 골드. 참고: 2018빈티지 JS 94 · VIN 92 |
+| Oyster Bay Sauvignon Blanc 2025 | 화이트 | 소비뇽 블랑 · 말보로(뉴질랜드) | — | N.MacLean 93 † · IWC 91 · JS 90 † | 쨍한 산미, 패션프루트·자몽, 풀내음 피니시. JS 90은 소매점 표기(WE 90으로 적은 곳도 있어 출처 충돌) |
+| typicité Dutton Ranch Pinot Noir 2022 | 레드 | 피노 누아 · 러시안 리버 밸리(캘리포니아) | — | — | 서늘한 기후 단일 밭. 체리·라즈베리, 정향 등 베이킹 스파이스, 산뜻한 산미. 2022 점수 못 찾음(같은 밭 다른 생산자 Dutton-Goldfield 2022는 WE 92·JS 92·WS 90) |
+| Château Orisse du Casse Saint-Émilion Grand Cru 2023 | 레드 | 메를로/카베르네 프랑 · 생테밀리옹(보르도, 프랑스) | — | — | 2026-07-02 Château Gracia 2018에 이어 두 번째 생테밀리옹. 블랙체리·자두, 흙내음, 가죽·오크. 2023 점수 못 찾음(소규모 샤토) |
+| Jim Jim The Down-Underdog Shiraz 2019 | 레드 | 시라즈 · 맥라렌 베일, 사우스오스트레일리아(호주) | — | N.MacLean 89 · WineAlign 87 † | 생산자 Hugh Hamilton — 와이너리 개 이름 'Jim Jim'에서 딴 와인 |
 
 ## 2026-10-17
 > 시음회 — 레드 9 + 화이트 2 + 디저트 1. 부르고뉴 중심 + 미국 피노 누아 비교
