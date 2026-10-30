@@ -1,10 +1,11 @@
 {
-  "updated": "2026-10-26",
+  "updated": "2026-10-30",
   "items": [
     { "name": "고등어", "category": "냉동", "qty": "", "expiry": "", "note": "직접 잡은 것, 토막" },
     { "name": "연어", "category": "냉동", "qty": "", "expiry": "", "note": "코스트코 대용량(박스), 필렛" },
     { "name": "새우", "category": "냉동", "qty": "", "expiry": "", "note": "냉동" },
     { "name": "우동면", "category": "냉동", "qty": "", "expiry": "", "note": "냉동 — 데쳐서 사용" },
+    { "name": "돼지 등심끝(컨트리스타일립 보넬리스)", "category": "냉장", "qty": "1.13lb(약 510g)", "expiry": "2026-10-30", "note": "Stop&Shop Country Style Ribs Pork Loin Boneless (세일 $4.15). 솔로미요 알 위스키(안심 대용)용 — 판매기한 당일이라 오늘 조리 or 즉시 냉동" },
     { "name": "차돌박이", "category": "냉동", "qty": "", "expiry": "", "note": "얇게 썰림 — 와인파티용 토마토 라구파스타에 사용 예정" },
     { "name": "베이컨", "category": "냉장", "qty": "", "expiry": "", "note": "주문함 — 파티(8/30) 전 도착 예정, 케이준 관자 파스타용" },
     { "name": "파", "category": "냉장", "qty": "", "expiry": "", "note": "" },
