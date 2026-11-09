@@ -25,7 +25,8 @@ REGION_COUNTRY = [
     ("말보로", "뉴질랜드"), ("뉴질랜드", "뉴질랜드"),
     ("모젤", "독일"), ("자르", "독일"), ("독일", "독일"),
     ("레바논", "레바논"), ("베카밸리", "레바논"),
-    ("멘도자", "아르헨티나"), ("투풍가토", "아르헨티나"),
+    ("멘도자", "아르헨티나"), ("멘도사", "아르헨티나"), ("투풍가토", "아르헨티나"),
+    ("우코 밸리", "아르헨티나"), ("아르헨티나", "아르헨티나"),
     ("바로사", "호주"), ("마가렛 리버", "호주"), ("호주", "호주"),
     ("워커베이", "남아공"), ("헤멜엔아르데", "남아공"), ("남아공", "남아공"),
     ("리오하", "스페인"), ("페네데스", "스페인"), ("스페인", "스페인"),
@@ -83,7 +84,26 @@ def parse_log(text: str) -> list[dict]:
     return rows
 
 
+def split_varreg(varreg: str) -> tuple[str, str]:
+    """'품종 · 지역' -> (품종, 지역).
+
+    구분자는 공백을 낀 ' · '만 인정한다. 품종·지역 안에서 쓰는 붙임표
+    ('마카베오·사렐로·파레야다', '산타바바라·몬터레이·솔라노')를 구분자로
+    오인해 뒤쪽 한 조각만 지역으로 잘라내는 것을 막기 위함.
+    """
+    if " · " in varreg:
+        grape, region = varreg.split(" · ", 1)
+        return clean(grape), clean(region)
+    return varreg, ""
+
+
 def country_of(varreg: str) -> str:
+    """지역 표기로 국가를 판정한다.
+
+    반드시 '지역' 부분만 넘길 것. 품종까지 섞인 문자열을 넘기면
+    '보르도 블렌드'(나파 와인의 품종명)가 '보르도'에 걸려 프랑스로
+    오분류된다.
+    """
     for kw, country in REGION_COUNTRY:
         if kw in varreg:
             return country
@@ -116,9 +136,7 @@ def build_records(rows: list[dict]) -> list[dict]:
     out = []
     for r in rows:
         varreg = clean(r["varreg"])
-        parts = varreg.rsplit("·", 1)
-        grape = clean(parts[0]) if len(parts) == 2 else varreg
-        region = clean(parts[1]) if len(parts) == 2 else ""
+        grape, region = split_varreg(varreg)
         out.append({
             "d": r["date"],
             "n": clean(r["name"]),
@@ -126,7 +144,7 @@ def build_records(rows: list[dict]) -> list[dict]:
             "kd": clean(r["kind"]),
             "g": grape,
             "r": region,
-            "c": country_of(varreg),
+            "c": country_of(region or varreg),
             "v": vivino_of(r["vivino"]),
             "s": clean(r["critic"]) if r["critic"] not in ("—", "") else "",
             "ms": max_score(r["critic"]),

@@ -121,6 +121,43 @@
 
   footer{margin-top:44px; font-size:12px; color:var(--muted); border-top:1px solid var(--hair); padding-top:16px;}
 
+  /* ---------- browse: search · filter · sort ---------- */
+  .browse-bar{display:flex; flex-wrap:wrap; gap:8px; align-items:center;}
+  .search{position:relative; flex:1 1 230px; min-width:0; display:flex;}
+  .search input{width:100%; font:inherit; font-size:13.5px; color:var(--ink); background:var(--paper-2);
+    border:1px solid var(--hair-strong); border-radius:9px; padding:9px 12px 9px 32px;}
+  .search input::placeholder{color:var(--muted);}
+  .search svg{position:absolute; left:10px; top:50%; transform:translateY(-50%); color:var(--muted); pointer-events:none;}
+  select.flt{font:inherit; font-size:12.5px; font-weight:500; color:var(--ink-soft); background:var(--paper-2);
+    border:1px solid var(--hair-strong); border-radius:9px; padding:9px; cursor:pointer; max-width:150px;}
+  select.flt[data-on="1"]{color:var(--accent); border-color:var(--accent); background:var(--accent-tint);}
+  .btn-reset{font-size:12.5px; font-weight:600; color:var(--accent); background:var(--paper-2);
+    border:1px solid var(--hair-strong); border-radius:9px; padding:9px 13px; transition:background .12s,border-color .12s;}
+  .btn-reset:hover{background:var(--accent-tint); border-color:var(--accent);}
+  .browse-meta{display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin:13px 0 3px; font-size:12.5px; color:var(--muted);}
+  .browse-meta b{color:var(--accent); font-family:var(--font-mono); font-weight:600;}
+  .chk{display:flex; align-items:center; gap:6px; cursor:pointer;}
+  .chk input{accent-color:var(--accent); width:14px; height:14px; cursor:pointer;}
+
+  .tbl-wrap{overflow-x:auto; margin:0 -22px; padding:0 22px;}
+  table.tbl{width:100%; border-collapse:collapse; font-size:13px;}
+  .tbl th{text-align:left; font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--muted); padding:9px 10px; border-bottom:1px solid var(--hair-strong); white-space:nowrap;}
+  .tbl th.sortable{cursor:pointer; user-select:none;}
+  .tbl th.sortable:hover{color:var(--accent);}
+  .tbl th .ar{font-size:9px; color:var(--accent); margin-left:2px;}
+  .tbl td{padding:10px; border-bottom:1px solid var(--hair); vertical-align:top;}
+  .tbl tbody tr{cursor:pointer; transition:background .12s;}
+  .tbl tbody tr:hover{background:var(--paper-2);}
+  .tbl tbody tr:last-child td{border-bottom:none;}
+  .t-date{font-family:var(--font-mono); font-size:11.5px; color:var(--muted); white-space:nowrap;}
+  .t-name{font-weight:500; color:var(--ink); line-height:1.35;}
+  .t-sub{font-size:11.5px; color:var(--muted); margin-top:3px; line-height:1.4;}
+  .t-kind{display:inline-block; font-size:10.5px; padding:2px 7px; border-radius:5px; color:#fff; white-space:nowrap;}
+  .t-score{font-family:var(--font-mono); font-size:12.5px; font-weight:600; color:var(--accent); text-align:right; white-space:nowrap;}
+  .t-score.none{color:var(--muted); font-weight:400;}
+  .t-empty{padding:34px 10px; text-align:center; color:var(--muted); font-size:13px;}
+
   /* ---------- drawer ---------- */
   .backdrop{position:fixed; inset:0; background:rgba(20,14,10,.42); opacity:0; pointer-events:none; transition:opacity .18s; z-index:40;}
   .backdrop.open{opacity:1; pointer-events:auto;}
@@ -158,6 +195,11 @@
     .grid2{grid-template-columns:1fr;}
     .stats{grid-template-columns:repeat(2,1fr);}
     .wrap{padding:28px 18px 60px;}
+    .search{flex:1 1 100%;}
+    select.flt{flex:1 1 calc(50% - 4px); max-width:none;}
+    .btn-reset{flex:1 1 100%; text-align:center;}
+    .tbl .col-region{display:none;}
+    .tbl-wrap{margin:0 -18px; padding:0 18px;}
   }
 </style>
 
@@ -166,26 +208,61 @@
     <div class="eyebrow">kingcook · drinks/wine-log.md</div>
     <h1>Cellar Ledger</h1>
     <div class="sub" id="sub-line"></div>
-    <div class="hint">어느 항목이든 누르면 해당 와인 목록이 옆에 펼쳐져요</div>
+    <div class="hint">아래에서 검색·필터로 찾거나, 어느 차트 항목이든 누르면 해당 와인 목록이 옆에 펼쳐져요</div>
   </header>
 
   <div class="stats" id="stats"></div>
 
-  <div class="section-head"><span class="idx">01</span><h2>지역 &amp; 품종</h2></div>
+  <div class="section-head" id="browse"><span class="idx">01</span><h2>전체 보기 · 찾기</h2></div>
+  <p class="section-note">검색어·필터로 추리고 정렬을 바꿔보세요 · 줄을 누르면 상세가 옆에 열려요</p>
+  <div class="card">
+    <div class="browse-bar">
+      <label class="search">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 14 14" stroke-linecap="round"/>
+        </svg>
+        <input id="b-q" type="search" placeholder="와인명 · 품종 · 지역 · 메모 검색" aria-label="와인 검색">
+      </label>
+      <select class="flt" id="b-kind" aria-label="종류로 거르기"></select>
+      <select class="flt" id="b-country" aria-label="국가로 거르기"></select>
+      <select class="flt" id="b-variety" aria-label="품종으로 거르기"></select>
+      <select class="flt" id="b-date" aria-label="시음일로 거르기"></select>
+      <select class="flt" id="b-sort" aria-label="정렬 기준"></select>
+      <button class="btn-reset" id="b-reset">전체보기</button>
+    </div>
+    <div class="browse-meta">
+      <span id="b-count"></span>
+      <label class="chk"><input type="checkbox" id="b-scored"> 평점 있는 것만</label>
+    </div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr>
+          <th class="sortable" data-sort="date">시음일<span class="ar"></span></th>
+          <th class="sortable" data-sort="name">와인 · 품종<span class="ar"></span></th>
+          <th class="sortable" data-sort="kind">종류<span class="ar"></span></th>
+          <th class="sortable col-region" data-sort="region">지역<span class="ar"></span></th>
+          <th class="sortable" data-sort="score" style="text-align:right">점수<span class="ar"></span></th>
+        </tr></thead>
+        <tbody id="b-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section-head"><span class="idx">02</span><h2>지역 &amp; 품종</h2></div>
   <p class="section-note">국가는 품종·지역 표기에서 추정 · 블렌드는 구성 품종마다 중복 집계</p>
   <div class="grid2">
     <div class="card"><h3>국가별 병 수</h3><div id="chart-country"></div></div>
     <div class="card"><h3>품종별 <span>(블렌드 중복 집계)</span></h3><div id="chart-variety"></div></div>
   </div>
 
-  <div class="section-head"><span class="idx">02</span><h2>시음 자리별 평론가 점수</h2></div>
+  <div class="section-head"><span class="idx">03</span><h2>시음 자리별 평론가 점수</h2></div>
   <p class="section-note">진한 점=그날 최고점 · 금색 점=그날 평균 (85~100 구간, 0부터 시작하지 않는 산점 방식)</p>
   <div class="card">
     <div class="rs-scale"><div></div><div class="axis" id="rs-axis"></div></div>
     <div id="rs-rows"></div>
   </div>
 
-  <div class="section-head"><span class="idx">03</span><h2>종류 &amp; 화이트/레드</h2></div>
+  <div class="section-head"><span class="idx">04</span><h2>종류 &amp; 화이트/레드</h2></div>
   <p class="section-note">&nbsp;</p>
   <div class="grid2">
     <div class="card"><h3>종류별 분포</h3><div class="type-list" id="type-list"></div></div>
@@ -196,7 +273,7 @@
     </div>
   </div>
 
-  <div class="section-head"><span class="idx">04</span><h2>최고 득점 &amp; 기타 기록</h2></div>
+  <div class="section-head"><span class="idx">05</span><h2>최고 득점 &amp; 기타 기록</h2></div>
   <p class="section-note">&nbsp;</p>
   <div class="grid2">
     <div class="card"><h3>평론가 점수 TOP 5</h3><ul class="top-list" id="top-list"></ul></div>
@@ -314,7 +391,7 @@ document.getElementById('fact-vivino').textContent =
 /* ---------------- stat tiles ---------------- */
 const reds = countOf(w=>w.k==='레드'), whites = countOf(w=>w.k==='화이트');
 const statDefs = [
-  {n:WINES.length, l:'기록된 와인', act:()=>openDrawer('전체',`기록된 와인 ${WINES.length}종`, WINES)},
+  {n:WINES.length, l:'기록된 와인 (전체보기)', act:()=>{ resetBrowse(); document.getElementById('browse').scrollIntoView({behavior:'smooth',block:'start'}); }},
   {n:dates.length, l:'시음 자리', act:null},
   {n:(WINES.length/dates.length).toFixed(1), l:'자리당 평균 병 수', act:null},
   {n:`${Math.round(reds.length/(reds.length+whites.length)*100)}:${Math.round(whites.length/(reds.length+whites.length)*100)}`,
@@ -424,4 +501,141 @@ topWines.forEach((w,i)=>{
   btn.addEventListener('click', ()=> openDrawer('시음 자리', w.d, WINES.filter(x=>x.d===w.d), true));
   li.appendChild(btn); topList.appendChild(li);
 });
+
+/* ---------------- browse: search · filter · sort ---------------- */
+const $ = id => document.getElementById(id);
+const B = {q:'', kind:'', country:'', variety:'', date:'', scored:false, sort:'date-desc'};
+
+function fillSelect(sel, allLabel, rows){
+  sel.innerHTML = '';
+  sel.appendChild(new Option(allLabel, ''));
+  rows.forEach(([k,v])=> sel.appendChild(new Option(`${k} (${v})`, k)));
+}
+fillSelect($('b-kind'),    '종류 전체',   tally(w=>w.k));
+fillSelect($('b-country'), '국가 전체',   tally(w=>w.c));
+fillSelect($('b-variety'), '품종 전체',   tally(w=>w.vt));
+fillSelect($('b-date'),    '시음일 전체', dates.slice().reverse().map(d=>[d, WINES.filter(w=>w.d===d).length]));
+
+const SORTS_UI = [
+  ['date-desc','↓ 최신 시음순'], ['date-asc','↑ 오래된 시음순'],
+  ['name','이름 가나다순'],
+  ['score-desc','점수 높은순'], ['score-asc','점수 낮은순'],
+  ['variety','품종순'], ['region','지역·국가순'], ['kind','종류순'],
+];
+SORTS_UI.forEach(([v,l])=> $('b-sort').appendChild(new Option(l, v)));
+$('b-sort').value = B.sort;
+
+const byName = (a,b)=> a.n.localeCompare(b.n,'ko');
+const SORTS = {
+  'date-desc' : (a,b)=> b.d.localeCompare(a.d) || byName(a,b),
+  'date-asc'  : (a,b)=> a.d.localeCompare(b.d) || byName(a,b),
+  'name'      : byName,
+  'name-asc'  : byName,
+  'name-desc' : (a,b)=> byName(b,a),
+  'score-desc': (a,b)=> (b.ms ?? -1) - (a.ms ?? -1) || byName(a,b),
+  'score-asc' : (a,b)=> (a.ms ?? 999) - (b.ms ?? 999) || byName(a,b),
+  'variety'   : (a,b)=> (a.vt[0]||'').localeCompare(b.vt[0]||'','ko') || byName(a,b),
+  'region'    : (a,b)=> a.c.localeCompare(b.c,'ko') || (a.r||'').localeCompare(b.r||'','ko') || byName(a,b),
+  'region-asc': (a,b)=> SORTS['region'](a,b),
+  'region-desc':(a,b)=> SORTS['region'](b,a),
+  'kind'      : (a,b)=> a.k.localeCompare(b.k,'ko') || byName(a,b),
+  'kind-asc'  : (a,b)=> a.k.localeCompare(b.k,'ko') || byName(a,b),
+  'kind-desc' : (a,b)=> b.k.localeCompare(a.k,'ko') || byName(a,b),
+  'variety-asc' :(a,b)=> SORTS['variety'](a,b),
+  'variety-desc':(a,b)=> SORTS['variety'](b,a),
+};
+
+function browseList(){
+  const q = B.q.trim().toLowerCase();
+  const out = WINES.filter(w=>{
+    if(B.kind    && w.k !== B.kind)        return false;
+    if(B.country && w.c !== B.country)     return false;
+    if(B.variety && !w.vt.includes(B.variety)) return false;
+    if(B.date    && w.d !== B.date)        return false;
+    if(B.scored  && w.ms == null)          return false;
+    if(q && ![w.n,w.g,w.r,w.c,w.kd,w.s,w.m,w.d].join(' ').toLowerCase().includes(q)) return false;
+    return true;
+  });
+  return out.sort(SORTS[B.sort] || SORTS['date-desc']);
+}
+
+function renderBrowse(){
+  const list = browseList();
+  const active = [B.kind,B.country,B.variety,B.date].filter(Boolean).length + (B.scored?1:0) + (B.q.trim()?1:0);
+  $('b-count').innerHTML = `<b>${list.length}</b>종 표시 / 전체 ${WINES.length}종` +
+    (active ? ` · 조건 ${active}개 적용중` : '');
+
+  [['b-kind',B.kind],['b-country',B.country],['b-variety',B.variety],['b-date',B.date]]
+    .forEach(([id,v])=> $(id).dataset.on = v ? '1' : '0');
+
+  document.querySelectorAll('.tbl th.sortable').forEach(th=>{
+    const base = th.dataset.sort;
+    const on = B.sort === base || B.sort === base+'-desc' || B.sort === base+'-asc';
+    th.querySelector('.ar').textContent = on ? (B.sort.endsWith('-asc') ? '▲' : '▼') : '';
+  });
+
+  const tb = $('b-body');
+  tb.innerHTML = '';
+  if(!list.length){
+    const tr = el('tr'), td = el('td','t-empty','조건에 맞는 와인이 없어요 — “전체보기”를 누르면 초기화됩니다.');
+    td.colSpan = 5; tr.appendChild(td); tb.appendChild(tr); return;
+  }
+  list.forEach(w=>{
+    const tr = el('tr');
+    tr.tabIndex = 0; tr.setAttribute('role','button');
+    tr.setAttribute('aria-label', `${w.n} 상세 보기`);
+    tr.innerHTML = `
+      <td class="t-date">${w.d}</td>
+      <td><div class="t-name">${esc(w.n)}</div><div class="t-sub">${esc(w.g)}</div></td>
+      <td><span class="t-kind" style="background:${KIND_COLOR[w.k]||'var(--muted)'};${w.k==='화이트'?'color:#2a2119;':''}">${esc(w.kd)}</span></td>
+      <td class="col-region"><div>${esc(w.c)}</div><div class="t-sub">${esc(w.r||'—')}</div></td>
+      <td class="t-score${w.ms==null?' none':''}">${w.ms==null?'—':w.ms}</td>`;
+    const open = ()=> openDrawer('와인 상세', w.n, [w], true);
+    tr.addEventListener('click', open);
+    tr.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); } });
+    tb.appendChild(tr);
+  });
+}
+
+function resetBrowse(){
+  Object.assign(B, {q:'', kind:'', country:'', variety:'', date:'', scored:false, sort:'date-desc'});
+  $('b-q').value = '';
+  ['b-kind','b-country','b-variety','b-date'].forEach(id=> $(id).value = '');
+  $('b-scored').checked = false;
+  $('b-sort').value = 'date-desc';
+  renderBrowse();
+}
+
+$('b-q').addEventListener('input',  e=>{ B.q = e.target.value; renderBrowse(); });
+$('b-kind').addEventListener('change',    e=>{ B.kind    = e.target.value; renderBrowse(); });
+$('b-country').addEventListener('change', e=>{ B.country = e.target.value; renderBrowse(); });
+$('b-variety').addEventListener('change', e=>{ B.variety = e.target.value; renderBrowse(); });
+$('b-date').addEventListener('change',    e=>{ B.date    = e.target.value; renderBrowse(); });
+$('b-sort').addEventListener('change',    e=>{ B.sort    = e.target.value; renderBrowse(); });
+$('b-scored').addEventListener('change',  e=>{ B.scored  = e.target.checked; renderBrowse(); });
+$('b-reset').addEventListener('click', resetBrowse);
+
+document.querySelectorAll('.tbl th.sortable').forEach(th=>{
+  th.addEventListener('click', ()=>{
+    const base = th.dataset.sort;
+    B.sort = (B.sort === base+'-desc') ? base+'-asc' : base+'-desc';
+    if(!SORTS[B.sort]) B.sort = base;
+    const sel = $('b-sort'), has = v => [...sel.options].some(o=>o.value===v);
+    sel.value = has(B.sort) ? B.sort : (has(base) ? base : '');
+    renderBrowse();
+  });
+});
+
+/* 차트에서 넘어온 필터를 전체보기에 그대로 적용하는 보조 함수 */
+function applyBrowse(patch){
+  Object.assign(B, patch);
+  $('b-q').value = B.q;
+  ['kind','country','variety','date'].forEach(k=> $('b-'+k).value = B[k]);
+  $('b-sort').value = B.sort;
+  $('b-scored').checked = B.scored;
+  renderBrowse();
+  document.getElementById('browse').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+renderBrowse();
 </script>
