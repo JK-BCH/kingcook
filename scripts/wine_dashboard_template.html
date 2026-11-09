@@ -280,12 +280,12 @@
     <div class="card">
       <h3>그 외 재밌는 것들</h3>
       <ul class="facts">
-        <li><span><b>가장 오래된 빈티지</b> — Château Suduiraut Sauternes <b>2007</b>. 로그엔 한때 Montelena 2008이 최고령으로 적혀 있었는데 이번 집계로 정정.</span></li>
-        <li><span><b>가장 최신 빈티지</b> — Cloudy Bay·Delectus Sauvignon Blanc, 둘 다 <b>2025</b></span></li>
-        <li><span><b>NV(빈티지 없음)</b> 3종 — Cain Cuvée NV · Bollinger · Gosset</span></li>
+        <li><span><b>가장 오래된 빈티지</b> — <span id="fact-oldest"></span></span></li>
+        <li><span><b>가장 최신 빈티지</b> — <span id="fact-newest"></span></span></li>
+        <li><span><b>NV(이름에 빈티지 없음)</b> — <span id="fact-nv"></span></span></li>
         <li><span><b>Vivino 평점 보유율</b> — <span id="fact-vivino"></span>, 나머지는 평론가 점수로만 조사</span></li>
-        <li><span><b>가장 많이 등장한 생산자</b> — Littorai, 2개 자리에 걸쳐 3병</span></li>
-        <li><span><b>가장 화려했던 자리</b> — 2026-07-15 (9종 중 8종 평균 95.5점)</span></li>
+        <li><span><b>가장 많이 등장한 생산자</b> — <b>Cain · Littorai · Louis Jadot · Morlet</b> 공동 1위, 각각 2개 자리에 걸쳐 3병씩</span></li>
+        <li><span><b>평균 점수가 가장 높았던 자리</b> — <span id="fact-best"></span></span></li>
       </ul>
     </div>
   </div>
@@ -638,4 +638,29 @@ function applyBrowse(patch){
 }
 
 renderBrowse();
+
+/* ---------------- facts: 로그에서 직접 계산(수기 수치 금지) ---------------- */
+const yearOf = n => { const m = String(n).match(/\b(19\d{2}|20\d{2})\b/g); return m ? Math.max(...m.map(Number)) : null; };
+const vintaged = WINES.map(w=>({w, y:yearOf(w.n)})).filter(x=>x.y!=null);
+const namesOf = ys => ys.map(x=>esc(x.w.n)).join(' · ');
+if(vintaged.length){
+  const minY = Math.min(...vintaged.map(x=>x.y)), maxY = Math.max(...vintaged.map(x=>x.y));
+  $('fact-oldest').innerHTML = `${namesOf(vintaged.filter(x=>x.y===minY))} <b>(${minY})</b>`;
+  const neu = vintaged.filter(x=>x.y===maxY);
+  $('fact-newest').innerHTML = `<b>${maxY}</b>년 ${neu.length}종 — ${namesOf(neu)}`;
+}
+const nvList = WINES.filter(w=>yearOf(w.n)==null);
+const nvSpark = nvList.filter(w=>w.k==='스파클링').length;
+$('fact-nv').innerHTML = `<b>${nvList.length}종</b> — 스파클링 ${nvSpark}종 + 그 외 ${nvList.length-nvSpark}종`;
+
+let bestSession = null;
+dates.forEach(d=>{
+  const sc = WINES.filter(w=>w.d===d && w.ms!=null).map(w=>w.ms);
+  if(sc.length < 3) return;                       // 1~2병짜리 자리는 평균이 과대평가됨
+  const avg = sc.reduce((a,b)=>a+b,0)/sc.length;
+  if(!bestSession || avg > bestSession.avg)
+    bestSession = {d, avg, total:WINES.filter(w=>w.d===d).length, scored:sc.length};
+});
+if(bestSession) $('fact-best').innerHTML =
+  `<b>${bestSession.d}</b> — ${bestSession.total}종 중 평점 확인된 ${bestSession.scored}종 평균 <b>${bestSession.avg.toFixed(1)}점</b> <span style="opacity:.7">(3종 이상 자리 기준)</span>`;
 </script>
