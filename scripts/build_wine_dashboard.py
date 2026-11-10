@@ -19,6 +19,7 @@ LOG = ROOT / "drinks" / "wine-log.md"
 TEMPLATE = ROOT / "scripts" / "wine_dashboard_template.html"
 OUT = ROOT / "drinks" / "dashboard.html"
 PLACEHOLDER = "/*__DATA__*/[]"
+UNDATED = "미분류"  # 마신 날짜를 모르는 기록을 묶는 섹션명 (템플릿 JS와 값이 같아야 함)
 
 # 지역 표기 -> 국가. 위에서부터 먼저 매칭되는 것을 쓴다(하위 산지가 먼저 와야 함).
 REGION_COUNTRY = [
@@ -30,6 +31,7 @@ REGION_COUNTRY = [
     ("바로사", "호주"), ("마가렛 리버", "호주"), ("호주", "호주"),
     ("워커베이", "남아공"), ("헤멜엔아르데", "남아공"), ("남아공", "남아공"),
     ("리오하", "스페인"), ("페네데스", "스페인"), ("스페인", "스페인"),
+    ("비뉴 베르드", "포르투갈"), ("도루", "포르투갈"), ("포르투갈", "포르투갈"),
     ("바롤로", "이탈리아"), ("바르바레스코", "이탈리아"), ("랑게", "이탈리아"),
     ("피에몬테", "이탈리아"), ("아스티", "이탈리아"), ("콜리오", "이탈리아"),
     ("프리울리", "이탈리아"), ("토스카나", "이탈리아"), ("브루넬로", "이탈리아"),
@@ -64,12 +66,19 @@ def clean(s: str) -> str:
 
 
 def parse_log(text: str) -> list[dict]:
-    """마크다운 표에서 와인 항목을 뽑아낸다. 날짜는 직전 '## YYYY-MM-DD' 헤더 기준."""
+    """마크다운 표에서 와인 항목을 뽑아낸다. 날짜는 직전 '## YYYY-MM-DD' 헤더 기준.
+
+    '## 미분류'(마신 날짜를 모르는 기록) 섹션은 날짜를 UNDATED로 묶는다.
+    그 외 날짜가 아닌 '##' 헤더를 만나면 수집을 멈춘다 — 그래야 나중에 다른
+    섹션이 생겨도 그 표가 바로 위 자리의 날짜로 잘못 붙지 않는다.
+    """
     rows, date = [], None
     for line in text.split("\n"):
-        m = re.match(r"^## (\d{4}-\d{2}-\d{2})", line)
+        m = re.match(r"^##\s+(.+?)\s*$", line)
         if m:
-            date = m.group(1)
+            head = m.group(1)
+            dm = re.match(r"(\d{4}-\d{2}-\d{2})", head)
+            date = dm.group(1) if dm else (UNDATED if head.startswith(UNDATED) else None)
             continue
         if not (line.startswith("|") and date):
             continue
@@ -174,8 +183,11 @@ def main() -> int:
 
     kinds = Counter(r["k"] for r in records)
     countries = Counter(r["c"] for r in records)
+    sessions = {r["d"] for r in records} - {UNDATED}   # 미분류는 '자리'가 아님
+    n_undated = sum(1 for r in records if r["d"] == UNDATED)
     print(f"✓ {OUT.relative_to(ROOT)} 생성 — {len(records)}종 / "
-          f"{len({r['d'] for r in records})}개 시음 자리")
+          f"{len(sessions)}개 시음 자리"
+          + (f" (+ 미분류 {n_undated}종)" if n_undated else ""))
     print(f"  종류: {dict(kinds)}")
     print(f"  국가: {dict(countries.most_common())}")
     return 0

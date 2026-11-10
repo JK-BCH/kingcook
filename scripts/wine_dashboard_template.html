@@ -380,10 +380,14 @@ function tally(keyFn){
 }
 
 /* ---------------- header line & facts ---------------- */
-const dates = uniq(WINES.map(w=>w.d)).sort();
+const UNDATED = '미분류';                              // build_wine_dashboard.py와 같은 값
+const allDates = uniq(WINES.map(w=>w.d)).sort();
+const dates = allDates.filter(d=>d!==UNDATED);         // 날짜별 차트·통계는 확인된 자리만
+const undated = WINES.filter(w=>w.d===UNDATED);        // 마신 날짜를 모르는 기록
 document.getElementById('sub-line').innerHTML =
   `${dates[0]}부터 <b>${dates[dates.length-1]}</b>까지 ${dates.length}번의 시음 자리, ` +
-  `<b>${WINES.length}종</b>의 기록을 집계했어요.`;
+  `<b>${WINES.length}종</b>의 기록을 집계했어요.` +
+  (undated.length ? ` <span style="opacity:.75">그중 <b>${undated.length}종</b>은 마신 날짜를 몰라 아래 전체 보기에서 “미분류”로 빠져 있어요.</span>` : '');
 const vivinoCount = WINES.filter(w=>w.v!=null).length;
 document.getElementById('fact-vivino').textContent =
   `${vivinoCount}/${WINES.length}종 (${Math.round(vivinoCount/WINES.length*100)}%)`;
@@ -393,7 +397,7 @@ const reds = countOf(w=>w.k==='레드'), whites = countOf(w=>w.k==='화이트');
 const statDefs = [
   {n:WINES.length, l:'기록된 와인 (전체보기)', act:()=>{ resetBrowse(); document.getElementById('browse').scrollIntoView({behavior:'smooth',block:'start'}); }},
   {n:dates.length, l:'시음 자리', act:null},
-  {n:(WINES.length/dates.length).toFixed(1), l:'자리당 평균 병 수', act:null},
+  {n:((WINES.length-undated.length)/dates.length).toFixed(1), l:'자리당 평균 병 수', act:null},
   {n:`${Math.round(reds.length/(reds.length+whites.length)*100)}:${Math.round(whites.length/(reds.length+whites.length)*100)}`,
    l:'레드 : 화이트', act:()=>openDrawer('종류','레드 + 화이트 (스틸와인)', reds.concat(whites))},
 ];
@@ -514,7 +518,9 @@ function fillSelect(sel, allLabel, rows){
 fillSelect($('b-kind'),    '종류 전체',   tally(w=>w.k));
 fillSelect($('b-country'), '국가 전체',   tally(w=>w.c));
 fillSelect($('b-variety'), '품종 전체',   tally(w=>w.vt));
-fillSelect($('b-date'),    '시음일 전체', dates.slice().reverse().map(d=>[d, WINES.filter(w=>w.d===d).length]));
+fillSelect($('b-date'),    '시음일 전체',
+  dates.slice().reverse().concat(undated.length ? [UNDATED] : [])   // 미분류는 항상 맨 끝
+       .map(d=>[d, WINES.filter(w=>w.d===d).length]));
 
 const SORTS_UI = [
   ['date-desc','↓ 최신 시음순'], ['date-asc','↑ 오래된 시음순'],
@@ -527,8 +533,9 @@ $('b-sort').value = B.sort;
 
 const byName = (a,b)=> a.n.localeCompare(b.n,'ko');
 const SORTS = {
-  'date-desc' : (a,b)=> b.d.localeCompare(a.d) || byName(a,b),
-  'date-asc'  : (a,b)=> a.d.localeCompare(b.d) || byName(a,b),
+  // 미분류는 정렬 방향과 무관하게 항상 맨 뒤로
+  'date-desc' : (a,b)=> (a.d===UNDATED)-(b.d===UNDATED) || b.d.localeCompare(a.d) || byName(a,b),
+  'date-asc'  : (a,b)=> (a.d===UNDATED)-(b.d===UNDATED) || a.d.localeCompare(b.d) || byName(a,b),
   'name'      : byName,
   'name-asc'  : byName,
   'name-desc' : (a,b)=> byName(b,a),
