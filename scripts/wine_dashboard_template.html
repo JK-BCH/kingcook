@@ -158,6 +158,29 @@
   .t-score.none{color:var(--muted); font-weight:400;}
   .t-empty{padding:34px 10px; text-align:center; color:var(--muted); font-size:13px;}
 
+  /* ---------- WS Top 100 corner button + drawer rows ---------- */
+  .t100-btn{position:fixed; right:18px; bottom:18px; z-index:35;
+    display:flex; align-items:center; gap:7px; background:var(--paper); color:var(--ink-soft);
+    border:1px solid var(--hair-strong); border-radius:999px; padding:9px 15px;
+    font-size:12.5px; font-weight:600; box-shadow:0 3px 14px var(--shadow);
+    transition:background .12s, border-color .12s, color .12s;}
+  .t100-btn:hover{background:var(--accent-tint); color:var(--accent); border-color:var(--accent);}
+  .t100-btn .yr{font-family:var(--font-mono); font-weight:500; opacity:.65;}
+  .t100-note{font-size:11.5px; color:var(--muted); padding:10px 0 4px; line-height:1.5;}
+  .t100-row{display:grid; grid-template-columns:28px 1fr auto; gap:10px; align-items:baseline;
+    padding:10px 0; border-bottom:1px solid var(--hair);}
+  .t100-row:last-child{border-bottom:none;}
+  .t100-row.mine{background:var(--accent-tint); border-bottom-color:transparent;
+    margin:2px -10px; padding:10px; border-radius:8px;}
+  .t100-rank{font-family:var(--font-mono); font-size:12px; color:var(--muted); text-align:right;}
+  .t100-row.mine .t100-rank{color:var(--accent); font-weight:600;}
+  .t100-n{font-size:13px; font-weight:500; line-height:1.35;}
+  .t100-sub{font-size:11.5px; color:var(--muted); margin-top:3px; line-height:1.4;}
+  .t100-mine{font-size:11.5px; color:var(--accent); font-weight:600; margin-top:3px;}
+  .t100-right{text-align:right; white-space:nowrap;}
+  .t100-price{font-family:var(--font-mono); font-size:12.5px; font-weight:600; color:var(--ink);}
+  .t100-score{font-family:var(--font-mono); font-size:11px; color:var(--muted); display:block; margin-top:2px;}
+
   /* ---------- drawer ---------- */
   .backdrop{position:fixed; inset:0; background:rgba(20,14,10,.42); opacity:0; pointer-events:none; transition:opacity .18s; z-index:40;}
   .backdrop.open{opacity:1; pointer-events:auto;}
@@ -200,6 +223,7 @@
     .btn-reset{flex:1 1 100%; text-align:center;}
     .tbl .col-region{display:none;}
     .tbl-wrap{margin:0 -18px; padding:0 18px;}
+    .t100-btn{right:12px; bottom:12px; padding:8px 13px; font-size:12px;}
   }
 </style>
 
@@ -308,6 +332,7 @@
 
 <script>
 const WINES = /*__DATA__*/[];
+const TOP100 = /*__TOP100__*/[];   // drinks/ws-top100-2025.json — 없으면 빈 배열(버튼 안 생김)
 
 const S = ['var(--s1)','var(--s2)','var(--s3)','var(--s4)','var(--s5)','var(--s6)','var(--s7)','var(--s8)'];
 const KIND_COLOR = {'레드':'var(--s8)','화이트':'var(--s4)','스파클링':'var(--s3)','로제':'var(--s5)','디저트':'var(--s7)'};
@@ -319,21 +344,29 @@ const drawer = document.getElementById('drawer');
 const backdrop = document.getElementById('backdrop');
 let lastFocus = null;
 
-function openDrawer(kicker, title, wines, keepOrder){
+function drawerHead(kicker, title, count){
   lastFocus = document.activeElement;
   document.getElementById('drawer-kicker').textContent = kicker;
   document.getElementById('drawer-title').textContent = title;
+  document.getElementById('drawer-count').textContent = count;
+  const body = document.getElementById('drawer-body');
+  body.innerHTML = ''; body.scrollTop = 0;
+  return body;
+}
+function revealDrawer(){
+  drawer.classList.add('open'); backdrop.classList.add('open');
+  drawer.setAttribute('aria-hidden','false');
+  document.getElementById('drawer-close').focus();
+}
 
+function openDrawer(kicker, title, wines, keepOrder){
   const list = keepOrder ? wines.slice() :
     wines.slice().sort((a,b)=> (b.ms??0)-(a.ms??0) || a.n.localeCompare(b.n));
 
   const scored = list.filter(w=>w.ms!=null);
   const avg = scored.length ? (scored.reduce((s,w)=>s+w.ms,0)/scored.length).toFixed(1) : null;
-  document.getElementById('drawer-count').textContent =
-    `${list.length}종` + (avg ? ` · 평점 확인된 ${scored.length}종 평균 ${avg}점` : ' · 평점 데이터 없음');
-
-  const body = document.getElementById('drawer-body');
-  body.innerHTML = '';
+  const body = drawerHead(kicker, title,
+    `${list.length}종` + (avg ? ` · 평점 확인된 ${scored.length}종 평균 ${avg}점` : ' · 평점 데이터 없음'));
   if(!list.length){ body.appendChild(el('div','empty','해당하는 와인이 없어요.')); }
   list.forEach(w=>{
     const row = el('div','wine');
@@ -350,11 +383,7 @@ function openDrawer(kicker, title, wines, keepOrder){
       <div class="wine-detail"><em>${esc(w.g)}</em> · ${esc(w.r||'—')}${w.s?`<br>${esc(w.s)}`:''}${w.m?`<br>${esc(w.m)}`:''}</div>`;
     body.appendChild(row);
   });
-  body.scrollTop = 0;
-
-  drawer.classList.add('open'); backdrop.classList.add('open');
-  drawer.setAttribute('aria-hidden','false');
-  document.getElementById('drawer-close').focus();
+  revealDrawer();
 }
 function closeDrawer(){
   drawer.classList.remove('open'); backdrop.classList.remove('open');
@@ -670,4 +699,46 @@ dates.forEach(d=>{
 });
 if(bestSession) $('fact-best').innerHTML =
   `<b>${bestSession.d}</b> — ${bestSession.total}종 중 평점 확인된 ${bestSession.scored}종 평균 <b>${bestSession.avg.toFixed(1)}점</b> <span style="opacity:.7">(3종 이상 자리 기준)</span>`;
+
+/* ---------------- WS Top 100 (구석 버튼 → 드로어) ---------------- */
+const CC_KO = {Red:'레드', White:'화이트', 'Rosé':'로제', NA:'무알콜'};
+const CN_KO = {'United States':'미국','France':'프랑스','Italy':'이탈리아','Spain':'스페인',
+  'New Zealand':'뉴질랜드','Argentina':'아르헨티나','Chile':'칠레','Portugal':'포르투갈',
+  'Australia':'호주','South Africa':'남아공','Germany':'독일','Austria':'오스트리아'};
+
+function openTop100(){
+  const mine  = TOP100.filter(t=>t.mine);
+  const exact = TOP100.filter(t=>t.exact);
+  const body = drawerHead('Wine Spectator', 'Top 100 Wines of 2025',
+    `${TOP100.length}종 · 내 기록과 겹침 ${mine.length}종(같은 빈티지 ${exact.length}종)`);
+
+  body.appendChild(el('div','t100-note',
+    '가격은 <b>WS 기재 출시가(US$)</b>라 실제 소매가와 다를 수 있어요. ' +
+    '칠해진 줄은 내 기록에도 있는 생산자입니다.'));
+
+  TOP100.forEach(t=>{
+    const row = el('div','t100-row' + (t.mine ? ' mine' : ''));
+    const where = [CN_KO[t.country]||t.country, t.region].filter(Boolean).join(' · ');
+    row.innerHTML = `
+      <span class="t100-rank">${t.rank}</span>
+      <span>
+        <span class="t100-n">${esc(t.producer)} — ${esc(t.wine)}</span>
+        <div class="t100-sub">${esc(where)} · ${esc(CC_KO[t.color]||t.color)}</div>
+        ${t.mine ? `<div class="t100-mine">${t.exact ? '🍷 같은 빈티지로 마심' : '◐ 같은 생산자 다른 와인'} · ${esc(t.mine)}</div>` : ''}
+      </span>
+      <span class="t100-right">
+        <span class="t100-price">${esc(t.price || '—')}</span>
+        <span class="t100-score">${t.score}pt</span>
+      </span>`;
+    body.appendChild(row);
+  });
+  revealDrawer();
+}
+
+if(TOP100.length){
+  const b = el('button','t100-btn','🏆 WS Top 100 <span class="yr">2025</span>');
+  b.setAttribute('aria-label','Wine Spectator Top 100 of 2025 목록 보기');
+  b.addEventListener('click', openTop100);
+  document.body.appendChild(b);
+}
 </script>

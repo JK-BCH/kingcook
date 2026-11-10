@@ -18,7 +18,9 @@ ROOT = Path(__file__).resolve().parent.parent
 LOG = ROOT / "drinks" / "wine-log.md"
 TEMPLATE = ROOT / "scripts" / "wine_dashboard_template.html"
 OUT = ROOT / "drinks" / "dashboard.html"
+TOP100 = ROOT / "drinks" / "ws-top100-2025.json"   # 없으면 버튼이 안 생길 뿐, 빌드는 정상
 PLACEHOLDER = "/*__DATA__*/[]"
+PLACEHOLDER_TOP100 = "/*__TOP100__*/[]"
 UNDATED = "미분류"  # 마신 날짜를 모르는 기록을 묶는 섹션명 (템플릿 JS와 값이 같아야 함)
 
 # 지역 표기 -> 국가. 위에서부터 먼저 매칭되는 것을 쓴다(하위 산지가 먼저 와야 함).
@@ -163,6 +165,26 @@ def build_records(rows: list[dict]) -> list[dict]:
     return out
 
 
+def load_top100(records: list[dict]) -> list[dict]:
+    """Wine Spectator Top 100 목록을 읽고, 각 항목이 내 기록에 있는지 표시한다.
+
+    생산자 매칭은 '와인명이 생산자명으로 시작하는가'로 본다. 단순 포함으로 보면
+    'Ridge'(#3 Lytton Springs)가 'Pine Ridge ...'에 걸리는 식으로 잘못 잡힌다.
+    exact=True는 생산자와 빈티지가 모두 같은 경우(= 사실상 같은 와인).
+    """
+    if not TOP100.exists():
+        return []
+    items = json.loads(TOP100.read_text(encoding="utf-8")).get("items", [])
+    for t in items:
+        producer = t.get("producer", "")
+        mine = [r for r in records if producer and r["n"].startswith(producer)]
+        exact = [r for r in mine if t.get("vintage") and t["vintage"] in r["n"]]
+        hit = (exact or mine)
+        t["mine"] = hit[0]["d"] if hit else None
+        t["exact"] = bool(exact)
+    return items
+
+
 def main() -> int:
     if not LOG.exists() or not TEMPLATE.exists():
         print(f"필요한 파일이 없습니다: {LOG} / {TEMPLATE}", file=sys.stderr)
@@ -179,7 +201,20 @@ def main() -> int:
         return 1
 
     data = json.dumps(records, ensure_ascii=False, separators=(",", ":"))
-    OUT.write_text(template.replace(PLACEHOLDER, data, 1), encoding="utf-8")
+    html = template.replace(PLACEHOLDER, data, 1)
+
+    top = load_top100(records)
+    if top:
+        html = html.replace(
+            PLACEHOLDER_TOP100,
+            json.dumps(top, ensure_ascii=False, separators=(",", ":")), 1)
+    OUT.write_text(html, encoding="utf-8")
+
+    if top:
+        n_mine = sum(1 for t in top if t["mine"])
+        n_exact = sum(1 for t in top if t["exact"])
+        print(f"  Top100: {len(top)}개 주입 — 내 기록과 겹침 {n_mine}개"
+              f"(같은 빈티지 {n_exact}개)")
 
     kinds = Counter(r["k"] for r in records)
     countries = Counter(r["c"] for r in records)
