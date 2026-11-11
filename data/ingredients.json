@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-05",
+  "updated": "2026-11-11",
   "items": [
     { "name": "고등어", "category": "냉동", "qty": "", "expiry": "", "note": "직접 잡은 것, 토막" },
     { "name": "연어", "category": "냉동", "qty": "", "expiry": "", "note": "코스트코 대용량(박스), 필렛" },
@@ -8,6 +8,7 @@
     { "name": "돼지 등심끝(컨트리스타일립 보넬리스)", "category": "냉장", "qty": "1.13lb(약 510g)", "expiry": "2026-10-30", "note": "Stop&Shop Country Style Ribs Pork Loin Boneless (세일 $4.15). 솔로미요 알 위스키(안심 대용)용 — 판매기한 당일이라 오늘 조리 or 즉시 냉동" },
     { "name": "차돌박이", "category": "냉동", "qty": "", "expiry": "", "note": "얇게 썰림 — 와인파티용 토마토 라구파스타에 사용 예정" },
     { "name": "베이컨", "category": "냉장", "qty": "", "expiry": "", "note": "주문함 — 파티(8/30) 전 도착 예정, 케이준 관자 파스타용" },
+    { "name": "닭가슴살", "category": "냉장", "qty": "", "expiry": "", "note": "⚠️ 냉동팩 해동함(2026-11-11) — 재냉동 비권장, 1~2일 내 조리. 내부 165°F까지 익힐 것" },
     { "name": "파", "category": "냉장", "qty": "많음", "expiry": "", "note": "⚠️ 시급 소진 필요(2026-11-02) — 파기름·볶음밥·계란말이로 털기" },
     { "name": "김치", "category": "냉장", "qty": "", "expiry": "", "note": "" },
     { "name": "계란", "category": "냉장", "qty": "많음", "expiry": "", "note": "상시 보유 — 현재 넉넉(2026-11-02)" },
@@ -42,7 +43,7 @@
     { "name": "식초", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "미림", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "참치액", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "참치캔", "category": "실온", "qty": "", "expiry": "", "note": "통조림" },
+    { "name": "참치캔", "category": "실온", "qty": "여러 개", "expiry": "", "note": "통조림 — 추가 구매함(2026-11-11). 원팬파스타·김치참치볶음·참치마요용" },
     { "name": "시푸드 럽", "category": "양념", "qty": "", "expiry": "", "note": "해산물용 시즈닝 럽" },
     { "name": "루이지애나 케이준 가루", "category": "양념", "qty": "", "expiry": "", "note": "" },
     { "name": "스테이크 시즈닝", "category": "양념", "qty": "", "expiry": "", "note": "" },
