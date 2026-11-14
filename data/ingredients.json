@@ -1,64 +1,425 @@
 {
-  "updated": "2026-11-05",
+  "updated": "2026-11-14",
   "items": [
-    { "name": "고등어", "category": "냉동", "qty": "", "expiry": "", "note": "직접 잡은 것, 토막" },
-    { "name": "연어", "category": "냉동", "qty": "", "expiry": "", "note": "코스트코 대용량(박스), 필렛" },
-    { "name": "새우", "category": "냉동", "qty": "", "expiry": "", "note": "냉동" },
-    { "name": "우동면", "category": "냉동", "qty": "", "expiry": "", "note": "냉동 — 데쳐서 사용" },
-    { "name": "돼지 등심끝(컨트리스타일립 보넬리스)", "category": "냉장", "qty": "1.13lb(약 510g)", "expiry": "2026-10-30", "note": "Stop&Shop Country Style Ribs Pork Loin Boneless (세일 $4.15). 솔로미요 알 위스키(안심 대용)용 — 판매기한 당일이라 오늘 조리 or 즉시 냉동" },
-    { "name": "차돌박이", "category": "냉동", "qty": "", "expiry": "", "note": "얇게 썰림 — 와인파티용 토마토 라구파스타에 사용 예정" },
-    { "name": "베이컨", "category": "냉장", "qty": "", "expiry": "", "note": "주문함 — 파티(8/30) 전 도착 예정, 케이준 관자 파스타용" },
-    { "name": "파", "category": "냉장", "qty": "많음", "expiry": "", "note": "⚠️ 시급 소진 필요(2026-11-02) — 파기름·볶음밥·계란말이로 털기" },
-    { "name": "김치", "category": "냉장", "qty": "", "expiry": "", "note": "" },
-    { "name": "계란", "category": "냉장", "qty": "많음", "expiry": "", "note": "상시 보유 — 현재 넉넉(2026-11-02)" },
-    { "name": "양파", "category": "실온", "qty": "많음", "expiry": "", "note": "추가 구매함(2026-09-17)" },
-    { "name": "감자", "category": "실온", "qty": "1개", "expiry": "", "note": "" },
-    { "name": "파스타", "category": "실온", "qty": "", "expiry": "", "note": "스파게티·링귀네·엔젤헤어·펜네" },
-    { "name": "스팸", "category": "실온", "qty": "", "expiry": "", "note": "통조림" },
-    { "name": "밥", "category": "냉동", "qty": "소진", "expiry": "", "note": "냉동밥 소진(2026-11-05). 쌀 재고는 미확인 — 있으면 쿠쿠 밥솥 WHITE로 취사" },
-    { "name": "김", "category": "실온", "qty": "상시", "expiry": "", "note": "구운김/조미김 — 상시" },
-    { "name": "다진마늘", "category": "냉동", "qty": "", "expiry": "", "note": "갈아서 냉동" },
-    { "name": "깐마늘", "category": "냉장", "qty": "대량", "expiry": "", "note": "대량 보유(2026-11-02). 통마늘(껍질 깐 것) — 편썰기·통째 구이·마늘콩피·알리오올리오용. 다진마늘보다 덜 타고 향 좋음" },
-    { "name": "당근", "category": "냉장", "qty": "", "expiry": "", "note": "야채칸 3~4주. 물에 담가 밀폐용기에 넣으면 1~2개월+아삭 (물 2~3일마다 교체)" },
-    { "name": "파마산", "category": "냉장", "qty": "", "expiry": "", "note": "채썬 것(shredded) — 개봉 후 냉장 1~2주. 냉동하면 6개월(품질 유지, 알알이 떨어져 바로 사용 가능)" },
-    { "name": "배러댄부용(비프)", "category": "양념", "qty": "", "expiry": "", "note": "Better Than Bouillon 소고기 육수 베이스" },
-    { "name": "토마토페이스트", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "갈릭파우더", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "어니언파우더", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "XO소스", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "참소스", "category": "양념", "qty": "", "expiry": "", "note": "고소한 참깨 드레싱/찍먹 소스" },
-    { "name": "올리브유", "category": "양념", "qty": "", "expiry": "", "note": "저온·마무리용 — 마늘오일·파스타·드레싱·생으로 두르기. 발연점 ~375°F라 고온 시어링엔 부적합(탐)" },
-    { "name": "아보카도유", "category": "양념", "qty": "", "expiry": "", "note": "고온용 — 발연점 ~500°F. 스테이크 시어링·웍 볶음·튀김·로스팅. 맛이 순해서 마무리용엔 심심함" },
-    { "name": "식용유", "category": "양념", "qty": "", "expiry": "", "note": "튀김·부침·볶음용" },
-    { "name": "참기름", "category": "양념", "qty": "상시", "expiry": "", "note": "상시 보유 — 마무리 풍미" },
-    { "name": "고춧가루", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "고추장", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "페퍼론치노", "category": "양념", "qty": "", "expiry": "", "note": "말린 홍고추 — 오일파스타용" },
-    { "name": "후추", "category": "양념", "qty": "상시", "expiry": "", "note": "상시 보유" },
-    { "name": "진간장", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "국간장", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "깨", "category": "양념", "qty": "", "expiry": "", "note": "통깨/고명" },
-    { "name": "설탕", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "식초", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "미림", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "참치액", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "참치캔", "category": "실온", "qty": "", "expiry": "", "note": "통조림" },
-    { "name": "시푸드 럽", "category": "양념", "qty": "", "expiry": "", "note": "해산물용 시즈닝 럽" },
-    { "name": "루이지애나 케이준 가루", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "스테이크 시즈닝", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "와인", "category": "실온", "qty": "", "expiry": "", "note": "요리용 — 레드 상시 보유, 화이트는 현재 소진(2026-07-11). 2026-09-02부터 당분간 요리에 사용 안 함(와인 아웃)" },
-    { "name": "위스키", "category": "실온", "qty": "무제한", "expiry": "", "note": "상시 보유 — 버번·스카치·피트(아일라)·조니워커 블랙. 요리엔 버번·라이만 사용(스카치·피트는 부적합). 2026-09-02부터 와인 대신 버번/라이로 대체" },
-    { "name": "알리오올리오 시즈닝(트레이더조)", "category": "양념", "qty": "", "expiry": "", "note": "Trader Joe's Aglio Olio Garlicky Spicy 시즈닝 블렌드 — 갈릭·매콤, 파스타·볶음용" },
-    { "name": "시나몬바닐라꿀", "category": "양념", "qty": "", "expiry": "", "note": "버몬트산 — 시나몬·바닐라 인퓨즈드 꿀" },
-    { "name": "시나몬가루", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "시나몬시럽", "category": "양념", "qty": "", "expiry": "", "note": "" },
-    { "name": "메이플시럽", "category": "양념", "qty": "", "expiry": "", "note": "미개봉 실온 가능, 개봉 후 냉장 필수(방부제 없음). 냉장하면 꾸덕해지는데 정상" },
-    { "name": "굴소스", "category": "양념", "qty": "", "expiry": "", "note": "이금기(Lee Kum Kee) — 감칠맛·볶음·조림용" },
-    { "name": "베지믹스", "category": "냉동", "qty": "대용량", "expiry": "", "note": "냉동 야채믹스(옥수수·완두·당근 등) — 볶음밥·볶음용" },
-    { "name": "소고기 패티(냉동)", "category": "냉동", "qty": "", "expiry": "", "note": "약 1년 경과(2026-11-05 기준) — 소진 시급하지만 **상태 양호**: 2026-10말 먹었을 때 맛 좋았음(산패·냉동상 없음). 패티 맛 살리는 요리 가능(살리스버리·덮밥). 간고기이므로 내부 160°F까지 완전히 익힐 것" },
-    { "name": "소세지", "category": "냉동", "qty": "", "expiry": "", "note": "샥슈카·파스타·볶음·스튜용. 기름 내서 베이컨 대용으로도 좋음" },
-    { "name": "쯔유", "category": "양념", "qty": "500ml", "expiry": "", "note": "키코만 혼쯔유(농축형) — 간장+미림+다시 만능장. 물에 희석(병 표기: 국물용 묽게/찍먹용 진하게). 우동·조림·가쿠니·계란말이용" },
-    { "name": "소고기 척 숏립(보넬리스)", "category": "냉동", "qty": "450g", "expiry": "", "note": "소진 필요 — 실측 450g(2줄). 코스트코 Beef Chuck Short Ribs Boneless — 브레이징용(부르기뇽·스튜·찜). 구이는 질겨서 부적합" },
-    { "name": "소고기 척 로스트", "category": "냉동", "qty": "조금 남음", "expiry": "", "note": "대용량 — 브레이징용(부르기뇽·스튜·찜). 지방이 많아 큐브 전 큰 지방 덩어리 제거 권장. 한 번에 다 안 쓰니 소분 냉동 필요" }
+    {
+      "name": "고등어",
+      "category": "냉동",
+      "qty": "",
+      "expiry": "",
+      "note": "직접 잡은 것, 토막"
+    },
+    {
+      "name": "연어",
+      "category": "냉동",
+      "qty": "",
+      "expiry": "",
+      "note": "코스트코 대용량(박스), 필렛"
+    },
+    {
+      "name": "새우",
+      "category": "냉동",
+      "qty": "",
+      "expiry": "",
+      "note": "냉동"
+    },
+    {
+      "name": "우동면",
+      "category": "냉동",
+      "qty": "",
+      "expiry": "",
+      "note": "냉동 — 데쳐서 사용"
+    },
+    {
+      "name": "돼지 등심끝(컨트리스타일립 보넬리스)",
+      "category": "냉장",
+      "qty": "1.13lb(약 510g)",
+      "expiry": "2026-10-30",
+      "note": "Stop&Shop Country Style Ribs Pork Loin Boneless (세일 $4.15). 솔로미요 알 위스키(안심 대용)용 — 판매기한 당일이라 오늘 조리 or 즉시 냉동"
+    },
+    {
+      "name": "차돌박이",
+      "category": "냉동",
+      "qty": "",
+      "expiry": "",
+      "note": "얇게 썰림 — 와인파티용 토마토 라구파스타에 사용 예정"
+    },
+    {
+      "name": "삼겹살 덩어리(Coleman, skinless)",
+      "category": "냉장",
+      "qty": "1~1.2kg",
+      "expiry": "",
+      "note": "Coleman Pork Belly slab, 껍질 없음. 2026-11-14 위스키나잇(6인) 가쿠니풍 간장조림용 — recipes/부타노가쿠니풍삼겹조림.md 6인 덩어리 버전"
+    },
+    {
+      "name": "베이컨",
+      "category": "냉장",
+      "qty": "",
+      "expiry": "",
+      "note": "주문함 — 파티(8/30) 전 도착 예정, 케이준 관자 파스타용"
+    },
+    {
+      "name": "파",
+      "category": "냉장",
+      "qty": "많음",
+      "expiry": "",
+      "note": "⚠️ 시급 소진 필요(2026-11-02) — 파기름·볶음밥·계란말이로 털기"
+    },
+    {
+      "name": "김치",
+      "category": "냉장",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "계란",
+      "category": "냉장",
+      "qty": "많음",
+      "expiry": "",
+      "note": "상시 보유 — 현재 넉넉(2026-11-02)"
+    },
+    {
+      "name": "양파",
+      "category": "실온",
+      "qty": "많음",
+      "expiry": "",
+      "note": "추가 구매함(2026-09-17)"
+    },
+    {
+      "name": "감자",
+      "category": "실온",
+      "qty": "1개",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "파스타",
+      "category": "실온",
+      "qty": "",
+      "expiry": "",
+      "note": "스파게티·링귀네·엔젤헤어·펜네"
+    },
+    {
+      "name": "스팸",
+      "category": "실온",
+      "qty": "",
+      "expiry": "",
+      "note": "통조림"
+    },
+    {
+      "name": "밥",
+      "category": "냉동",
+      "qty": "소진",
+      "expiry": "",
+      "note": "냉동밥 소진(2026-11-05). 쌀 재고는 미확인 — 있으면 쿠쿠 밥솥 WHITE로 취사"
+    },
+    {
+      "name": "김",
+      "category": "실온",
+      "qty": "상시",
+      "expiry": "",
+      "note": "구운김/조미김 — 상시"
+    },
+    {
+      "name": "다진마늘",
+      "category": "냉동",
+      "qty": "",
+      "expiry": "",
+      "note": "갈아서 냉동"
+    },
+    {
+      "name": "깐마늘",
+      "category": "냉장",
+      "qty": "대량",
+      "expiry": "",
+      "note": "대량 보유(2026-11-02). 통마늘(껍질 깐 것) — 편썰기·통째 구이·마늘콩피·알리오올리오용. 다진마늘보다 덜 타고 향 좋음"
+    },
+    {
+      "name": "당근",
+      "category": "냉장",
+      "qty": "",
+      "expiry": "",
+      "note": "야채칸 3~4주. 물에 담가 밀폐용기에 넣으면 1~2개월+아삭 (물 2~3일마다 교체)"
+    },
+    {
+      "name": "파마산",
+      "category": "냉장",
+      "qty": "",
+      "expiry": "",
+      "note": "채썬 것(shredded) — 개봉 후 냉장 1~2주. 냉동하면 6개월(품질 유지, 알알이 떨어져 바로 사용 가능)"
+    },
+    {
+      "name": "배러댄부용(비프)",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": "Better Than Bouillon 소고기 육수 베이스"
+    },
+    {
+      "name": "토마토페이스트",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "갈릭파우더",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "어니언파우더",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "XO소스",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "참소스",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": "고소한 참깨 드레싱/찍먹 소스"
+    },
+    {
+      "name": "올리브유",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": "저온·마무리용 — 마늘오일·파스타·드레싱·생으로 두르기. 발연점 ~375°F라 고온 시어링엔 부적합(탐)"
+    },
+    {
+      "name": "아보카도유",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": "고온용 — 발연점 ~500°F. 스테이크 시어링·웍 볶음·튀김·로스팅. 맛이 순해서 마무리용엔 심심함"
+    },
+    {
+      "name": "식용유",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": "튀김·부침·볶음용"
+    },
+    {
+      "name": "참기름",
+      "category": "양념",
+      "qty": "상시",
+      "expiry": "",
+      "note": "상시 보유 — 마무리 풍미"
+    },
+    {
+      "name": "고춧가루",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "고추장",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "페퍼론치노",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": "말린 홍고추 — 오일파스타용"
+    },
+    {
+      "name": "후추",
+      "category": "양념",
+      "qty": "상시",
+      "expiry": "",
+      "note": "상시 보유"
+    },
+    {
+      "name": "진간장",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "국간장",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "깨",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": "통깨/고명"
+    },
+    {
+      "name": "설탕",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "식초",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "미림",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "참치액",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "참치캔",
+      "category": "실온",
+      "qty": "",
+      "expiry": "",
+      "note": "통조림"
+    },
+    {
+      "name": "시푸드 럽",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": "해산물용 시즈닝 럽"
+    },
+    {
+      "name": "루이지애나 케이준 가루",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "스테이크 시즈닝",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "와인",
+      "category": "실온",
+      "qty": "",
+      "expiry": "",
+      "note": "요리용 — 레드 상시 보유, 화이트는 현재 소진(2026-07-11). 2026-09-02부터 당분간 요리에 사용 안 함(와인 아웃)"
+    },
+    {
+      "name": "위스키",
+      "category": "실온",
+      "qty": "무제한",
+      "expiry": "",
+      "note": "상시 보유 — 버번·스카치·피트(아일라)·조니워커 블랙. 요리엔 버번·라이만 사용(스카치·피트는 부적합). 2026-09-02부터 와인 대신 버번/라이로 대체"
+    },
+    {
+      "name": "알리오올리오 시즈닝(트레이더조)",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": "Trader Joe's Aglio Olio Garlicky Spicy 시즈닝 블렌드 — 갈릭·매콤, 파스타·볶음용"
+    },
+    {
+      "name": "시나몬바닐라꿀",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": "버몬트산 — 시나몬·바닐라 인퓨즈드 꿀"
+    },
+    {
+      "name": "시나몬가루",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "시나몬시럽",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": ""
+    },
+    {
+      "name": "메이플시럽",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": "미개봉 실온 가능, 개봉 후 냉장 필수(방부제 없음). 냉장하면 꾸덕해지는데 정상"
+    },
+    {
+      "name": "굴소스",
+      "category": "양념",
+      "qty": "",
+      "expiry": "",
+      "note": "이금기(Lee Kum Kee) — 감칠맛·볶음·조림용"
+    },
+    {
+      "name": "베지믹스",
+      "category": "냉동",
+      "qty": "대용량",
+      "expiry": "",
+      "note": "냉동 야채믹스(옥수수·완두·당근 등) — 볶음밥·볶음용"
+    },
+    {
+      "name": "소고기 패티(냉동)",
+      "category": "냉동",
+      "qty": "",
+      "expiry": "",
+      "note": "약 1년 경과(2026-11-05 기준) — 소진 시급하지만 **상태 양호**: 2026-10말 먹었을 때 맛 좋았음(산패·냉동상 없음). 패티 맛 살리는 요리 가능(살리스버리·덮밥). 간고기이므로 내부 160°F까지 완전히 익힐 것"
+    },
+    {
+      "name": "소세지",
+      "category": "냉동",
+      "qty": "",
+      "expiry": "",
+      "note": "샥슈카·파스타·볶음·스튜용. 기름 내서 베이컨 대용으로도 좋음"
+    },
+    {
+      "name": "쯔유",
+      "category": "양념",
+      "qty": "500ml",
+      "expiry": "",
+      "note": "키코만 혼쯔유(농축형) — 간장+미림+다시 만능장. 물에 희석(병 표기: 국물용 묽게/찍먹용 진하게). 우동·조림·가쿠니·계란말이용"
+    },
+    {
+      "name": "소고기 척 숏립(보넬리스)",
+      "category": "냉동",
+      "qty": "450g",
+      "expiry": "",
+      "note": "소진 필요 — 실측 450g(2줄). 코스트코 Beef Chuck Short Ribs Boneless — 브레이징용(부르기뇽·스튜·찜). 구이는 질겨서 부적합"
+    },
+    {
+      "name": "소고기 척 로스트",
+      "category": "냉동",
+      "qty": "조금 남음",
+      "expiry": "",
+      "note": "대용량 — 브레이징용(부르기뇽·스튜·찜). 지방이 많아 큐브 전 큰 지방 덩어리 제거 권장. 한 번에 다 안 쓰니 소분 냉동 필요"
+    }
   ]
 }
