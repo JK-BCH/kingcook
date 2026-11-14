@@ -44,6 +44,13 @@
       "note": "얇게 썰림 — 와인파티용 토마토 라구파스타에 사용 예정"
     },
     {
+      "name": "소고기 척 로스트(Chuck Roast, 당일구매)",
+      "category": "냉장",
+      "qty": "2.34lb(약 1.06kg)",
+      "expiry": "2026-11-17",
+      "note": "Stop&Shop Butcher Shop Beef Chuck $12.49/lb. 2026-11-14 위스키나잇(6인) 고추장소고기찜용 — recipes/고추장소고기찜.md"
+    },
+    {
       "name": "돼지갈비(Sliced St. Louis Spare Ribs)",
       "category": "냉장",
       "qty": "3.5lb(약 1.6kg, 2팩)",
@@ -70,6 +77,13 @@
       "qty": "",
       "expiry": "",
       "note": ""
+    },
+    {
+      "name": "순대",
+      "category": "냉장",
+      "qty": "소량",
+      "expiry": "",
+      "note": "2026-11-14 위스키나잇 곁들임. 데우기는 냄비 찜 10분이 가장 촉촉(전자레인지는 질겨짐). 찍먹: 소금+후추+참기름"
     },
     {
       "name": "계란",
