@@ -3,12 +3,30 @@
 다 마신 와인을 남겨두는 **개인 기록**. 요리용 와인·인벤토리와는 **별개**.
 (요리에 쓰는 와인은 `data/ingredients.json` → "와인" 항목.)
 
-> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **136종**(날짜 확인 133 + 미분류 3) · **2025-12-18 ~ 2026-11-08**.
+> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **146종**(날짜 확인 143 + 미분류 3) · **2025-12-18 ~ 2026-11-13**.
 > 정리 가정: ① 인스타 태그 `#YYMMDD` → 날짜 (단 `#250528`은 년도 오기 → **2026**-05-28) ② "GRIFIO"→Pinot **Grigio** ③ 2025-12-18 'Elivette 2017' 중복 1개로 합침 ④ 종류·품종·지역은 라벨 기준 추정.
 
 > **평점(2026-07-17 웹 조사)**: 사이트 직접열람이 막혀(403) **웹검색 스니펫 기반**이라 오차 가능. **Vivino**=커뮤니티 별점/5 (대개 빈티지 통합). **평론가**=해당 빈티지 100점 — JS=James Suckling, WS=Wine Spectator, WA=Wine Advocate(Parker), DEC=Decanter, VIN=Vinous, JD=Jeb Dunnuck, WE=Wine Enthusiast, WineIndep=The Wine Independent, N.MacLean=Natalie MacLean, IWC=International Wine Challenge, 종합=wine-searcher 평균. **`†`=단일출처·재확인 권장**, **`—`=못 찾음/미조사**.
 
 ---
+
+## 2026-11-13
+> **Ansonia Wines "After Hours" 시음회** — 레드 5 + 화이트 3 + 샴페인 1 + 포이레 1 (총 10종)
+> 부르고뉴 5병 중심에 론 2 + 토스카나 1. 가격은 시음회 안내 기준 US$.
+> 평점(2026-11-14 웹 조사): 소규모 수입 도멘이 많아 숫자 점수는 대부분 유료 페이지 안이거나 미평가
+
+| 와인 | 종류 | 품종·지역 | Vivino | 평론가 점수(출처) | 메모 |
+|---|---|---|---|---|---|
+| Lireux Poiré "Prémices" | 기타(포이레) | 배(페리용 품종 7종) · 노르망디(프랑스) | — | — | 🍐 **와인이 아님 — 배로 만든 발효주(poiré/perry)**. 생산자 Cyprien Lireux. 알코올 **약 5.5%**, 약한 탄산. 무첨가·무아황산, 가볍게 여과(배 특유의 떫은맛 완화). $25. 시음회 식전주로 낸 듯. ⚠️ Domfront AOP 표기 여부는 확인 못 함. **로그 첫 비(非)포도 주류** |
+| Champagne Jacques Robin "Secret de Sorbée" NV | 스파클링(샴페인) | 샴페인 블렌드(구성 미확인) · 상파뉴(프랑스) | — | — | 레콜탕(재배자) 샴페인. **$54 / $99 두 가격은 750ml / 매그넘(1.5L)으로 추정** — 확인 필요. 품종 구성·도자주를 못 찾음(생산자 자료 미공개). 큐베명의 "Sorbée"는 오브(코트 데 바르) 쪽 리외디 이름 |
+| Dupré-Goujon Beaujolais-Villages Blanc "Le Clos des Mûriers" 2023 | 화이트 | 샤르도네 100% · 보졸레 빌라주(보졸레, 프랑스) | — | JS 리뷰 있음(점수 유료) | ⚠️ 정식 등급은 **Beaujolais-Villages Blanc**(안내문의 "Beaujolais blanc"보다 한 단계 위). 블라세(Blacé) 석회질 점토, 해발 300m, **수령 40년·유기농 인증**. 제임스 서클링이 *"보졸레에서 만난 첫 번째 훌륭한 샤르도네"* 라고 평. $35. **보졸레 화이트는 로그 처음**(기존 보졸레는 Jadot 가메 레드) |
+| Pierre Vessigaud Mâcon-Fuissé "Les Tâches" 2024 | 화이트 | 샤르도네 · 마콩 퓌세(마코네, 부르고뉴, 프랑스) | — | — | 푸이 퓌세 본거지(Fuissé 마을)의 도멘이 만드는 마콩 급. $32. ⚠️ 이 큐베("Les Tâches") 자체 자료를 못 찾음 — 리뷰·점수 미확인 |
+| Roger Belland Chassagne-Montrachet 1er Cru "Morgeot Clos Pitois" 2023 | 화이트 | 샤르도네 · 샤사뉴 몽라셰 1er Cru(코트 드 본, 부르고뉴, 프랑스) | — | Vert de Vin 94 † | ⭐ **이날 최고가 $129** · **클로 피투아는 벨랑 가문 단독 소유(모노폴)** — 약 3ha를 피노 누아와 샤르도네 **반반** 심어 레드·화이트를 둘 다 만듦. 모르조(Morgeot) 구역, 상트네 경계. 2023 화이트는 **오크 12개월(새 오크 30%)**. ⚠️ **레드/화이트 둘 다 존재** — 시음 순서상 화이트로 기록했으나 라벨 확인 권장. **로그 두 번째 샤사뉴**(첫 번째는 2026-10-08 Jadot 2021) |
+| Domaine Gaston & Pierre Ravaut Ladoix 1er Cru "Bois Roussot" 2023 | 레드 | 피노 누아 · 라두아 1er Cru(코트 드 본, 부르고뉴, 프랑스) | — | JR 리뷰 있음(점수 유료) | ⭐ **Ravaut 두 번째** — 2026-10-17 Bourgogne Aligoté 2023과 같은 도멘(그땐 화이트, 이번엔 1er Cru 레드). $58. 쟌시스 로빈슨 2023 노트: 라즈베리·딸기. **로그 두 번째 라두아**(첫 번째는 2026-07-31 Faiveley "Les Marnes Blanches" 화이트) |
+| Domaine Michel Gros Nuits-Saint-Georges 2022 | 레드 | 피노 누아 · 뉘 생 조르주(코트 드 뉘, 부르고뉴, 프랑스) | — | — | ⭐ **Michel Gros 세 번째** — 2026-10-17에 같은 도멘·같은 2022 빈티지로 **Chambolle-Musigny(VIN 93)** 와 **Gevrey-Chambertin**을 마셨음. 이번 뉘 생 조르주까지 더해 **같은 생산자·같은 해로 코트 드 뉘 세 마을 비교**가 완성됨. 빌라주 급. $82 |
+| Domaine Saint-Clair Saint-Joseph "Les Abîmes de l'Enfer" 2023 | 레드 | 시라 · 생조제프(북부 론밸리, 프랑스) | — | — | 15ha 가족 도멘, 이 큐베는 **2,500병만** 생산. $38. Delectable 커뮤니티 평이 매우 높음(9.5/10대). **로그 첫 생조제프 · 첫 북부 론 레드** |
+| Clos du Joncuas Gigondas 2019 | 레드 | 그르나슈 중심 남부 론 블렌드 · 지공다스(남부 론밸리, 프랑스) | — | — | 안내문 표기는 "Joncuas" — 정식 도멘명은 **Clos du Joncuas**(샤스탕 자매 운영, 유기농). $42. 7년차로 지금이 음용 적기. **로그 첫 지공다스** |
+| Poggerino Chianti Classico Riserva "Bugialla" 2020 | 레드 | 산지오베제 · 키안티 클라시코(라다 인 키안티, 토스카나, 이탈리아) | — | M.Godel 93 † · Vert de Vin 89~90 † | ⚠️ 안내문엔 "Chianti Riserva"로 적혔지만 포제리노는 **라다 인 키안티** 소재라 정식으론 **Chianti Classico Riserva**이고, 리제르바는 단일 밭 **Bugialla** 큐베. $45. 점수 편차 큼(89~93). Vinous(갈로니)도 리뷰했으나 점수 미노출 |
 
 ## 2026-11-08
 > 레드 2 + 스파클링 로제 1 — **$200 미스터리 박스(12병) 개봉 2병** + 호주 야라밸리 1병
