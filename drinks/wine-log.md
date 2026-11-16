@@ -27,7 +27,7 @@
 | 와인 | 종류 | 품종·지역 | Vivino | 평론가 점수(출처) | 메모 |
 |---|---|---|---|---|---|
 | Ingrid Groiss Riesling Braitenpuechtorff 2023 | 화이트 | 리슬링 · 브라이텐푸흐토르프(바인피어텔, 오스트리아) | — | — | ⭐ **로그 첫 오스트리아 와인** · **첫 오스트리아 리슬링**(기존 리슬링 4병은 독일 3 + 워싱턴 1). ✅ 빈티지 **2023 확인** — 사용자가 기억 못 해 구매처(Waterford Wine) 상품 페이지로 특정, **$27.99**. "Braitenpuechtorff"는 밭 이름이 아니라 **브라이텐바이다(Breitenwaida) 마을의 옛 지명** — 북부 바인피어텔. 생산자 잉그리트 그로이스는 **게미슈터 자츠(한 밭에 여러 품종 혼식) 복원**으로 이름난 양조가. 2023 점수는 못 찾음 — 참고: 2022는 90점(음용 2024~2029), 2019는 Falstaff 90~92 |
-| Benovia Chardonnay Russian River Valley 2023 | 화이트 | 샤르도네 · 러시안 리버 밸리(소노마, 캘리포니아) | — | — | ⚠️ Benovia는 샤르도네를 **여러 종** 만듦(러시안 리버 / La Pommeraie / Martaella / Fort Ross-Seaview) — 메모가 "샤르도네"뿐이라 **기본 러시안 리버 병입으로 기록**, 라벨에 밭 이름 있으면 갱신. 2023 점수 못 찾음 — 참고: 2021은 **WE 93 · WS 90**. 러시안 리버는 로그에 7번째(기존 6병 중 화이트는 Aubert Eastside Chardonnay 2021 하나뿐이라 **두 번째 RRV 화이트**) |
+| Benovia Chardonnay "La Pommeraie" 2023 | 화이트 | 샤르도네 · 러시안 리버 밸리(소노마 카운티, 캘리포니아) | — | — | ✅ **La Pommeraie 큐베 확정**(병 사진 확인 2026-11-16) — 처음엔 기본 러시안 리버 병입으로 적었으나 **윗급 지정 큐베**가 맞음. 앞라벨 "Chardonnay / Russian River Valley", 뒷라벨 "2023 Benovia Russian River Valley Chardonnay / La Pommeraie Sonoma County". **ALC 14.5%**, 750ml, 생산자 Benovia Winery(산타로사). 2023 점수 못 찾음 — 참고: 2017은 Prince of Pinot 94, 기본 RRV 2021은 WE 93·WS 90. 러시안 리버는 로그에 7번째이고 기존 6병 중 화이트는 Aubert Eastside Chardonnay 2021뿐이라 **두 번째 RRV 화이트** |
 
 ## 2026-11-13
 > **Ansonia Wines "After Hours" 시음회** — 레드 5 + 화이트 3 + 샴페인 1 + 포이레 1 (총 10종)
