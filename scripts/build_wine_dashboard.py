@@ -84,9 +84,14 @@ def parse_log(text: str) -> list[dict]:
             continue
         if not (line.startswith("|") and date):
             continue
-        if ("와인" in line and "종류" in line) or re.match(r"^\|[-\s|]+$", line):
-            continue  # 헤더 / 구분선
+        if re.match(r"^\|[-\s|]+$", line):
+            continue  # 구분선
         cols = [c.strip() for c in line.strip("|").split("|")]
+        # 표 헤더는 첫 두 칸을 정확히 비교해서 거른다. 예전처럼 줄 안에 '와인'과
+        # '종류'가 둘 다 있는지로 보면, 메모에 그 두 단어가 들어간 와인 행이
+        # 헤더로 오인돼 조용히 사라진다(2026-11-16에 실제로 1종 유실).
+        if cols[:2] == ["와인", "종류"]:
+            continue
         if len(cols) < 6 or not cols[0]:
             continue
         rows.append(dict(zip(
