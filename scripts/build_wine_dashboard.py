@@ -19,7 +19,8 @@ LOG = ROOT / "drinks" / "wine-log.md"
 TEMPLATE = ROOT / "scripts" / "wine_dashboard_template.html"
 OUT = ROOT / "drinks" / "dashboard.html"
 DRINKS = ROOT / "drinks"
-PLACEHOLDER_TOP100_YEAR = "/*__TOP100_YEAR__*/''"
+PLACEHOLDER_TOP100_YEARS = "/*__TOP100_YEARS__*/[]"
+TOP100_SHOWN = 2        # 드로어에 나란히 띄울 연도 수(최신부터)
 PLACEHOLDER = "/*__DATA__*/[]"
 PLACEHOLDER_TOP100 = "/*__TOP100__*/[]"
 # 상급 큐베를 가르는 표시 — 공식 와인명에만 이 말이 붙어 있으면 다른 와인으로 본다.
@@ -175,16 +176,21 @@ def build_records(rows: list[dict]) -> list[dict]:
     return out
 
 
-def latest_top100():
-    """drinks/ws-top100-<연도>.json 중 가장 최근 연도 파일. 없으면 None."""
-    files = sorted(DRINKS.glob("ws-top100-[0-9][0-9][0-9][0-9].json"))
-    return files[-1] if files else None
+def top100_files() -> list:
+    """drinks/ws-top100-<연도>.json을 최신 연도부터. 드로어에 띄울 만큼만 자른다."""
+    files = sorted(DRINKS.glob("ws-top100-[0-9][0-9][0-9][0-9].json"), reverse=True)
+    return files[:TOP100_SHOWN]
 
 
 def norm_name(s: str) -> str:
-    """이름 비교용 정규화 — 대소문자·구두점·아포스트로피 차이를 없앤다."""
-    s = s.lower().replace("\u2019", "'")
-    return " ".join(re.sub(r"[^a-z0-9가-힣']+", " ", s).split())
+    """이름 비교용 정규화 — 대소문자·구두점 차이를 없앤다.
+
+    따옴표류는 **지워서** 붙인다("Stag\u2019s"→"stags", "\u2018The Estate\u2019"→"the estate").
+    공백으로 바꾸면 "'the"처럼 조각난 토큰이 생겨 같은 와인을 못 알아본다.
+    """
+    s = s.lower()
+    s = re.sub(r"[\u2018\u2019\u201c\u201d'\"]+", "", s)
+    return " ".join(re.sub(r"[^a-z0-9가-힣]+", " ", s).split())
 
 
 def drop_vintage(s: str) -> str:
@@ -192,7 +198,9 @@ def drop_vintage(s: str) -> str:
 
 
 def load_top100(records: list[dict]) -> list[dict]:
-    """Wine Spectator Top 100 목록을 읽고, 각 항목이 내 기록에 있는지 표시한다.
+    """Wine Spectator Top 100 목록을 최신 연도부터 읽어 [{year, items}, ...]로 돌려준다.
+
+    각 항목에는 내 기록에 있는지(mine/exact)를 표시해둔다.
 
     생산자 매칭은 '와인명이 생산자명 + 공백으로 시작하는가'로 본다. 단순 포함으로
     보면 'Ridge'(Lytton Springs)가 'Pine Ridge ...'에 걸리고, 공백을 요구하지 않으면
@@ -203,10 +211,15 @@ def load_top100(records: list[dict]) -> list[dict]:
     리제르바·크뤼 같은 상급 큐베 표시가 아닐 때. 그래서 'Barbaresco 2021'을 마신
     기록은 'Barbaresco Rabajà Riserva 2021'(2026년 2위)과 같은 와인으로 치지 않는다.
     """
-    path = latest_top100()
-    if not path:
-        return []
-    items = json.loads(path.read_text(encoding="utf-8")).get("items", [])
+    sets = []
+    for path in top100_files():
+        items = json.loads(path.read_text(encoding="utf-8")).get("items", [])
+        mark_top100(items, records)
+        sets.append({"year": path.stem.rsplit("-", 1)[-1], "items": items})
+    return sets
+
+
+def mark_top100(items: list[dict], records: list[dict]) -> None:
     for t in items:
         producer = norm_name(t.get("producer", ""))
         vintage = t.get("vintage", "")
@@ -225,7 +238,6 @@ def load_top100(records: list[dict]) -> list[dict]:
         hit = (exact or mine)
         t["mine"] = hit[0]["d"] if hit else None
         t["exact"] = bool(exact)
-    return items
 
 
 def main() -> int:
@@ -250,15 +262,17 @@ def main() -> int:
     if top:
         html = html.replace(
             PLACEHOLDER_TOP100,
-            json.dumps(top, ensure_ascii=False, separators=(",", ":")), 1)
-        year = latest_top100().stem.rsplit("-", 1)[-1]
-        html = html.replace(PLACEHOLDER_TOP100_YEAR, json.dumps(year), 1)
+            json.dumps([s["items"] for s in top], ensure_ascii=False,
+                       separators=(",", ":")), 1)
+        html = html.replace(
+            PLACEHOLDER_TOP100_YEARS,
+            json.dumps([s["year"] for s in top], ensure_ascii=False), 1)
     OUT.write_text(html, encoding="utf-8")
 
-    if top:
-        n_mine = sum(1 for t in top if t["mine"])
-        n_exact = sum(1 for t in top if t["exact"])
-        print(f"  Top100({latest_top100().name}): {len(top)}개 주입 — "
+    for s in top:
+        n_mine = sum(1 for t in s["items"] if t["mine"])
+        n_exact = sum(1 for t in s["items"] if t["exact"])
+        print(f"  Top100 {s['year']}: {len(s['items'])}개 주입 — "
               f"내 기록과 겹침 {n_mine}개(같은 와인 {n_exact}개)")
 
     kinds = Counter(r["k"] for r in records)
