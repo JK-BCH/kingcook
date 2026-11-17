@@ -18,9 +18,13 @@ ROOT = Path(__file__).resolve().parent.parent
 LOG = ROOT / "drinks" / "wine-log.md"
 TEMPLATE = ROOT / "scripts" / "wine_dashboard_template.html"
 OUT = ROOT / "drinks" / "dashboard.html"
-TOP100 = ROOT / "drinks" / "ws-top100-2025.json"   # 없으면 버튼이 안 생길 뿐, 빌드는 정상
+DRINKS = ROOT / "drinks"
+PLACEHOLDER_TOP100_YEAR = "/*__TOP100_YEAR__*/''"
 PLACEHOLDER = "/*__DATA__*/[]"
 PLACEHOLDER_TOP100 = "/*__TOP100__*/[]"
+# 상급 큐베를 가르는 표시 — 공식 와인명에만 이 말이 붙어 있으면 다른 와인으로 본다.
+CUVEE_MARKERS = {"riserva", "riserve", "reserva", "reserve", "selezione",
+                 "superiore", "vigna", "vigneto", "cru", "premier", "grand"}
 UNDATED = "미분류"  # 마신 날짜를 모르는 기록을 묶는 섹션명 (템플릿 JS와 값이 같아야 함)
 
 # 지역 표기 -> 국가. 위에서부터 먼저 매칭되는 것을 쓴다(하위 산지가 먼저 와야 함).
@@ -171,20 +175,53 @@ def build_records(rows: list[dict]) -> list[dict]:
     return out
 
 
+def latest_top100():
+    """drinks/ws-top100-<연도>.json 중 가장 최근 연도 파일. 없으면 None."""
+    files = sorted(DRINKS.glob("ws-top100-[0-9][0-9][0-9][0-9].json"))
+    return files[-1] if files else None
+
+
+def norm_name(s: str) -> str:
+    """이름 비교용 정규화 — 대소문자·구두점·아포스트로피 차이를 없앤다."""
+    s = s.lower().replace("\u2019", "'")
+    return " ".join(re.sub(r"[^a-z0-9가-힣']+", " ", s).split())
+
+
+def drop_vintage(s: str) -> str:
+    return " ".join(w for w in s.split() if not re.fullmatch(r"(19|20)\d\d|nv", w))
+
+
 def load_top100(records: list[dict]) -> list[dict]:
     """Wine Spectator Top 100 목록을 읽고, 각 항목이 내 기록에 있는지 표시한다.
 
-    생산자 매칭은 '와인명이 생산자명으로 시작하는가'로 본다. 단순 포함으로 보면
-    'Ridge'(#3 Lytton Springs)가 'Pine Ridge ...'에 걸리는 식으로 잘못 잡힌다.
-    exact=True는 생산자와 빈티지가 모두 같은 경우(= 사실상 같은 와인).
+    생산자 매칭은 '와인명이 생산자명 + 공백으로 시작하는가'로 본다. 단순 포함으로
+    보면 'Ridge'(Lytton Springs)가 'Pine Ridge ...'에 걸리고, 공백을 요구하지 않으면
+    한 글자 생산자 'J'가 'Jim Jim ...'에 걸린다.
+
+    exact=True는 **사실상 같은 와인**인 경우 — 빈티지가 같고, 로그에 적은 이름이
+    공식 와인명 안에 다 들어가며(로그는 보통 더 짧게 적는다), 공식명에만 있는 말이
+    리제르바·크뤼 같은 상급 큐베 표시가 아닐 때. 그래서 'Barbaresco 2021'을 마신
+    기록은 'Barbaresco Rabajà Riserva 2021'(2026년 2위)과 같은 와인으로 치지 않는다.
     """
-    if not TOP100.exists():
+    path = latest_top100()
+    if not path:
         return []
-    items = json.loads(TOP100.read_text(encoding="utf-8")).get("items", [])
+    items = json.loads(path.read_text(encoding="utf-8")).get("items", [])
     for t in items:
-        producer = t.get("producer", "")
-        mine = [r for r in records if producer and r["n"].startswith(producer)]
-        exact = [r for r in mine if t.get("vintage") and t["vintage"] in r["n"]]
+        producer = norm_name(t.get("producer", ""))
+        vintage = t.get("vintage", "")
+        wine = drop_vintage(norm_name(t.get("wine", "")))
+        mine, exact = [], []
+        for r in records:
+            n = norm_name(r["n"])
+            if not (producer and (n == producer or n.startswith(producer + " "))):
+                continue
+            mine.append(r)
+            rest = set(drop_vintage(n[len(producer):].strip()).split())
+            same_vintage = (vintage in r["n"]) if vintage != "NV" else ("nv" in n.split())
+            words = set(wine.split())
+            if same_vintage and rest and rest <= words and not (words - rest) & CUVEE_MARKERS:
+                exact.append(r)
         hit = (exact or mine)
         t["mine"] = hit[0]["d"] if hit else None
         t["exact"] = bool(exact)
@@ -214,13 +251,15 @@ def main() -> int:
         html = html.replace(
             PLACEHOLDER_TOP100,
             json.dumps(top, ensure_ascii=False, separators=(",", ":")), 1)
+        year = latest_top100().stem.rsplit("-", 1)[-1]
+        html = html.replace(PLACEHOLDER_TOP100_YEAR, json.dumps(year), 1)
     OUT.write_text(html, encoding="utf-8")
 
     if top:
         n_mine = sum(1 for t in top if t["mine"])
         n_exact = sum(1 for t in top if t["exact"])
-        print(f"  Top100: {len(top)}개 주입 — 내 기록과 겹침 {n_mine}개"
-              f"(같은 빈티지 {n_exact}개)")
+        print(f"  Top100({latest_top100().name}): {len(top)}개 주입 — "
+              f"내 기록과 겹침 {n_mine}개(같은 와인 {n_exact}개)")
 
     kinds = Counter(r["k"] for r in records)
     countries = Counter(r["c"] for r in records)
