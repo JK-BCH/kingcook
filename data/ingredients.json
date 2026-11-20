@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-18",
+  "updated": "2026-11-20",
   "items": [
     { "name": "고등어", "category": "냉동", "qty": "", "expiry": "", "note": "직접 잡은 것, 토막" },
     { "name": "연어", "category": "냉동", "qty": "", "expiry": "", "note": "코스트코 대용량(박스), 필렛" },
@@ -18,7 +18,6 @@
     { "name": "밥", "category": "냉동", "qty": "소진", "expiry": "", "note": "냉동밥 소진(2026-11-05). 쌀 재고는 미확인 — 있으면 쿠쿠 밥솥 WHITE로 취사" },
     { "name": "김", "category": "실온", "qty": "상시", "expiry": "", "note": "구운김/조미김 — 상시" },
     { "name": "다진마늘", "category": "냉동", "qty": "", "expiry": "", "note": "갈아서 냉동" },
-    { "name": "깐마늘", "category": "냉장", "qty": "대량", "expiry": "", "note": "대량 보유(2026-11-02). 통마늘(껍질 깐 것) — 편썰기·통째 구이·마늘콩피·알리오올리오용. 다진마늘보다 덜 타고 향 좋음" },
     { "name": "당근", "category": "냉장", "qty": "", "expiry": "", "note": "야채칸 3~4주. 물에 담가 밀폐용기에 넣으면 1~2개월+아삭 (물 2~3일마다 교체)" },
     { "name": "파마산", "category": "냉장", "qty": "", "expiry": "", "note": "채썬 것(shredded) — 개봉 후 냉장 1~2주. 냉동하면 6개월(품질 유지, 알알이 떨어져 바로 사용 가능)" },
     { "name": "배러댄부용(비프)", "category": "양념", "qty": "", "expiry": "", "note": "Better Than Bouillon 소고기 육수 베이스" },
