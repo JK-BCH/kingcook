@@ -23,3 +23,12 @@ CLAUDE.md           # Claude 운영 규칙 (동작 방식·스키마)
 ```
 
 > 운영 규칙과 데이터 스키마는 [`CLAUDE.md`](./CLAUDE.md) 참고.
+
+## 🍷 와인 대시보드
+마신 와인 기록(`drinks/wine-log.md`)을 통계·검색·필터로 볼 수 있는 단일 페이지.
+
+**👉 https://jk-bch.github.io/kingcook/** (GitHub Pages)
+
+- `main`에 푸시하면 [`.github/workflows/pages.yml`](./.github/workflows/pages.yml)이 로그에서 대시보드를 다시 만들어 자동 배포한다.
+- 사이트에 올라가는 건 대시보드 한 장뿐이고, 재료·프로필·레시피 같은 나머지 파일은 사이트에 포함되지 않는다.
+- 수동으로 만들려면 `python3 scripts/build_wine_dashboard.py` → `drinks/dashboard.html`.
