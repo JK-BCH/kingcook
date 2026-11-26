@@ -149,6 +149,14 @@
   .chk input{accent-color:var(--accent); width:14px; height:14px; cursor:pointer;}
 
   .tbl-wrap{overflow-x:auto; margin:0 -22px; padding:0 22px;}
+  .b-more{display:flex; justify-content:center; align-items:center; gap:14px; margin-top:14px;}
+  .b-more[hidden]{display:none;}
+  .btn-more{font-size:13px; font-weight:600; color:var(--accent); background:var(--paper-2); border:1px solid var(--hair-strong);
+    border-radius:999px; padding:9px 18px; transition:background .12s, border-color .12s;}
+  .btn-more:hover{background:var(--accent-tint); border-color:var(--accent);}
+  .btn-more span{font-weight:400; color:var(--muted); margin-left:4px;}
+  .btn-less{font-size:12.5px; color:var(--muted); text-decoration:underline; text-underline-offset:3px;}
+  .btn-less:hover{color:var(--accent);}
   table.tbl{width:100%; border-collapse:collapse; font-size:13px;}
   .tbl th{text-align:left; font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase;
     color:var(--muted); padding:9px 10px; border-bottom:1px solid var(--hair-strong); white-space:nowrap;}
@@ -312,7 +320,7 @@
   <div class="stats" id="stats"></div>
 
   <div class="section-head" id="browse"><span class="idx">01</span><h2>전체 보기 · 찾기</h2></div>
-  <p class="section-note">검색어·필터로 추리고 정렬을 바꿔보세요 · 줄을 누르면 상세가 옆에 열려요</p>
+  <p class="section-note">검색어·필터로 추리고 정렬을 바꿔보세요 · 20개씩 보여주고 아래 “더 보기”로 이어서 열려요 · 줄을 누르면 상세가 옆에 열려요</p>
   <div class="card">
     <div class="browse-bar">
       <label class="search">
@@ -329,7 +337,7 @@
       <button class="btn-reset" id="b-reset">전체보기</button>
     </div>
     <div class="browse-meta">
-      <span id="b-count"></span>
+      <span id="b-count" aria-live="polite"></span>
       <label class="chk"><input type="checkbox" id="b-scored"> 평점 있는 것만</label>
     </div>
     <div class="tbl-wrap">
@@ -343,6 +351,10 @@
         </tr></thead>
         <tbody id="b-body"></tbody>
       </table>
+    </div>
+    <div class="b-more" id="b-more" hidden>
+      <button class="btn-more" id="b-more-btn"></button>
+      <button class="btn-less" id="b-less-btn">접기</button>
     </div>
   </div>
 
@@ -683,11 +695,22 @@ function browseList(){
   return out.sort(SORTS[B.sort] || SORTS['date-desc']);
 }
 
-function renderBrowse(){
+const B_PAGE = 20;          // 전체 보기 표는 20개씩 연다
+let bShown = B_PAGE;
+// keep=true는 '더 보기/접기'에서만 — 검색·필터·정렬이 바뀌면 결과가 달라지므로 다시 20개부터
+function renderBrowse(keep){
+  if(keep !== true) bShown = B_PAGE;
   const list = browseList();
   const active = [B.kind,B.country,B.variety,B.date].filter(Boolean).length + (B.scored?1:0) + (B.q.trim()?1:0);
-  $('b-count').innerHTML = `<b>${list.length}</b>종 표시 / 전체 ${WINES.length}종` +
+  const shown = Math.min(bShown, list.length);
+  $('b-count').innerHTML = `<b>${list.length}</b>종 / 전체 ${WINES.length}종` +
+    (list.length > shown ? ` · ${shown}개 보는 중` : '') +
     (active ? ` · 조건 ${active}개 적용중` : '');
+  const rest = list.length - shown;
+  $('b-more').hidden = !(rest > 0 || shown > B_PAGE);
+  $('b-more-btn').hidden = rest <= 0;
+  $('b-more-btn').innerHTML = `더 보기 +${Math.min(B_PAGE, rest)}<span>남은 ${rest}개</span>`;
+  $('b-less-btn').hidden = shown <= B_PAGE;
 
   [['b-kind',B.kind],['b-country',B.country],['b-variety',B.variety],['b-date',B.date]]
     .forEach(([id,v])=> $(id).dataset.on = v ? '1' : '0');
@@ -704,7 +727,7 @@ function renderBrowse(){
     const tr = el('tr'), td = el('td','t-empty','조건에 맞는 와인이 없어요 — “전체보기”를 누르면 초기화됩니다.');
     td.colSpan = 5; tr.appendChild(td); tb.appendChild(tr); return;
   }
-  list.forEach(w=>{
+  list.slice(0, shown).forEach(w=>{
     const tr = el('tr');
     tr.tabIndex = 0; tr.setAttribute('role','button');
     tr.setAttribute('aria-label', `${w.n} 상세 보기`);
@@ -738,6 +761,12 @@ $('b-date').addEventListener('change',    e=>{ B.date    = e.target.value; rende
 $('b-sort').addEventListener('change',    e=>{ B.sort    = e.target.value; renderBrowse(); });
 $('b-scored').addEventListener('change',  e=>{ B.scored  = e.target.checked; renderBrowse(); });
 $('b-reset').addEventListener('click', resetBrowse);
+$('b-more-btn').addEventListener('click', ()=>{ bShown += B_PAGE; renderBrowse(true); });
+$('b-less-btn').addEventListener('click', ()=>{
+  bShown = B_PAGE; renderBrowse(true);
+  // 줄이 한꺼번에 사라지므로 부드럽게 수천 px를 흘려 올리지 않고 바로 표 맨 위로
+  document.getElementById('browse').scrollIntoView({behavior:'auto', block:'start'});
+});
 
 document.querySelectorAll('.tbl th.sortable').forEach(th=>{
   th.addEventListener('click', ()=>{
