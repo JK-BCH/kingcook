@@ -30,5 +30,6 @@ CLAUDE.md           # Claude 운영 규칙 (동작 방식·스키마)
 **👉 https://jk-bch.github.io/kingcook/** (GitHub Pages)
 
 - `main`에 푸시하면 [`.github/workflows/pages.yml`](./.github/workflows/pages.yml)이 로그에서 대시보드를 다시 만들어 자동 배포한다.
+- **산지 지도**: 마신 와인을 산지별로 세계 · 미국 서부 · 서유럽 3장 지도에 찍는다(점 크기 = 병 수, 누르면 그 산지 와인 목록). 지도 데이터는 Natural Earth·미국 인구조사국(퍼블릭 도메인)이고 외부 지도 서비스를 쓰지 않는다.
 - 사이트에 올라가는 건 대시보드 한 장뿐이고, 재료·프로필·레시피 같은 나머지 파일은 사이트에 포함되지 않는다.
 - 수동으로 만들려면 `python3 scripts/build_wine_dashboard.py` → `drinks/dashboard.html`.

@@ -9,6 +9,7 @@
 """
 
 import json
+import math
 import re
 import sys
 from collections import Counter
@@ -67,6 +68,46 @@ VARIETY_KEYS = [
     ("네비올로", ["네비올로"]),
     ("시라/시라즈", ["시라"]),
 ]
+
+
+
+# ───────────────────────── 와인 지도 ─────────────────────────
+# 밑그림(scripts/wine_map_base.json)은 make_wine_map_base.py가 미리 투영해 둔 것이고,
+# 핀은 빌드 때마다 여기서 투영한다. 두 쪽이 반드시 같은 함수를 써야 핀이 제자리에 찍힌다.
+MAP_BASE = ROOT / "scripts" / "wine_map_base.json"
+MAP_PLACES = ROOT / "scripts" / "wine_places.json"
+PLACEHOLDER_MAP = "/*__MAP__*/null"
+
+_EE = (1.340264, -0.081106, 0.000893, 0.003796)   # Equal Earth 계수 (Šavrič et al. 2018)
+_EE_M = math.sqrt(3) / 2
+
+
+def equal_earth(lon: float, lat: float, lon0: float = 0.0) -> tuple[float, float]:
+    """Equal Earth 투영(면적 보존 세계지도). 단위 없는 평면 좌표, y는 위쪽이 +."""
+    a1, a2, a3, a4 = _EE
+    lam = math.radians(lon - lon0)
+    th = math.asin(_EE_M * math.sin(math.radians(lat)))
+    t2 = th * th
+    t6 = t2 ** 3
+    x = lam * math.cos(th) / (_EE_M * (a1 + 3 * a2 * t2 + t6 * (7 * a3 + 9 * a4 * t2)))
+    y = th * (a1 + a2 * t2 + t6 * (a3 + a4 * t2))
+    return x, y
+
+
+def project(proj: dict, lon: float, lat: float) -> tuple[float, float]:
+    """패널 투영 파라미터로 경위도를 SVG 좌표(viewBox 단위, y는 아래쪽이 +)로 바꾼다.
+
+    ee  : 세계 패널 — Equal Earth.            X = x0 + k·x,  Y = y0 − k·y
+    eqr : 확대 패널 — 위도 보정 정거원통.      X = (lon−lon0)·cos·k,  Y = (lat0−lat)·k
+          좁은 지역이라 중앙 위도의 cos 하나로 보정하면 모양이 거의 그대로다.
+    """
+    if proj["type"] == "ee":
+        x, y = equal_earth(lon, lat, proj.get("lon0", 0.0))
+        return proj["x0"] + proj["k"] * x, proj["y0"] - proj["k"] * y
+    if proj["type"] == "eqr":
+        return ((lon - proj["lon0"]) * proj["cos"] * proj["k"],
+                (proj["lat0"] - lat) * proj["k"])
+    raise ValueError(f"모르는 투영: {proj['type']}")
 
 
 def clean(s: str) -> str:
@@ -240,6 +281,89 @@ def mark_top100(items: list[dict], records: list[dict]) -> None:
         t["exact"] = bool(exact)
 
 
+
+def place_of(r: dict, places: list[dict]) -> dict | None:
+    """와인 한 병의 산지 지점. 지역 → (지역이 비면) 품종 칸 → 와인명 영문 키 순으로 찾는다.
+
+    지역 칸만 먼저 보는 이유는 국가 판정 때와 같다 — '보르도 블렌드' 같은 품종명이
+    산지 키워드에 걸리면 엉뚱한 곳에 찍힌다.
+    """
+    for text in (r["r"], r["g"]):
+        if not text:
+            continue
+        for pl in places:
+            if any(k in text for k in pl["keys"]):
+                return pl
+    for pl in places:
+        if any(k in r["n"] for k in pl.get("name_keys", [])):
+            return pl
+    return None
+
+
+def build_map(records: list[dict]) -> tuple[dict | None, list[str]]:
+    """지도 데이터(패널·핀·산지별 병 수)를 만들고 각 레코드에 산지 id(`pl`)를 붙인다.
+
+    밑그림이나 산지 사전이 없으면 (None, [])을 돌려주고 대시보드에서 지도만 빠진다.
+    """
+    if not (MAP_BASE.exists() and MAP_PLACES.exists()):
+        for r in records:
+            r["pl"] = None
+        return None, []
+    base = json.loads(MAP_BASE.read_text(encoding="utf-8"))
+    dic = json.loads(MAP_PLACES.read_text(encoding="utf-8"))
+    places, countries = dic["places"], dic["countries"]
+
+    notes, used = [], {}
+    for r in records:
+        pl = place_of(r, places)
+        if pl is None and r["c"] in countries:          # 사전에 없음 → 그 나라 중심점(광역)
+            lat, lon = countries[r["c"]]["center"]
+            pl = {"id": f"{r['c']}_broad", "name": f"{r['c']}(광역)", "country": r["c"],
+                  "lat": lat, "lon": lon, "broad": True}
+            notes.append(f"산지 사전에 없어 국가 중심점으로 표시: {r['n']} ({r['c']} · 지역 '{r['r'] or '-'}')")
+        if pl is None:
+            notes.append(f"지도에서 빠짐(국가 미상): {r['n']}")
+            r["pl"] = None
+            continue
+        r["pl"] = pl["id"]
+        used.setdefault(pl["id"], {**pl, "n": 0})["n"] += 1
+
+    zooms = [p for p in base["panels"] if p.get("bbox")]
+    def zoom_of(pl):
+        for z in zooms:
+            lo0, la0, lo1, la1 = z["bbox"]
+            if lo0 <= pl["lon"] <= lo1 and la0 <= pl["lat"] <= la1:
+                return z["id"]
+        return "world"
+
+    visited = {countries[r["c"]]["iso"] for r in records if r["c"] in countries}
+    states = {dic["states"][pl["state"]] for pl in used.values() if pl.get("state")}
+    panels = []
+    for p in base["panels"]:
+        pins = []
+        for pl in sorted(used.values(), key=lambda x: -x["n"]):   # 큰 핀 먼저 → 작은 핀이 위에
+            if zoom_of(pl) != p["id"]:
+                continue
+            x, y = project(p["proj"], pl["lon"], pl["lat"])
+            pins.append({"p": pl["id"], "x": round(x, 1), "y": round(y, 1)})
+        hl = ([sid for sid, _ in p["shapes"] if sid.startswith("us-") and sid[3:] in states]
+              if p["id"] == "usw" else [sid for sid, _ in p["shapes"] if sid in visited])
+        out = {"id": p["id"], "title": p["title"], "vb": p["vb"], "shapes": p["shapes"],
+               "hl": hl, "pins": pins}
+        if p.get("outline"):
+            out["outline"] = p["outline"]
+        if p.get("frames"):
+            titles = {z["id"]: z["title"] for z in zooms}
+            out["frames"] = [{**f, "title": titles[f["to"]],
+                              "n": sum(pl["n"] for pl in used.values() if zoom_of(pl) == f["to"])}
+                             for f in p["frames"]]
+        panels.append(out)
+    info = {pid: {"name": pl["name"], "n": pl["n"], "c": pl["country"],
+                  "broad": bool(pl.get("broad")), "label": pl.get("label", ""),
+                  "z": zoom_of(pl)} for pid, pl in used.items()}
+    return {"panels": panels, "places": info}, notes
+
+
 def main() -> int:
     if not LOG.exists() or not TEMPLATE.exists():
         print(f"필요한 파일이 없습니다: {LOG} / {TEMPLATE}", file=sys.stderr)
@@ -255,8 +379,12 @@ def main() -> int:
         print(f"템플릿에 {PLACEHOLDER} 자리표시자가 없습니다.", file=sys.stderr)
         return 1
 
+    wine_map, map_notes = build_map(records)           # records에 산지 id(pl)도 붙인다
     data = json.dumps(records, ensure_ascii=False, separators=(",", ":"))
     html = template.replace(PLACEHOLDER, data, 1)
+    if wine_map:
+        html = html.replace(PLACEHOLDER_MAP,
+                            json.dumps(wine_map, ensure_ascii=False, separators=(",", ":")), 1)
 
     top = load_top100(records)
     if top:
@@ -284,6 +412,14 @@ def main() -> int:
           + (f" (+ 미분류 {n_undated}종)" if n_undated else ""))
     print(f"  종류: {dict(kinds)}")
     print(f"  국가: {dict(countries.most_common())}")
+    if wine_map:
+        by_zone = Counter()
+        for pl in wine_map["places"].values():
+            by_zone[pl["z"]] += pl["n"]
+        print(f"  지도: 산지 {len(wine_map['places'])}곳 · 미국 서부 {by_zone['usw']}병 · "
+              f"서유럽 {by_zone['weu']}병 · 그 밖 {by_zone['world']}병")
+    for n in map_notes:
+        print(f"  ⚠ {n}")
     return 0
 
 

@@ -14,6 +14,8 @@ on:
       - "drinks/ws-top100-*.json"
       - "scripts/build_wine_dashboard.py"
       - "scripts/wine_dashboard_template.html"
+      - "scripts/wine_places.json"
+      - "scripts/wine_map_base.json"
   workflow_dispatch:
 
 permissions:
