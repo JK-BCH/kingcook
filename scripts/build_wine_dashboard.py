@@ -58,16 +58,62 @@ REGION_COUNTRY = [
     ("세인트헬레나", "미국"),
 ]
 
-# 차트에서 개별 항목으로 뽑는 품종(나머지는 "기타"로 묶임)
+# 품종 사전: (표시 이름, 로그 품종 칸에 쓰는 표기들).
+# 하나도 안 맞으면 "품종 미상"(샴페인 블렌드·레드 블렌드처럼 구성이 안 적힌 것) —
+# 로그에 새 품종이 나오면 여기 한 줄 추가.
+# 차트에 막대로 따로 나올지는 템플릿이 병 수로 정한다(VARIETY_MIN병 이상).
+# 매칭은 긴 표기부터 하고 맞은 글자는 지워서, '프티 시라'가 '시라'로,
+# '그르나슈 블랑'이 '그르나슈'로, '카베르네 소비뇽'이 '소비뇽'으로 다시 잡히지 않게 한다.
 VARIETY_KEYS = [
-    ("샤르도네", ["샤르도네"]),
-    ("피노 누아", ["피노 누아"]),
+    # 레드
     ("카베르네 소비뇽", ["카베르네 소비뇽"]),
+    ("카베르네 프랑", ["카베르네 프랑"]),
+    ("메를로", ["메를로"]),
+    ("말벡", ["말벡"]),
+    ("프티 베르도", ["프티 베르도", "쁘띠 베르도"]),
     ("보르도 블렌드", ["보르도 블렌드"]),
-    ("소비뇽 블랑", ["소비뇽 블랑"]),
+    ("피노 누아", ["피노 누아"]),
+    ("시라/시라즈", ["시라즈", "시라"]),
+    ("프티 시라", ["프티 시라", "쁘띠 시라"]),
+    ("그르나슈", ["그르나슈", "가르나차"]),
     ("네비올로", ["네비올로"]),
-    ("시라/시라즈", ["시라"]),
+    ("산지오베제", ["산지오베제"]),
+    ("바르베라", ["바르베라"]),
+    ("템프라니요", ["템프라니요"]),
+    ("그라시아노", ["그라시아노"]),
+    ("진판델", ["진판델"]),
+    ("가메", ["가메"]),
+    ("카리냥", ["카리냥"]),
+    ("생소", ["생소"]),
+    # 화이트·스파클링
+    ("샤르도네", ["샤르도네"]),
+    ("피노 뫼니에", ["피노 뫼니에", "피노 뮈니에"]),
+    ("소비뇽 블랑", ["소비뇽 블랑", "소비뇽"]),   # 소테른의 '세미용/소비뇽'
+    ("세미용", ["세미용"]),
+    ("리슬링", ["리슬링"]),
+    ("슈냉 블랑", ["슈냉 블랑"]),
+    ("비오니에", ["비오니에"]),
+    ("피노 그리지오", ["피노 그리지오", "피노 그리"]),
+    ("알바리뇨", ["알바리뇨"]),
+    ("알리고테", ["알리고테"]),
+    ("프리울라노", ["프리울라노"]),
+    ("케르너", ["케르너"]),
+    ("그르나슈 블랑", ["그르나슈 블랑"]),
+    ("루산", ["루산느", "루산"]),
+    ("클레레트", ["클레레트"]),
+    ("모스카토", ["모스카토", "뮈스카"]),
+    ("글레라", ["글레라"]),
+    ("온다라비 수리", ["온다라비 수리"]),
+    ("마카베오", ["마카베오"]),
+    ("사렐로", ["사렐로", "샤렐로"]),
+    ("파레야다", ["파레야다"]),
 ]
+_VARIETY_KW = sorted(((kw, label) for label, kws in VARIETY_KEYS for kw in kws),
+                     key=lambda x: -len(x[0]))
+# 구성 비율이 10% 미만이거나 '소량'으로 적힌 품종은 그 와인의 품종으로 세지 않는다.
+# 예: '카베르네 소비뇽 96%·프티 베르도 2%·시라 2%' -> 카베르네 소비뇽만
+_MINOR_PAREN = re.compile(r"\([^)]*소량[^)]*\)")
+_MINOR_PCT = re.compile(r"[^·/(),]+?\s*(\d{1,3})\s*%?(?=\s*(?:$|[·/(),]))")
 
 
 
@@ -173,9 +219,18 @@ def country_of(varreg: str) -> str:
     return "기타"
 
 
-def varieties_of(varreg: str) -> list[str]:
-    hits = [label for label, kws in VARIETY_KEYS if any(k in varreg for k in kws)]
-    return hits or ["기타"]
+def varieties_of(grape: str) -> list[str]:
+    """품종 칸 -> 품종 목록(적힌 순서 = 주품종이 앞). 사전에 하나도 없으면 ['품종 미상']."""
+    t = _MINOR_PAREN.sub(lambda m: " " * len(m.group(0)), grape)
+    t = _MINOR_PCT.sub(lambda m: " " * len(m.group(0)) if int(m.group(1)) < 10 else m.group(0), t)
+    first: dict[str, int] = {}
+    for kw, label in _VARIETY_KW:
+        i = t.find(kw)
+        while i != -1:
+            first[label] = min(first.get(label, i), i)
+            t = t[:i] + "\0" * len(kw) + t[i + len(kw):]   # 같은 길이로 지워 위치 유지
+            i = t.find(kw)
+    return sorted(first, key=first.get) or ["품종 미상"]
 
 
 def broad_kind(kind: str) -> str:
@@ -212,7 +267,7 @@ def build_records(rows: list[dict]) -> list[dict]:
             "s": clean(r["critic"]) if r["critic"] not in ("—", "") else "",
             "ms": max_score(r["critic"]),
             "m": clean(r["memo"]),
-            "vt": varieties_of(varreg),
+            "vt": varieties_of(grape),
         })
     return out
 
@@ -412,6 +467,8 @@ def main() -> int:
           + (f" (+ 미분류 {n_undated}종)" if n_undated else ""))
     print(f"  종류: {dict(kinds)}")
     print(f"  국가: {dict(countries.most_common())}")
+    grapes = Counter(v for r in records for v in r["vt"])
+    print(f"  품종: {dict(grapes.most_common())}")
     if wine_map:
         by_zone = Counter()
         for pl in wine_map["places"].values():

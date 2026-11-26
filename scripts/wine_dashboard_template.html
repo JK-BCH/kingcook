@@ -354,10 +354,10 @@
   </div>
 
   <div class="section-head"><span class="idx">02</span><h2>지역 &amp; 품종</h2></div>
-  <p class="section-note">국가는 품종·지역 표기에서 추정 · 블렌드는 구성 품종마다 중복 집계</p>
+  <p class="section-note">국가는 품종·지역 표기에서 추정 · 블렌드는 구성 품종마다 중복 집계(10% 미만·소량으로 적힌 품종은 제외)</p>
   <div class="grid2">
     <div class="card"><h3>국가별 병 수</h3><div id="chart-country"></div></div>
-    <div class="card"><h3>품종별 <span>(블렌드 중복 집계)</span></h3><div id="chart-variety"></div></div>
+    <div class="card"><h3>품종별 <span>(블렌드 중복 · 3병 미만은 기타)</span></h3><div id="chart-variety"></div></div>
   </div>
 
   <div class="section-head"><span class="idx">03</span><h2>시음 자리별 평론가 점수</h2></div>
@@ -463,7 +463,6 @@ const MAP = /*__MAP__*/null;      // 산지 지도 — scripts/wine_map_base.jso
 const TOP100 = /*__TOP100__*/[];           // [[2026 목록], [2025 목록]] — 없으면 빈 배열(버튼 안 생김)
 const TOP100_YEARS = /*__TOP100_YEARS__*/[];  // ['2026','2025'] — TOP100과 같은 순서
 
-const S = ['var(--s1)','var(--s2)','var(--s3)','var(--s4)','var(--s5)','var(--s6)','var(--s7)','var(--s8)'];
 const KIND_COLOR = {'레드':'var(--s8)','화이트':'var(--s4)','스파클링':'var(--s3)','로제':'var(--s5)','디저트':'var(--s7)','기타':'var(--s6)'};
 const el = (t,c,h)=>{const e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;};
 const esc = s => String(s).replace(/[&<>]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
@@ -530,11 +529,17 @@ const uniq = arr => [...new Set(arr)];
 
 const COUNTRY_MAIN = ['미국','프랑스','이탈리아','스페인','독일','뉴질랜드'];
 const countryGroup = w => COUNTRY_MAIN.includes(w.c) ? w.c : '기타';
-const VARIETY_MAIN = ['샤르도네','피노 누아','카베르네 소비뇽','보르도 블렌드','소비뇽 블랑','네비올로','시라/시라즈'];
+// 품종 차트: VARIETY_MIN병 이상 마신 품종은 막대 하나씩, 나머지는 '기타'.
+// 목록을 고정해 두지 않고 기록에서 정하므로 새 품종도 병 수가 차면 저절로 나온다.
+const VARIETY_MIN = 3;
+const VARIETY_MAIN = tally(w=>w.vt).filter(([k,v])=> k!=='품종 미상' && v>=VARIETY_MIN).map(([k])=>k);
+// '기타' = 막대로 나온 품종이 하나도 없는 와인(3병 미만 품종 + 품종 미상).
+// 블렌드에 소수 품종이 섞였다고 기타에 또 세지 않는다.
+const varietyGroups = w => { const m = w.vt.filter(v=> VARIETY_MAIN.includes(v)); return m.length ? m : ['기타']; };
 
 function tally(keyFn){
   const m = new Map();
-  WINES.forEach(w=>{ [].concat(keyFn(w)).forEach(k=> m.set(k,(m.get(k)||0)+1) ); });
+  WINES.forEach(w=>{ new Set([].concat(keyFn(w))).forEach(k=> m.set(k,(m.get(k)||0)+1) ); });
   return [...m.entries()].sort((a,b)=>b[1]-a[1]);
 }
 
@@ -573,7 +578,7 @@ function hbar(container, rows, onClick){
   rows.forEach((r,i)=>{
     const btn = el('button','hbar-row', `
       <span class="hbar-label">${esc(r.k)}</span>
-      <span class="hbar-track"><span class="hbar-fill" style="width:${(r.v/max*100).toFixed(1)}%;background:${S[i%8]}"></span></span>
+      <span class="hbar-track"><span class="hbar-fill" style="width:${(r.v/max*100).toFixed(1)}%;background:${r.k==='기타'?'var(--muted)':'var(--accent)'}"></span></span>
       <span class="hbar-val">${r.v}</span>`);
     btn.setAttribute('aria-label', `${r.k} ${r.v}종 목록 보기`);
     btn.addEventListener('click', ()=>onClick(r));
@@ -588,10 +593,10 @@ hbar(document.getElementById('chart-country'), countryRows, r=>{
   openDrawer('지역', r.k==='기타' ? '기타 국가' : r.k, sel);
 });
 
-const varietyRows = tally(w=> w.vt.map(v=> VARIETY_MAIN.includes(v)?v:'기타')).map(([k,v])=>({k,v}));
+const varietyRows = tally(varietyGroups).map(([k,v])=>({k,v}));
 varietyRows.sort((a,b)=> (a.k==='기타') - (b.k==='기타') || b.v-a.v);
 hbar(document.getElementById('chart-variety'), varietyRows, r=>{
-  const sel = WINES.filter(w=> w.vt.some(v=> (VARIETY_MAIN.includes(v)?v:'기타')===r.k));
+  const sel = WINES.filter(w=> varietyGroups(w).includes(r.k));
   openDrawer('품종', r.k==='기타' ? '기타 품종' : r.k, sel);
 });
 
