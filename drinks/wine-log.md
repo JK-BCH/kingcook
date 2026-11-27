@@ -3,12 +3,21 @@
 다 마신 와인을 남겨두는 **개인 기록**. 요리용 와인·인벤토리와는 **별개**.
 (요리에 쓰는 와인은 `data/ingredients.json` → "와인" 항목.)
 
-> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **163종**(날짜 확인 159 + 미분류 4) · **2025-12-18 ~ 2026-11-25**.
+> 최신이 위로. 시음 자리(날짜)별로 묶음. 총 **165종**(날짜 확인 161 + 미분류 4) · **2025-12-18 ~ 2026-11-26**.
 > 정리 가정: ① 인스타 태그 `#YYMMDD` → 날짜 (단 `#250528`은 년도 오기 → **2026**-05-28) ② "GRIFIO"→Pinot **Grigio** ③ 2025-12-18 'Elivette 2017' 중복 1개로 합침 ④ 종류·품종·지역은 라벨 기준 추정.
 
 > **평점(2026-07-17 웹 조사)**: 사이트 직접열람이 막혀(403) **웹검색 스니펫 기반**이라 오차 가능. **Vivino**=커뮤니티 별점/5 (대개 빈티지 통합). **평론가**=해당 빈티지 100점 — JS=James Suckling, WS=Wine Spectator, WA=Wine Advocate(Parker), DEC=Decanter, VIN=Vinous, JD=Jeb Dunnuck, WE=Wine Enthusiast, WineIndep=The Wine Independent, N.MacLean=Natalie MacLean, IWC=International Wine Challenge, 종합=wine-searcher 평균. **`†`=단일출처·재확인 권장**, **`—`=못 찾음/미조사**.
 
 ---
+
+## 2026-11-26
+> 레드 2 — 코스트코 PB 샤토뇌프 뒤 파프 + 나파 컬트급 카베르네
+> 평점(2026-11-27 웹 조사): Lail은 WA·JD·Vinous 확인, Kirkland는 Tastings.com(BTI)만
+
+| 와인 | 종류 | 품종·지역 | Vivino | 평론가 점수(출처) | 메모 |
+|---|---|---|---|---|---|
+| Kirkland Signature Châteauneuf-du-Pape Cuvée du Terroir des Papes 2024 | 레드 | 그르나슈 중심 블렌드(시라·무르베드르·생소) · 샤토뇌프 뒤 파프(남부 론, 프랑스) | — | Tastings/BTI 93 † | 코스트코 커클랜드 PB(로그엔 Kirkland Chablis 2023에 이어 두 번째). ⭐ **로그 첫 샤토뇌프 뒤 파프** — 남부 론의 대표 AOC(교황청이 아비뇽에 있던 시절 '교황의 새 성'에서 나온 이름). 기존 남부 론은 Gigondas·Ventoux(Pesquié). 블렌드는 리뷰 사이트 기준 그르나슈 70·시라 10·무르베드르 10·생소 10(빈티지별 확인 안 됨). 양조는 2018 빈티지부터 Guillaume Gonnet로 바뀌었다는 정리(Reverse Wine Snob)가 있음. 소매 약 $21 |
+| Lail Vineyards J. Daniel Cuvée Cabernet Sauvignon 2022 | 레드 | 카베르네 소비뇽 · 나파밸리(캘리포니아) | — | **WA 98** · JD 96 · VIN 94 | ⭐ **로그 최고 득점권**(Dominus 2020 JS 98과 같은 급). 레일 가문은 **잉글눅**(1879, 구스타프 니바움) 후손 — 이 와인 이름은 금주법 뒤 잉글눅을 이끈 로빈 레일의 아버지 **존 대니얼 주니어**에서 따옴. 로빈 레일은 **도미누스 설립에 참여**했던 사람이고, 와인메이커 **필립 멜카**의 나파 첫 직장도 도미누스(1991) — 로그의 Dominus 2020(09-08)·Napanook 2023(06-03)과 연결. 1995년 첫 빈티지는 보르도 블렌드, 2001년부터 카베르네 소비뇽 100% |
 
 ## 2026-11-25
 > 화이트 1 + 레드 1 — 캘리포니아 소비뇽 블랑(식당 하우스 라벨로 보임) + **로그 첫 마르케**
